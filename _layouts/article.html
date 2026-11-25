@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<div class="shell">
+  {% include sidebar.html %}
+  <main id="main" class="main">
+    <article class="article">
+      <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> cat {{ page.category_id | default: "." }}/{{ page.dir | remove: "/" }}.md</div>
+      <header class="article-head">
+        <h1>{{ page.title }}</h1>
+        {% assign words = page.content | number_of_words %}
+        <p class="meta">
+          {% if page.category %}<a class="tag" href="{{ '/' | relative_url }}#{{ page.category_id }}">{{ page.category }}</a>{% endif %}
+          <span>{{ words }} words</span>
+          <span>~{{ words | divided_by: 200 | plus: 1 }} min read</span>
+          <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.path }}">edit on github</a>
+        </p>
+      </header>
+      <div class="prose" data-pagefind-body>
+        {{ content }}
+      </div>
+      <nav class="pager" aria-label="More in {{ page.category }}">
+        {% if page.prev %}<a class="prev" href="{{ page.prev.url | relative_url }}"><span class="dim">cd ..</span> {{ page.prev.title }}</a>{% else %}<span></span>{% endif %}
+        {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} <span class="dim">→</span></a>{% endif %}
+      </nav>
+    </article>
+  </main>
+  <aside class="toc" aria-label="On this page">
+    <div class="toc-inner">
+      <div class="toc-title dim">## on this page</div>
+      <ol id="toc"></ol>
+    </div>
+  </aside>
+</div>

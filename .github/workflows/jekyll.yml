@@ -1,4 +1,4 @@
-name: Build and deploy the wiki (Sphinx)
+name: Build and deploy the wiki (Jekyll)
 
 on:
   push:
@@ -13,26 +13,38 @@ concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  LANG: C.UTF-8
+  JEKYLL_ENV: production
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+
+      # Fails on a README entry without an article, or an article missing from the README
+      # (_plugins/readme_nav.rb).
+      - run: bundle exec jekyll build --strict_front_matter
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-          cache: pip
 
-      - run: pip install -r requirements.txt
-
-      # -W: any Sphinx warning (broken link target, bad toctree entry, ...) fails the build
-      - run: sphinx-build -W --keep-going -b html . _build/html
+      - name: Search index (Pagefind)
+        run: |
+          pip install 'pagefind[bin]==1.6.0'
+          python -m pagefind --site _site
 
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
-          path: _build/html
+          path: _site
 
   deploy:
     if: github.event_name != 'pull_request'

@@ -1,0 +1,18 @@
+---
+layout: default
+title: Not found
+permalink: /404.html
+sitemap: false
+render_with_liquid: true
+---
+<main id="main" class="notfound">
+  <div class="term">
+    <div class="win-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title">bash</span></div>
+    <div class="term-body">
+      <p><span class="prompt-sign">$</span> cat <span id="nf-path">this-page</span></p>
+      <p class="err">cat: No such file or directory (404)</p>
+      <p><span class="prompt-sign">$</span> cd <a href="{{ '/' | relative_url }}">~</a> <span class="dim"># back to the index</span></p>
+    </div>
+  </div>
+</main>
+<script>document.getElementById("nf-path").textContent = location.pathname;</script>

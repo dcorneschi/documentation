@@ -1,0 +1,20 @@
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Toggle article list" aria-controls="sidebar" aria-expanded="false">
+    <span aria-hidden="true">≡</span>
+  </button>
+  <a class="brand" href="{{ '/' | relative_url }}">
+    <span class="brand-user">{{ site.tty.prompt_user }}</span><span class="dim">@</span><span class="brand-host">devops</span><span class="dim">:</span><span class="brand-path">~{% if page.category_id %}/{{ page.category_id }}{% endif %}</span><span class="dim">$</span><span class="cursor" aria-hidden="true"></span>
+  </a>
+  <nav class="topnav">
+    <button class="search-open" type="button" aria-label="Search">
+      <span class="dim">grep</span> search <kbd>/</kbd>
+    </button>
+    <label class="palette">
+      <span class="dim">theme</span>
+      <select id="palette-select" aria-label="Color theme">
+        {% for p in site.tty.palettes %}<option value="{{ p }}">{{ p }}</option>{% endfor %}
+      </select>
+    </label>
+    <a class="gh" href="https://github.com/{{ site.repository }}" aria-label="Source on GitHub">git</a>
+  </nav>
+</header>

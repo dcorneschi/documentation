@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<main id="main" class="home">
+  <section class="hero" aria-label="Interactive terminal">
+    <div class="term">
+      <div class="win-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="win-title">{{ site.tty.prompt_user }}@devops: ~ — bash</span>
+      </div>
+      <div class="term-body" id="term">
+        <noscript>
+          <p><span class="prompt-sign">$</span> cat motd</p>
+          <p>{{ site.description }}</p>
+        </noscript>
+        <div class="term-out" id="term-out" aria-live="polite"></div>
+        <form class="term-line" id="term-form" autocomplete="off">
+          <label for="term-input" class="prompt"><span class="brand-user">{{ site.tty.prompt_user }}</span><span class="dim">@</span><span class="brand-host">devops</span><span class="dim">:~$</span></label>
+          <input id="term-input" spellcheck="false" autocapitalize="off" aria-label="Terminal command (type help)">
+        </form>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h1 class="hero-title">{{ site.title }}<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="hero-lead">{{ site.description }}</p>
+      <ul class="stats">
+        <li><b>{{ site.data.article_count }}</b> articles</li>
+        <li><b>{{ site.data.nav | size }}</b> categories</li>
+        <li><b>{{ site.time | date: "%Y-%m-%d" }}</b> last build</li>
+      </ul>
+      <p class="hint dim">try <code>help</code>, <code>ls</code>, <code>cd kubernetes</code>, <code>grep helm</code> or <code>theme dracula</code> in the terminal</p>
+    </div>
+  </section>
+
+  <section class="cats" aria-label="All articles by category">
+    <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> ls -1 ~/*/</div>
+    <div class="cat-grid">
+      {% for cat in site.data.nav %}
+      <section class="cat" id="{{ cat.id }}">
+        <h2><a href="#{{ cat.id }}"><span class="dir">{{ cat.id }}/</span></a> <span class="count">{{ cat.pages | size }}</span></h2>
+        <ul>
+          {% for p in cat.pages %}
+          <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endfor %}
+    </div>
+  </section>
+  <script id="nav-data" type="application/json">{{ site.data.nav | jsonify }}</script>
+</main>

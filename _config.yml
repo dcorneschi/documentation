@@ -1,0 +1,71 @@
+title: DevOps Wiki
+description: >-
+  Hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker,
+  Ansible, Linux and terminal tools. Every command and output comes from a real run.
+author: Daniel Corneschi
+url: https://dcorneschi.github.io
+baseurl: /documentation
+repository: dcorneschi/documentation
+lang: en
+tagline: hands-on DevOps notes
+
+# Theme ("tty"): palettes the reader can switch between, first one is the default.
+tty:
+  prompt_user: wiki
+  palettes: [phosphor, amber, dracula, nord, gruvbox, paper]
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      disable: true   # inline `code` stays plain
+
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
+  - jekyll-readme-index
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+titles_from_headings:
+  strip_title: true   # the layout prints the title itself
+
+relative_links:
+  enabled: true
+  collections: false
+
+defaults:
+  - scope: { path: "", type: pages }
+    values:
+      layout: article
+      # Articles show Helm/Ansible/Go templates ({{ }}, {% %}) as code: never run them as Liquid.
+      render_with_liquid: false
+  - scope: { path: README.md }
+    values:
+      layout: home
+      title: DevOps Wiki
+
+exclude:
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .venv
+  - .bundle
+  - .jekyll-cache
+  - scripts
+  - _build
+
+optional_front_matter:
+  remove_originals: true   # do not also publish the raw .md files
+
+readme_index:
+  remove_originals: true
+
+# Pagefind writes the search index into _site/pagefind after the build; keep it across `jekyll serve` rebuilds.
+keep_files: [pagefind]
