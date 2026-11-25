@@ -317,10 +317,10 @@ kbd {
 .prose ul > li::before { content: "–"; color: var(--accent); display: inline-block; width: 1.4em; margin-left: -1.4em; }
 .prose ul.task-list > li::before { content: none; }
 .prose img { max-width: 100%; height: auto; border-radius: 6px; }
-/* Diagram previews: at most 60% of the text column (and 520px tall);
+/* Diagram previews: at most 75% of the text column (and 640px tall);
    each one links to the full-size SVG. */
-.prose a:has(> img) { display: block; max-width: 60%; margin: 0 auto; cursor: zoom-in; }
-.prose a:has(> img) img { display: block; width: 100%; max-height: 520px; object-fit: contain; object-position: center top; }
+.prose a:has(> img) { display: block; max-width: 75%; margin: 0 auto; cursor: zoom-in; }
+.prose a:has(> img) img { display: block; width: 100%; max-height: 640px; object-fit: contain; object-position: center top; }
 @media (max-width: 900px) { .prose a:has(> img) { max-width: 100%; } }
 .prose a:has(> img) { text-decoration: none; }
 .prose hr { border: 0; border-top: 1px dashed var(--border); margin: 2em 0; }
