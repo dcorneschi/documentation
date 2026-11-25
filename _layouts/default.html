@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,800;1,400&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/css/tty.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/tty.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
 </head>
 <body class="layout-{{ page.layout }}">
@@ -30,6 +30,6 @@
   </footer>
   {% include search.html %}
   <script>window.TTY = { baseurl: {{ site.baseurl | jsonify }}, palettes: {{ site.tty.palettes | jsonify }} };</script>
-  <script src="{{ '/assets/js/tty.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/tty.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>

@@ -74,12 +74,12 @@
       a.className = "anchor";
       a.href = "#" + h.id;
       a.setAttribute("aria-label", "Link to this section");
-      a.textContent = "#";
+      a.textContent = "¶";
       h.appendChild(a);
       if (toc) {
         var li = document.createElement("li");
         li.className = "lvl-" + h.tagName.charAt(1);
-        li.innerHTML = '<a href="#' + esc(h.id) + '">' + esc(h.textContent.replace(/#$/, "").trim()) + "</a>";
+        li.innerHTML = '<a href="#' + esc(h.id) + '">' + esc(h.textContent.replace(/¶$/, "").trim()) + "</a>";
         toc.appendChild(li);
       }
     });
