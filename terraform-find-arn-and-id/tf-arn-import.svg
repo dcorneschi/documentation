@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Import IDs</title>
+  <desc id="d">The import id equals what the resource stores as id. aws_sqs_queue: the queue URL; with the name the error is incorrect format. aws_iam_policy: the ARN; with the name, Cannot import non-existent remote object. aws_sns_topic: the ARN; with the name, InvalidParameter TopicArn. aws_iam_role and aws_s3_bucket: the name.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="380" fill="#ffffff"/>
+  <text class="h" x="20" y="28">What terraform import wants</text>
+  <text class="sub" x="20" y="48">The import id is the value the resource keeps in .id</text>
+  <rect class="n" x="20" y="66" width="190" height="52" rx="6"/>
+  <text class="mb" x="32" y="86">aws_sqs_queue</text>
+  <text class="d" x="32" y="102">queue URL</text>
+  <rect class="g" x="222" y="66" width="340" height="52" rx="6"/>
+  <text class="ms" x="234" y="86">https://sqs.&lt;region&gt;.amazonaws.com/&lt;acct&gt;/legacy</text>
+  <rect class="x" x="574" y="66" width="246" height="52" rx="6"/>
+  <text class="d" x="586" y="86">wrong: name</text>
+  <text class="d" x="586" y="102">URL ... incorrect format</text>
+  <rect class="n" x="20" y="128" width="190" height="52" rx="6"/>
+  <text class="mb" x="32" y="148">aws_iam_policy</text>
+  <text class="d" x="32" y="164">ARN</text>
+  <rect class="g" x="222" y="128" width="340" height="52" rx="6"/>
+  <text class="ms" x="234" y="148">arn:aws:iam::&lt;acct&gt;:policy/legacy-policy</text>
+  <rect class="x" x="574" y="128" width="246" height="52" rx="6"/>
+  <text class="d" x="586" y="148">wrong: name</text>
+  <text class="d" x="586" y="164">Cannot import non-existent remote </text>
+  <rect class="n" x="20" y="190" width="190" height="52" rx="6"/>
+  <text class="mb" x="32" y="210">aws_sns_topic</text>
+  <text class="d" x="32" y="226">ARN</text>
+  <rect class="g" x="222" y="190" width="340" height="52" rx="6"/>
+  <text class="ms" x="234" y="210">arn:aws:sns:&lt;region&gt;:&lt;acct&gt;:legacy-topic</text>
+  <rect class="x" x="574" y="190" width="246" height="52" rx="6"/>
+  <text class="d" x="586" y="210">wrong: name</text>
+  <text class="d" x="586" y="226">InvalidParameter TopicArn</text>
+  <rect class="n" x="20" y="252" width="190" height="52" rx="6"/>
+  <text class="mb" x="32" y="272">aws_iam_role</text>
+  <text class="d" x="32" y="288">name</text>
+  <rect class="g" x="222" y="252" width="340" height="52" rx="6"/>
+  <text class="ms" x="234" y="272">legacy-role</text>
+  <rect class="s" x="574" y="252" width="246" height="52" rx="6"/>
+  <text class="ok" x="586" y="272">name works</text>
+  <rect class="n" x="20" y="314" width="190" height="52" rx="6"/>
+  <text class="mb" x="32" y="334">aws_s3_bucket</text>
+  <text class="d" x="32" y="350">name</text>
+  <rect class="g" x="222" y="314" width="340" height="52" rx="6"/>
+  <text class="ms" x="234" y="334">legacy-bucket</text>
+  <rect class="s" x="574" y="314" width="246" height="52" rx="6"/>
+  <text class="ok" x="586" y="334">name works</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 462" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Referencing arn and id</title>
+  <desc id="d">Single resource: type.name.arn. for_each: index by key, or a for expression for a map of all. count: index by number, or a splat for a list. Module: module.name.output, only outputs are visible. Without an index on a for_each or count resource: Missing resource instance key.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="462" fill="#ffffff"/>
+  <text class="h" x="20" y="28">One reference per shape</text>
+  <text class="sub" x="20" y="48">&lt;type&gt;.&lt;name&gt;[index].&lt;attribute&gt;, checked in terraform console</text>
+  <rect class="r" x="20" y="66" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="86">single resource</text>
+  <rect class="s" x="232" y="66" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="86">aws_sqs_queue.orders.arn</text>
+  <text class="d" x="244" y="104">one value</text>
+  <rect class="g" x="20" y="122" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="142">for_each, one key</text>
+  <rect class="s" x="232" y="122" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="142">aws_sqs_queue.per_env[&quot;dev&quot;].arn</text>
+  <text class="d" x="244" y="160">one value</text>
+  <rect class="g" x="20" y="178" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="198">for_each, all</text>
+  <rect class="s" x="232" y="178" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="198">{ for k, q in aws_sqs_queue.per_env : k =&gt; q.arn }</text>
+  <text class="d" x="244" y="216">map: key =&gt; arn</text>
+  <rect class="w" x="20" y="234" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="254">count, one index</text>
+  <rect class="s" x="232" y="234" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="254">aws_sns_topic.numbered[0].arn</text>
+  <text class="d" x="244" y="272">one value</text>
+  <rect class="w" x="20" y="290" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="310">count, all</text>
+  <rect class="s" x="232" y="290" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="310">aws_sns_topic.numbered[*].arn</text>
+  <text class="d" x="244" y="328">list</text>
+  <rect class="rw" x="20" y="346" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="366">module</text>
+  <rect class="s" x="232" y="346" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="366">module.audit_queue.arn</text>
+  <text class="d" x="244" y="384">only its outputs</text>
+  <rect class="x" x="20" y="402" width="200" height="46" rx="6"/>
+  <text class="tb" x="32" y="422">wrong: no index</text>
+  <rect class="s" x="232" y="402" width="588" height="46" rx="6"/>
+  <text class="m" x="244" y="422">aws_sqs_queue.per_env.arn</text>
+  <text class="d" x="244" y="440">Missing resource instance key</text>
+</svg>

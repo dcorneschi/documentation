@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 478" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Diagnosis by exit code</title>
+  <desc id="d">Exit 0 Completed: process ended, wrong workload type. Exit 1: app error, read the logs. 127 or 126: a shell could not find or execute a command, logs. 128 with StartError: the runtime could not start the command, events. 137 OOMKilled or Error: SIGKILL from the memory limit, check limits and the kernel log. 255: often a missing script interpreter. Killing event: liveness probe failure, exit code depends on the app.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="478" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Start from lastState.terminated</text>
+  <text class="sub" x="20" y="48">kubectl get pod &lt;pod&gt; -o jsonpath='{.status.containerStatuses[0].lastState.terminated}'</text>
+  <rect class="n" x="20" y="66" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="86">exit 0, Completed</text>
+  <rect class="s" x="262" y="66" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="86">process ended normally</text>
+  <text class="ms" x="274" y="102">wrong workload: use a Job, or keep the process running</text>
+  <rect class="r" x="20" y="124" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="144">exit 1 (small codes)</text>
+  <rect class="s" x="262" y="124" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="144">the app chose to exit</text>
+  <text class="ms" x="274" y="160">kubectl logs --previous</text>
+  <rect class="rw" x="20" y="182" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="202">127 / 126</text>
+  <rect class="s" x="262" y="182" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="202">a shell: not found / not executable</text>
+  <text class="ms" x="274" y="218">kubectl logs: sh: ...: not found</text>
+  <rect class="x" x="20" y="240" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="260">128, StartError</text>
+  <rect class="s" x="262" y="240" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="260">runtime could not start the command</text>
+  <text class="ms" x="274" y="276">events: exec ... no such file / permission denied</text>
+  <rect class="x" x="20" y="298" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="318">137, OOMKilled (or Error)</text>
+  <rect class="s" x="262" y="298" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="318">SIGKILL: memory limit</text>
+  <text class="ms" x="274" y="334">limits, kernel log: Memory cgroup out of memory</text>
+  <rect class="rw" x="20" y="356" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="376">255</text>
+  <rect class="s" x="262" y="356" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="376">often: #! interpreter missing</text>
+  <text class="ms" x="274" y="392">check the script shebang against the image</text>
+  <rect class="w" x="20" y="414" width="230" height="50" rx="6"/>
+  <text class="mb" x="32" y="434">Killing event</text>
+  <rect class="s" x="262" y="414" width="558" height="50" rx="6"/>
+  <text class="c" x="274" y="434">liveness probe failed</text>
+  <text class="ms" x="274" y="450">exit 0 or 137 depending on the app; events Unhealthy</text>
+</svg>

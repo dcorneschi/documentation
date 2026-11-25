@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Getting inside a crashing container</title>
+  <desc id="d">Method 1 ephemeral debug container with target: shows the app processes, filesystem and environment, retries until the app runs. Method 2 copy of the pod with the command replaced by sleep: same image and env, no labels, needs the restricted profile in restricted namespaces. Method 3 override the command on the Deployment: a real rollout, undo afterwards. Method 4 exec retry loop: needs a shell and a few seconds of life.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="280" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Four ways in</text>
+  <text class="sub" x="20" y="48">Tested on a container that lived 5 seconds and exited 1</text>
+  <rect class="g" x="20" y="66" width="192" height="40" rx="6"/>
+  <text class="tb" x="32" y="86">1  Ephemeral container</text>
+  <rect class="s" x="20" y="114" width="192" height="150" rx="6"/>
+  <text class="ms" x="32" y="134">kubectl debug --target</text>
+  <text class="c" x="32" y="158">added to the running pod</text>
+  <text class="c" x="32" y="182">--target: ps, /proc/1/root,</text>
+  <text class="c" x="32" y="206">/proc/1/environ of the app</text>
+  <text class="c" x="32" y="230">retries until the app runs</text>
+  <rect class="r" x="225" y="66" width="192" height="40" rx="6"/>
+  <text class="tb" x="237" y="86">2  Copy with a shell</text>
+  <rect class="s" x="225" y="114" width="192" height="150" rx="6"/>
+  <text class="ms" x="237" y="134">kubectl debug --copy-to</text>
+  <text class="c" x="237" y="158">same image, env, volumes</text>
+  <text class="c" x="237" y="182">command replaced: sleep 1d</text>
+  <text class="c" x="237" y="206">no labels, no traffic</text>
+  <text class="c" x="237" y="230">restricted ns: --profile</text>
+  <rect class="w" x="430" y="66" width="192" height="40" rx="6"/>
+  <text class="tb" x="442" y="86">3  Override command</text>
+  <rect class="s" x="430" y="114" width="192" height="150" rx="6"/>
+  <text class="ms" x="442" y="134">kubectl patch deploy</text>
+  <text class="c" x="442" y="158">real rollout of the app</text>
+  <text class="c" x="442" y="182">every pod does nothing</text>
+  <text class="c" x="442" y="206">kubectl rollout undo</text>
+  <text class="c" x="442" y="230">only on a broken app</text>
+  <rect class="n" x="635" y="66" width="192" height="40" rx="6"/>
+  <text class="tb" x="647" y="86">4  exec retry loop</text>
+  <rect class="s" x="635" y="114" width="192" height="150" rx="6"/>
+  <text class="ms" x="647" y="134">until kubectl exec</text>
+  <text class="c" x="647" y="158">needs a shell in the image</text>
+  <text class="c" x="647" y="182">and a few seconds of life</text>
+  <text class="c" x="647" y="206">got in on the 2nd try</text>
+  <text class="c" x="647" y="230">with a 5 s container</text>
+</svg>

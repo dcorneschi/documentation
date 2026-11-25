@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2752" height="1536" viewBox="0 0 2752 1536" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Listing Image Tags</title>
+  <desc id="d">Listing image tags in Docker Hub and other container registries. Small drawings: HUB, V2 and TAGS pills; a terminal running crane ls and crane digest; a tag list filtered to the 1.31 line with 1.31.8 selected after sort -V; icons for tags, the anonymous token and paging; small icons for the Hub API, the v2 API, the token, pages, version sort, digests and the CLI.</desc>
+  <defs>
+    <style>
+      .bg  { fill: #f8f9fa; }
+      .a   { fill: #1c7ed6; }
+      .al  { stroke: #1c7ed6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .ink { fill: #343a40; }
+      .h   { font-weight: 700; fill: #212529; letter-spacing: -2px; }
+      .s   { fill: #495057; }
+      .n   { fill: #868e96; }
+      .r   { stroke: #dee2e6; stroke-width: 2; }
+      .gl  { stroke: #adb5bd; stroke-width: 8; fill: none; stroke-linecap: round; }
+      .pb  { fill: #e7f1ff; stroke: #6ea8fe; stroke-width: 5; }
+      .pp  { fill: #f3effc; stroke: #a98eda; stroke-width: 5; }
+      .pg  { fill: #e8f5ee; stroke: #75b798; stroke-width: 5; }
+      .win { fill: #ffffff; stroke: #adb5bd; stroke-width: 6; }
+      .sel { fill: #1c7ed6; opacity: .16; }
+      .term{ fill: #212529; }
+      .tbar{ fill: #343a40; }
+      .tx  { fill: #e9ecef; }
+      .mono{ font-family: Menlo, Consolas, 'Liberation Mono', monospace; }
+      @media (prefers-color-scheme: dark) {
+        .bg  { fill: #161b22; }
+        .a   { fill: #4dabf7; }
+        .al  { stroke: #4dabf7; }
+        .ink { fill: #c9d1d9; }
+        .h   { fill: #f0f6fc; }
+        .s   { fill: #c9d1d9; }
+        .n   { fill: #8b949e; }
+        .r   { stroke: #30363d; }
+        .gl  { stroke: #484f58; }
+        .pb  { fill: #0c1d33; stroke: #4a78b8; }
+        .pp  { fill: #1f1633; stroke: #8a6fc0; }
+        .pg  { fill: #0f2a1d; stroke: #4f9a74; }
+        .win { fill: #0d1117; stroke: #484f58; }
+        .sel { fill: #4dabf7; opacity: .22; }
+        .term{ fill: #0d1117; stroke: #30363d; stroke-width: 4; }
+        .tbar{ fill: #21262d; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="2752" height="1536"/>
+
+  <!-- top left: pills and terminal -->
+  <g class="mono" font-size="28" font-weight="700" text-anchor="middle">
+    <rect class="pb" x="131" y="198" width="110" height="66" rx="33"/><text class="ink" x="186" y="241">HUB</text>
+    <rect class="pp" x="261" y="198" width="90" height="66" rx="33"/><text class="ink" x="306" y="241">V2</text>
+    <rect class="pg" x="371" y="198" width="130" height="66" rx="33"/><text class="ink" x="436" y="241">TAGS</text>
+  </g>
+  <text class="n mono" x="131" y="318" font-size="30">tags/list · every page · sort -V</text>
+  <rect class="term" x="131" y="400" width="720" height="190" rx="20"/>
+  <rect class="tbar" x="131" y="400" width="720" height="50" rx="20"/>
+  <rect class="tbar" x="131" y="430" width="720" height="20"/>
+  <circle cx="171" cy="425" r="11" fill="#ff5f57"/><circle cx="211" cy="425" r="11" fill="#febc2e"/><circle cx="251" cy="425" r="11" fill="#28c840"/>
+  <text class="tx mono" x="163" y="505" font-size="28">$ crane ls nginx | wc -l</text>
+  <text class="tx mono" x="163" y="558" font-size="28">$ crane digest nginx:1.31.8<tspan class="a">█</tspan></text>
+
+  <!-- center: filtered tag list -->
+  <g transform="translate(1060,0)">
+    <rect class="win" x="0" y="200" width="560" height="400" rx="22"/>
+    <g class="mono" font-size="30">
+      <text class="ink" x="40" y="268">&gt; ^1\.31\.</text>
+      <text class="n" x="350" y="268">3/1381</text>
+      <path class="gl" d="M40,290 H520" stroke-width="4"/>
+      <text class="ink" x="70" y="350">1.31.6</text>
+      <text class="ink" x="70" y="405">1.31.7</text>
+      <rect class="sel" x="30" y="425" width="500" height="50" rx="8"/>
+      <text class="a" x="40" y="460" font-weight="700">▌</text>
+      <text class="ink" x="70" y="460" font-weight="700">1.31.8</text>
+      <text class="n" x="40" y="550" font-size="26">nginx · sort -V</text>
+    </g>
+    <text class="n mono" x="280" y="660" text-anchor="middle" font-size="32">list · filter · sort · pin</text>
+  </g>
+
+  <!-- top right: three feature icons -->
+  <g transform="translate(1855,190) scale(1.15)">
+    <path class="al" stroke-width="12" d="M30,40 H110 L170,100 L110,160 H30 Z"/>
+    <circle class="a" cx="66" cy="100" r="14"/>
+  </g>
+  <text class="n" x="1970" y="470" text-anchor="middle" font-size="32">tags</text>
+  <g transform="translate(2105,190) scale(1.15)">
+    <circle class="al" stroke-width="12" cx="62" cy="100" r="36"/>
+    <path class="al" stroke-width="12" d="M98,100 H172 M146,100 V132 M172,100 V126"/>
+  </g>
+  <text class="n" x="2220" y="470" text-anchor="middle" font-size="32">token</text>
+  <g transform="translate(2355,190) scale(1.15)">
+    <rect class="al" stroke-width="12" x="66" y="28" width="104" height="124" rx="10"/>
+    <path class="al" stroke-width="12" d="M46,52 V172 H146"/>
+    <path class="al" stroke-width="8" d="M90,70 H146 M90,98 H146 M90,126 H130"/>
+  </g>
+  <text class="n" x="2470" y="470" text-anchor="middle" font-size="32">pages</text>
+
+  <text class="h" x="1376" y="880" text-anchor="middle" font-size="140">Listing Image Tags</text>
+  <text class="s" x="1376" y="1030" text-anchor="middle" font-size="84">Docker Hub, Registry v2, skopeo and crane</text>
+  <line class="r" x1="776" y1="1105" x2="1976" y2="1105"/>
+  <text class="n" x="1376" y="1210" text-anchor="middle" font-size="47">1000 limit · Link header · sort -V · sha256- tags · referrers · pull limit</text>
+
+  <!-- bottom row: small icons -->
+  <g transform="translate(546,1290) scale(0.5)"><rect class="al" stroke-width="14" x="24" y="40" width="152" height="120" rx="12"/><path class="al" stroke-width="12" d="M24,74 H176 M54,104 H126 M54,130 H106"/></g>
+  <text class="n" x="596" y="1450" text-anchor="middle" font-size="34">Hub API</text>
+  <g transform="translate(806,1290) scale(0.5)"><path class="al" stroke-width="16" d="M70,36 C40,36 50,84 30,100 C50,116 40,164 70,164 M130,36 C160,36 150,84 170,100 C150,116 160,164 130,164"/></g>
+  <text class="n" x="856" y="1450" text-anchor="middle" font-size="34">v2 API</text>
+  <g transform="translate(1066,1290) scale(0.5)"><circle class="al" stroke-width="14" cx="62" cy="100" r="36"/><path class="al" stroke-width="14" d="M98,100 H172 M146,100 V132 M172,100 V126"/></g>
+  <text class="n" x="1116" y="1450" text-anchor="middle" font-size="34">token</text>
+  <g transform="translate(1326,1290) scale(0.5)"><rect class="al" stroke-width="14" x="66" y="28" width="104" height="124" rx="10"/><path class="al" stroke-width="14" d="M46,52 V172 H146"/></g>
+  <text class="n" x="1376" y="1450" text-anchor="middle" font-size="34">pages</text>
+  <g transform="translate(1586,1290) scale(0.5)"><path class="al" stroke-width="16" d="M40,160 V120 M90,160 V80 M140,160 V40"/></g>
+  <text class="n" x="1636" y="1450" text-anchor="middle" font-size="34">sort -V</text>
+  <g transform="translate(1846,1290) scale(0.5)"><path class="al" stroke-width="16" d="M80,30 L60,170 M140,30 L120,170 M40,74 H170 M30,126 H160"/></g>
+  <text class="n" x="1896" y="1450" text-anchor="middle" font-size="34">digest</text>
+  <g transform="translate(2106,1290) scale(0.5)"><path class="al" stroke-width="18" d="M40,60 L90,100 L40,140 M110,150 H170"/></g>
+  <text class="n" x="2156" y="1450" text-anchor="middle" font-size="34">CLI</text>
+</svg>

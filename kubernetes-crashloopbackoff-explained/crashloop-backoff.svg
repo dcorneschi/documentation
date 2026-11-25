@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 384" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Measured backoff</title>
+  <desc id="d">Restart times over 22 minutes. Default kubelet: runs at 0, 1, 13, 35, 93, 174, 345, 646, 963 and 1264 seconds, delay doubling from 10 to the 300 second cap. maxContainerRestartPeriod 100s: delays capped at about 100 seconds, 15 restarts. ReduceDefaultCrashLoopBackOffDecay: delays start at 1 second and double, but are still capped at 300 seconds. Reset test: after a 620 second run the next restart came after 1 second and the delays started over.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="384" fill="#ffffff"/>
+  <text class="h" x="20" y="28">When the kubelet restarted a container that exits at once</text>
+  <text class="sub" x="20" y="48">Each dot is a start; 22 minutes, Kubernetes 1.37, one worker per setting</text>
+  <text class="tb" x="20" y="74">Default</text><text class="d" x="520" y="74">9 restarts in 22 min, cap 300 s</text>
+  <line x1="20" y1="96" x2="820" y2="96" stroke="#ced4da" stroke-width="2"/>
+  <circle cx="20.0" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="20.6" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="27.9" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="41.2" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="76.4" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="125.5" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="229.1" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="411.5" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="603.6" cy="96" r="5" fill="#e35d6a"/>
+  <circle cx="786.1" cy="96" r="5" fill="#e35d6a"/>
+  <text class="tb" x="20" y="144">maxContainerRestartPeriod: 100s</text><text class="d" x="520" y="144">15 restarts, cap 100 s</text>
+  <line x1="20" y1="166" x2="820" y2="166" stroke="#ced4da" stroke-width="2"/>
+  <circle cx="20.0" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="27.9" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="44.2" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="75.2" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="128.5" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="190.3" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="258.2" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="320.6" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="382.4" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="444.2" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="509.7" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="575.8" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="638.8" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="702.4" cy="166" r="5" fill="#fd9843"/>
+  <circle cx="763.6" cy="166" r="5" fill="#fd9843"/>
+  <text class="tb" x="20" y="214">ReduceDefaultCrashLoopBackOffDecay</text><text class="d" x="520" y="214">starts at 1 s, still capped at 300 s</text>
+  <line x1="20" y1="236" x2="820" y2="236" stroke="#ced4da" stroke-width="2"/>
+  <circle cx="20.0" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="20.6" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="21.8" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="23.6" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="26.7" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="32.1" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="45.5" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="72.1" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="124.2" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="203.0" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="358.8" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="541.2" cy="236" r="5" fill="#6ea8fe"/>
+  <circle cx="724.8" cy="236" r="5" fill="#6ea8fe"/>
+  <text class="tb" x="20" y="284">Default, 10-minute run, then crash</text><text class="d" x="520" y="284">backoff reset after the 620 s run</text>
+  <line x1="20" y1="306" x2="820" y2="306" stroke="#ced4da" stroke-width="2"/>
+  <rect x="133.9" y="297" width="376.4" height="18" rx="4" fill="#e8f5ee" stroke="#75b798"/>
+  <text class="ms" x="262.4" y="310">run 6: 620 s</text>
+  <circle cx="20.6" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="21.2" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="29.1" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="47.3" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="82.4" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="133.9" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="510.3" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="517.0" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="529.7" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="557.6" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="609.7" cy="306" r="5" fill="#2b8a3e"/>
+  <circle cx="711.5" cy="306" r="5" fill="#2b8a3e"/>
+  <line x1="20.0" y1="348" x2="20.0" y2="354" stroke="#868e96"/><text class="ms" x="14.0" y="368">0m</text>
+  <line x1="92.7" y1="348" x2="92.7" y2="354" stroke="#868e96"/><text class="ms" x="86.7" y="368">2m</text>
+  <line x1="165.5" y1="348" x2="165.5" y2="354" stroke="#868e96"/><text class="ms" x="159.5" y="368">4m</text>
+  <line x1="238.2" y1="348" x2="238.2" y2="354" stroke="#868e96"/><text class="ms" x="232.2" y="368">6m</text>
+  <line x1="310.9" y1="348" x2="310.9" y2="354" stroke="#868e96"/><text class="ms" x="304.9" y="368">8m</text>
+  <line x1="383.6" y1="348" x2="383.6" y2="354" stroke="#868e96"/><text class="ms" x="377.6" y="368">10m</text>
+  <line x1="456.4" y1="348" x2="456.4" y2="354" stroke="#868e96"/><text class="ms" x="450.4" y="368">12m</text>
+  <line x1="529.1" y1="348" x2="529.1" y2="354" stroke="#868e96"/><text class="ms" x="523.1" y="368">14m</text>
+  <line x1="601.8" y1="348" x2="601.8" y2="354" stroke="#868e96"/><text class="ms" x="595.8" y="368">16m</text>
+  <line x1="674.5" y1="348" x2="674.5" y2="354" stroke="#868e96"/><text class="ms" x="668.5" y="368">18m</text>
+  <line x1="747.3" y1="348" x2="747.3" y2="354" stroke="#868e96"/><text class="ms" x="741.3" y="368">20m</text>
+  <line x1="820.0" y1="348" x2="820.0" y2="354" stroke="#868e96"/><text class="ms" x="814.0" y="368">22m</text>
+</svg>

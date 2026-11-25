@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 320" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Where to find arn and id</title>
+  <desc id="d">Before apply: the registry documentation Attribute Reference and Import sections, and terraform providers schema -json, tell you which attributes exist; values are known after apply. After apply: terraform state list and state show, terraform console, terraform output, terraform show -json and state pull read the real values from state.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="320" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Where the attributes come from</text>
+  <text class="sub" x="20" y="48">Names before apply, values after: ARNs and IDs are (known after apply) until the resource exists</text>
+  <rect class="area" x="20" y="64" width="380" height="240" rx="10"/><text class="lb" x="36" y="86">BEFORE APPLY: WHICH ATTRIBUTES EXIST</text>
+  <rect class="r" x="36" y="98" width="348" height="58" rx="6"/>
+  <text class="tb" x="48" y="118">Registry docs</text>
+  <text class="d" x="48" y="134">Attribute Reference, Import section</text>
+  <rect class="r" x="36" y="166" width="348" height="58" rx="6"/>
+  <text class="tb" x="48" y="186">terraform providers schema -json</text>
+  <text class="d" x="48" y="202">every attribute, offline, filter with jq</text>
+  <rect class="n" x="36" y="234" width="348" height="52" rx="6"/>
+  <text class="tb" x="48" y="254">terraform plan / console</text>
+  <text class="d" x="48" y="270">arn = (known after apply)</text>
+  <rect class="area" x="440" y="64" width="380" height="240" rx="10"/><text class="lb" x="456" y="86">AFTER APPLY: THE VALUES, FROM STATE</text>
+  <rect class="g" x="456" y="98" width="348" height="44" rx="6"/>
+  <text class="mb" x="468" y="118">terraform state list / show</text>
+  <text class="d" x="468" y="132">addresses, then every attribute</text>
+  <rect class="g" x="456" y="148" width="348" height="44" rx="6"/>
+  <text class="mb" x="468" y="168">terraform console</text>
+  <text class="d" x="468" y="182">any expression, map and list too</text>
+  <rect class="g" x="456" y="198" width="348" height="44" rx="6"/>
+  <text class="mb" x="468" y="218">terraform output -raw / -json</text>
+  <text class="d" x="468" y="232">for scripts and other configs</text>
+  <rect class="g" x="456" y="248" width="348" height="44" rx="6"/>
+  <text class="mb" x="468" y="268">terraform show -json | jq</text>
+  <text class="d" x="468" y="282">all ids and arns as a table</text>
+  <path class="lne" d="M400,184 L438,184"/><text class="ms" x="402" y="176">apply</text>
+</svg>

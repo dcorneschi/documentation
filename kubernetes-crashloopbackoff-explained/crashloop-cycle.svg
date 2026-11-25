@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 300" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">The crash loop</title>
+  <desc id="d">The kubelet starts the container, status Running. The container exits, status Error or Completed, the run is recorded in lastState.terminated with exit code and reason. If restartPolicy allows a restart, the container waits in state waiting with reason CrashLoopBackOff for 10, 20, 40 seconds and so on up to 5 minutes, then the kubelet starts it again in the same pod. After 10 minutes of running without a crash, the delay resets.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/></marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11px; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 12px; font-weight: 700; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+      .lnb { stroke: #1c7ed6; stroke-width: 1.4; fill: none; marker-end: url(#ab); }
+      .dash{ stroke: #868e96; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+      .area{ fill: #f8f9fa; stroke: #ced4da; stroke-dasharray: 5 4; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+      .num { fill: #495057; }
+      .numt{ font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .ok  { font-size: 11px; font-weight: 700; fill: #2b8a3e; }
+      .bad { font-size: 11px; font-weight: 700; fill: #c92a2a; }
+    </style>
+  </defs>
+  <rect width="840" height="300" fill="#ffffff"/>
+  <text class="h" x="20" y="28">One turn of the loop</text>
+  <text class="sub" x="20" y="48">Same pod, same name, same node: only the container is restarted</text>
+  <rect class="g" x="20" y="70" width="185" height="104" rx="6"/>
+  <text class="tb" x="32" y="90">Running</text>
+  <text class="d" x="32" y="106">container started</text>
+  <text class="d" x="32" y="122">state.running</text>
+  <path class="lne" d="M205,122 L223,122"/>
+  <rect class="x" x="225" y="70" width="185" height="104" rx="6"/>
+  <text class="tb" x="237" y="90">Exited</text>
+  <text class="d" x="237" y="106">STATUS Error / Completed</text>
+  <text class="d" x="237" y="122">lastState.terminated:</text>
+  <text class="d" x="237" y="138">exitCode, reason</text>
+  <path class="lne" d="M410,122 L428,122"/>
+  <rect class="w" x="430" y="70" width="185" height="104" rx="6"/>
+  <text class="tb" x="442" y="90">Waiting</text>
+  <text class="d" x="442" y="106">reason CrashLoopBackOff</text>
+  <text class="d" x="442" y="122">back-off 10s, 20s, 40s</text>
+  <text class="d" x="442" y="138">... max 5m</text>
+  <path class="lne" d="M615,122 L633,122"/>
+  <rect class="r" x="635" y="70" width="185" height="104" rx="6"/>
+  <text class="tb" x="647" y="90">Restart</text>
+  <text class="d" x="647" y="106">kubelet starts it again</text>
+  <text class="d" x="647" y="122">RESTARTS + 1</text>
+  <path class="lne" d="M712,174 C712,230 112,230 112,176"/>
+  <text class="d" x="300" y="250">loop continues while the cause is there</text>
+  <text class="d" x="20" y="284">restartPolicy decides whether there is a next turn: Always (Deployments) restarts even exit 0, OnFailure only non-zero, Never none.</text>
+</svg>
