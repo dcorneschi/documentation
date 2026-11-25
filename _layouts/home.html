@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+<div class="shell">
+{% include sidebar.html %}
 <main id="main" class="home">
   <section class="hero" aria-label="Interactive terminal">
     <div class="term">
@@ -62,3 +64,4 @@ layout: default
   </section>
   <script id="nav-data" type="application/json">{{ site.data.nav | jsonify }}</script>
 </main>
+</div>
