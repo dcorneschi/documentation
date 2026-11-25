@@ -218,7 +218,6 @@ kbd {
 .icon-btn:hover, .search-open:hover { border-color: var(--accent); }
 .search-open { display: inline-flex; align-items: center; gap: 8px; }
 .palette { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
-.gh { font-size: 13px; }
 .nav-toggle { display: none; font-size: 18px; line-height: 1; padding: 2px 10px; }
 
 /* ---------- article layout: article list | text ---------- */
@@ -599,7 +598,7 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 @media (max-width: 640px) {
   body { font-size: 13px; }
   .search-open { padding: 4px 8px; }
-  .search-open .dim, .search-open kbd, .palette .dim, .gh { display: none; }
+  .search-open .dim, .search-open kbd, .palette .dim { display: none; }
   .brand { font-size: 13px; }
   .main { padding: 20px 16px 48px; }
 }
