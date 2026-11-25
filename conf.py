@@ -27,6 +27,7 @@ exclude_patterns = [
     "_build",
     "_ext",
     "_static",
+    "_templates",
     ".venv",
     ".claude",
     ".github",
@@ -50,22 +51,22 @@ suppress_warnings = ["myst.strikethrough"]  # strikethrough is HTML-only, fine h
 highlight_language = "none"
 
 # HTML output
-html_theme = "sphinx_rtd_theme"
+import sphinx_readable_theme
+
+html_theme = "readable"
+html_theme_path = [sphinx_readable_theme.get_html_theme_path()]
 html_title = "DevOps Wiki"
 html_copy_source = False
 html_show_sourcelink = False
 html_theme_options = {
-    "collapse_navigation": False,  # keep every category expandable in the sidebar
-    "navigation_depth": 2,
-    "style_external_links": True,
+    "sidebarwidth": "280",
+    "globaltoc_maxdepth": "1",  # article titles only, grouped by category
 }
-# "Edit on GitHub" link at the top of each page
-html_context = {
-    "display_github": True,
-    "github_user": "dcorneschi",
-    "github_repo": "documentation",
-    "github_version": "main/",
+# Sidebar: this page's headings, then every article, then search.
+html_sidebars = {
+    "**": ["localtoc.html", "globaltoc.html", "searchbox.html"],
 }
+templates_path = ["_templates"]
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]  # wider content area
 

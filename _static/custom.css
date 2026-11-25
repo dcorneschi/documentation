@@ -1,12 +1,21 @@
-/* Read the Docs theme caps the content column at 800px; the cheatsheets
-   are mostly wide tables and long commands, so give them more room. */
-.wy-nav-content {
+/* The Readable theme caps the page at 940px and the text column at 880px;
+   the cheatsheets are mostly wide tables and long commands, so give them
+   more room. */
+div.document {
   max-width: 1400px;
 }
 
-/* The theme keeps table cells on one line, which forces horizontal
-   scrolling for long descriptions; let them wrap instead. */
-.wy-table-responsive table td,
-.wy-table-responsive table th {
-  white-space: normal;
+div.body {
+  max-width: none;
+}
+
+/* Long code lines scroll inside their block instead of widening the page. */
+div.highlight pre {
+  overflow-x: auto;
+}
+
+/* Diagrams never overflow the text column. */
+div.body img {
+  max-width: 100%;
+  height: auto;
 }
