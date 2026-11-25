@@ -9,7 +9,8 @@
       <summary><span class="dir">{{ cat.id }}/</span><span class="count">{{ cat.pages | size }}</span></summary>
       <ul>
         {% for p in cat.pages %}
-        <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.title }}</a></li>
+        {%- comment -%} Short name: the title up to the first ":"; the full title shows on hover. {%- endcomment %}
+        <li><a href="{{ p.url | relative_url }}" title="{{ p.title | escape }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.title | split: ":" | first }}</a></li>
         {% endfor %}
       </ul>
     </details>

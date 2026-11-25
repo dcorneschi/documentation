@@ -32,7 +32,7 @@
     paletteSelect.addEventListener("change", function () { setPalette(paletteSelect.value); });
   }
 
-  /* ---------- article: tables, code blocks, headings, toc ---------- */
+  /* ---------- article: tables, code blocks, heading links ---------- */
   var prose = $(".prose");
   if (prose) {
     $$("table", prose).forEach(function (t) {
@@ -67,44 +67,14 @@
       box.appendChild(tools);
     });
 
-    var heads = $$("h2[id], h3[id]", prose);
-    var toc = $("#toc");
-    heads.forEach(function (h) {
+    $$("h2[id], h3[id]", prose).forEach(function (h) {
       var a = document.createElement("a");
       a.className = "anchor";
       a.href = "#" + h.id;
       a.setAttribute("aria-label", "Link to this section");
       a.textContent = "¶";
       h.appendChild(a);
-      if (toc) {
-        var li = document.createElement("li");
-        li.className = "lvl-" + h.tagName.charAt(1);
-        li.innerHTML = '<a href="#' + esc(h.id) + '">' + esc(h.textContent.replace(/¶$/, "").trim()) + "</a>";
-        toc.appendChild(li);
-      }
     });
-    if (toc && !heads.length) toc.closest(".toc").style.visibility = "hidden";
-
-    if (toc && heads.length && "IntersectionObserver" in window) {
-      var links = {};
-      $$("a", toc).forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
-      var current = null;
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            if (current) current.classList.remove("active");
-            current = links[e.target.id];
-            if (current) {
-              current.classList.add("active");
-              var box = current.closest(".toc-inner");
-              var r = current.getBoundingClientRect(), b = box.getBoundingClientRect();
-              if (r.top < b.top || r.bottom > b.bottom) box.scrollTop += r.top - b.top - b.height / 3;
-            }
-          }
-        });
-      }, { rootMargin: "-60px 0px -70% 0px" });
-      heads.forEach(function (h) { io.observe(h); });
-    }
   }
 
   /* ---------- sidebar: mobile toggle, filter, keep current item in view ---------- */
