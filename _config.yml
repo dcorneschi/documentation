@@ -9,9 +9,36 @@ repository: dcorneschi/documentation
 lang: en
 tagline: hands-on DevOps notes
 
+# Profile card in the right sidebar (_includes/profile.html), from github.com/dcorneschi.
+profile:
+  name: Daniel Corneschi
+  username: dcorneschi
+  avatar: https://avatars.githubusercontent.com/u/220212351?v=4&s=460
+  bio: >-
+    Linux systems engineer passionate about homelab infrastructure and container
+    orchestration. Sharing practical guides and building resilient home environments.
+  github: https://github.com/dcorneschi
+  # From the About page of the blog. Optional per entry: url (e.g. a Credly badge).
+  certifications:
+    - {name: Red Hat Certified Engineer (RHCE), issuer: Red Hat}
+    - {name: Cisco Certified Network Associate (CCNA), issuer: Cisco}
+    - {name: "HashiCorp Certified: Terraform Associate", issuer: HashiCorp}
+    - {name: AWS Certified SysOps Administrator – Associate, issuer: Amazon Web Services}
+    - {name: Datadog Fundamentals, issuer: Datadog}
+    - {name: IBM AIX, issuer: IBM}
+    - {name: HP-UX, issuer: HP}
+    - {name: ITIL}
+  # Book from the blog's About page; set image to "" to hide the section.
+  reading:
+    title: The DevOps Solutions Handbook
+    author: Michael Cade
+    publisher: Packt
+    image: /assets/profile/book.jpg
+  # Tech stack badges come from _data/stack.yml.
+
 # Theme ("tty"): palettes the reader can switch between, first one is the default.
 tty:
-  prompt_user: wiki
+  prompt_user: dcorneschi
   palettes: [phosphor, amber, dracula, nord, gruvbox, tokyo-night, catppuccin, one-dark, rose-pine, paper, solarized, github-light, one-light, latte, gruvbox-light, rose-pine-dawn, graphite, slate, silver, claude, claude-dark]
 
 markdown: kramdown
