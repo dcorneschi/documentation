@@ -12,7 +12,7 @@ tagline: hands-on DevOps notes
 # Theme ("tty"): palettes the reader can switch between, first one is the default.
 tty:
   prompt_user: wiki
-  palettes: [phosphor, amber, dracula, nord, gruvbox, tokyo-night, catppuccin, one-dark, rose-pine, paper, solarized]
+  palettes: [phosphor, amber, dracula, nord, gruvbox, tokyo-night, catppuccin, one-dark, rose-pine, paper, solarized, github-light, one-light, latte, gruvbox-light, rose-pine-dawn, graphite, slate, silver, claude, claude-dark]
 
 markdown: kramdown
 kramdown:
