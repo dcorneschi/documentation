@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-86 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+87 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (20) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (17) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (16) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -35,19 +35,23 @@
 - [Argo CD Cheatsheet](argocd-cheatsheet/index.md)
 - [Kubernetes Architecture on a kubeadm Cluster: What Each Component Does](kubernetes-architecture-components/index.md)
 - [kubectl describe vs kubectl logs: What Each One Shows and How Long It's Kept](kubectl-describe-vs-logs/index.md)
-- [Helm vs Argo CD vs Kustomize vs Flux: Which Tool Does What](helm-argocd-kustomize-flux-compared/index.md)
 - [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](argocd-rollback-out-of-sync/index.md)
 - [Kubernetes CPU and Memory Requests and Limits: What Each Value Really Does](kubernetes-cpu-memory-requests-limits/index.md)
-- [Kustomize vs Helm: Overlays, Charts, Merge Rules and Using Both](kustomize-vs-helm/index.md)
 - [Kubernetes Cluster Autoscaler: Scale-Up, Scale-Down, Expanders and EKS Setup](kubernetes-cluster-autoscaler-guide/index.md)
 - [Kubernetes Vertical Pod Autoscaler (VPA)](kubernetes-vpa-guide/index.md)
-- [What's New in Helm 4](helm-4-whats-new/index.md)
 - [Kubernetes emptyDir Volumes](kubernetes-emptydir-volumes/index.md)
 - [k9s Cheatsheet](k9s-cheatsheet/index.md)
-- [Comparing Helm Chart Versions Before an Upgrade](helm-compare-chart-versions/index.md)
 - [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](kubernetes-health-checks-probes/index.md)
-- [Helm Cheatsheet](helm/index.md)
 - [Kubernetes Pod Lifecycle Management](kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes Node Selectors: nodeSelector, Node Affinity, Taints and nodeName](kubernetes-node-selectors/index.md)
+
+## Helm
+
+- [Helm vs Argo CD vs Kustomize vs Flux: Which Tool Does What](helm-argocd-kustomize-flux-compared/index.md)
+- [Kustomize vs Helm: Overlays, Charts, Merge Rules and Using Both](kustomize-vs-helm/index.md)
+- [What's New in Helm 4](helm-4-whats-new/index.md)
+- [Comparing Helm Chart Versions Before an Upgrade](helm-compare-chart-versions/index.md)
+- [Helm Cheatsheet](helm/index.md)
 
 ## Terraform
 
@@ -86,9 +90,6 @@
 
 - [Escaping Special Characters in Bash](bash-escaping-special-characters/index.md)
 - [fssh: Pick an SSH Host from ~/.ssh/config with fzf](fzf-ssh-host-picker/index.md)
-- [cloud-init: bootcmd vs runcmd](cloud-init-bootcmd-vs-runcmd/index.md)
-- [cloud-init Heredocs and Logging](cloud-init-heredoc-logging-guide/index.md)
-- [Why tee Output Goes Missing in cloud-init](cloud-init-tee-output-missing/index.md)
 - [Bash Aliases and Functions](bash-aliases-functions/index.md)
 - [Cron Cheatsheet](cron-cheatsheet/index.md)
 - [ProxMenux Monitor: A Web Dashboard for Proxmox VE](proxmenux-monitor/index.md)
@@ -101,6 +102,12 @@
 - [Linux Processes and Signals Cheatsheet](ps/index.md)
 - [Installing MediaWiki on Ubuntu](mediawiki-installation-ubuntu/index.md)
 - [KVM / virsh Cheatsheet](kvm/index.md)
+
+## cloud-init
+
+- [cloud-init: bootcmd vs runcmd](cloud-init-bootcmd-vs-runcmd/index.md)
+- [cloud-init Heredocs and Logging](cloud-init-heredoc-logging-guide/index.md)
+- [Why tee Output Goes Missing in cloud-init](cloud-init-tee-output-missing/index.md)
 
 ## Terminal & macOS
 

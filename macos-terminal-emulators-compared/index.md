@@ -208,4 +208,6 @@ Throughput matters when a build or `kubectl logs` floods the screen; latency (ho
 
 The agent terminals and the classic ones are not either-or: cmux reads Ghostty's config, and `otty import` / `otty export` convert to and from Ghostty, kitty and Alacritty. Keeping one plain config file in your dotfiles and trying the others costs little.
 
-Related: the [tmux cheat sheet](../tmux/index.md) covers tabs and splits for Alacritty, or for any terminal over SSH.
+## See Also
+
+- [tmux Cheatsheet](../tmux/index.md)

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2752" height="1536" viewBox="0 0 2752 1536" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Kubernetes Node Selectors: nodeSelector, Node Affinity, Taints and nodeName</title>
+  <desc id="d">Kubernetes Node Selectors: nodeSelector, node affinity, taints and nodeName, tested. labels, nodeSelector, nodeAffinity, taints, tolerations, nodeName, kube-scheduler, Kubernetes 1.37. Small drawings: a terminal with kubectl get nodes -l disktype=ssd returning nodesel-worker, a pod with nodeSelector disktype: ssd going to the node labelled disktype=ssd while a node with disktype=hdd and a tainted GPU node are skipped, and icons for labels, selectors, affinity, taints, nodeName and the scheduler.</desc>
+  <defs>
+    <style>
+      .bg  { fill: #f8f9fa; }
+      .a   { fill: #326ce5; }
+      .ink { fill: #343a40; }
+      .pap { fill: #ffffff; stroke: #ced4da; stroke-width: 6; }
+      .al  { stroke: #326ce5; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .wt  { fill: #ffffff; }
+      .h   { font-weight: 700; fill: #212529; letter-spacing: -2px; }
+      .s   { fill: #495057; }
+      .n   { fill: #868e96; }
+      .r   { stroke: #dee2e6; stroke-width: 2; }
+      .vf  { fill: #326ce5; }
+      .vs  { stroke: #326ce5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .vl  { fill: #326ce5; fill-opacity: .18; }
+      .vp  { fill: #ffffff; }
+      .vn  { fill: #868e96; }
+      .vterm { fill: #212529; }
+      .vtbar { fill: #343a40; }
+      .vtx { fill: #e9ecef; }
+      .vtb { fill: #74c0fc; }
+      .tnt { fill: #fff3bf; stroke: #f08c00; stroke-width: 5; }
+      .tnx { fill: #e8590c; }
+      @media (prefers-color-scheme: dark) {
+        .bg  { fill: #161b22; }
+        .ink { fill: #c9d1d9; }
+        .pap { fill: #0d1117; stroke: #30363d; }
+        .h   { fill: #f0f6fc; }
+        .s   { fill: #c9d1d9; }
+        .n   { fill: #8b949e; }
+        .r   { stroke: #30363d; }
+        .vp  { fill: #0d1117; }
+        .vn  { fill: #8b949e; }
+        .vterm { fill: #0d1117; stroke: #30363d; stroke-width: 4; }
+        .vtbar { fill: #21262d; }
+        .tnt { fill: #3d2e00; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="2752" height="1536"/>
+
+  <!-- top left: kubectl get nodes -l (real output from the test) -->
+  <g transform="translate(100,200)">
+    <rect class="vterm" x="0" y="0" width="960" height="290" rx="22"/>
+    <rect class="vtbar" x="0" y="0" width="960" height="56" rx="22"/>
+    <rect class="vtbar" x="0" y="34" width="960" height="22"/>
+    <circle cx="40" cy="28" r="11" fill="#ff5f57"/><circle cx="80" cy="28" r="11" fill="#febc2e"/><circle cx="120" cy="28" r="11" fill="#28c840"/>
+    <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="28">
+      <text class="vtx" x="32" y="126">$ kubectl get nodes -l disktype=ssd</text>
+      <text class="vtx" x="32" y="186">NAME             STATUS   ROLES    AGE   VERSION</text>
+      <text class="vtb" x="32" y="236">nodesel-worker   Ready    &lt;none&gt;   28s   v1.37.0</text>
+    </g>
+  </g>
+
+  <!-- centre: pod with nodeSelector -->
+  <rect class="pap" x="1110" y="250" width="420" height="190" rx="24"/>
+  <text class="ink" x="1140" y="318" font-size="34" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">nodeSelector:</text>
+  <text class="a" x="1140" y="378" font-size="38" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">  disktype: ssd</text>
+  <text class="n" x="1320" y="500" text-anchor="middle" font-size="34">pod</text>
+  <path class="al" d="M1560,345 H1700 M1670,319 L1700,345 L1670,371"/>
+
+  <!-- right: three nodes -->
+  <rect class="a" x="1730" y="230" width="300" height="230" rx="28"/>
+  <text class="wt" x="1880" y="330" text-anchor="middle" font-size="40" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">disktype</text>
+  <text class="wt" x="1880" y="390" text-anchor="middle" font-size="40" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">=ssd</text>
+  <rect class="pap" x="2070" y="270" width="250" height="190" rx="24"/>
+  <text class="n" x="2195" y="350" text-anchor="middle" font-size="34" font-family="Menlo, Consolas, 'Liberation Mono', monospace">disktype</text>
+  <text class="n" x="2195" y="400" text-anchor="middle" font-size="34" font-family="Menlo, Consolas, 'Liberation Mono', monospace">=hdd</text>
+  <rect class="pap" x="2360" y="270" width="250" height="190" rx="24"/>
+  <text class="n" x="2485" y="345" text-anchor="middle" font-size="34" font-family="Menlo, Consolas, 'Liberation Mono', monospace">gpu=true</text>
+  <rect class="tnt" x="2392" y="372" width="186" height="56" rx="10"/>
+  <text class="tnx" x="2485" y="410" text-anchor="middle" font-size="28" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">taint</text>
+  <text class="n" x="1880" y="530" text-anchor="middle" font-size="34">scheduled</text>
+  <text class="n" x="2195" y="530" text-anchor="middle" font-size="34">filtered</text>
+  <text class="n" x="2485" y="530" text-anchor="middle" font-size="34">filtered</text>
+
+  <text class="h" x="1376" y="880" text-anchor="middle" font-size="150">Kubernetes Node Selectors</text>
+  <text class="s" x="1376" y="1030" text-anchor="middle" font-size="84">nodeSelector, node affinity, taints and nodeName, tested</text>
+  <line class="r" x1="776" y1="1105" x2="1976" y2="1105"/>
+  <text class="n" x="1376" y="1210" text-anchor="middle" font-size="44">labels · nodeSelector · nodeAffinity · taints · tolerations · nodeName · kube-scheduler · Kubernetes 1.37</text>
+
+  <!-- icon row -->
+  <!-- label -->
+  <g transform="translate(676,1290) scale(0.5)">
+    <path class="vs" d="M30,40 H120 L176,100 L120,160 H30 Z" stroke-width="12"/>
+    <circle class="vf" cx="70" cy="100" r="16"/>
+  </g>
+  <text class="vn" x="726" y="1450" text-anchor="middle" font-size="34">labels</text>
+  <!-- selector: target -->
+  <g transform="translate(936,1290) scale(0.5)">
+    <circle class="vs" cx="100" cy="100" r="76" stroke-width="12"/>
+    <circle class="vs" cx="100" cy="100" r="42" stroke-width="12"/>
+    <circle class="vf" cx="100" cy="100" r="14"/>
+  </g>
+  <text class="vn" x="986" y="1450" text-anchor="middle" font-size="34">nodeSelector</text>
+  <!-- affinity: magnet -->
+  <g transform="translate(1196,1290) scale(0.5)">
+    <path class="vs" d="M50,30 V100 A50,50 0 0 0 150,100 V30" stroke-width="34"/>
+    <rect class="vl" x="33" y="20" width="34" height="34"/>
+    <rect class="vl" x="133" y="20" width="34" height="34"/>
+  </g>
+  <text class="vn" x="1246" y="1450" text-anchor="middle" font-size="34">affinity</text>
+  <!-- taint: shield with minus -->
+  <g transform="translate(1456,1290) scale(0.5)">
+    <path class="vp" d="M100,16 L172,44 V102 C172,146 140,174 100,186 C60,174 28,146 28,102 V44 Z" stroke="#326ce5" stroke-width="10"/>
+    <path d="M64,100 H136" stroke="#326ce5" stroke-width="16" fill="none" stroke-linecap="round"/>
+  </g>
+  <text class="vn" x="1506" y="1450" text-anchor="middle" font-size="34">taints</text>
+  <!-- nodeName: pin -->
+  <g transform="translate(1716,1290) scale(0.5)">
+    <path class="vl" d="M100,186 C60,130 40,104 40,76 A60,60 0 0 1 160,76 C160,104 140,130 100,186 Z"/>
+    <path class="vs" d="M100,186 C60,130 40,104 40,76 A60,60 0 0 1 160,76 C160,104 140,130 100,186 Z" stroke-width="10"/>
+    <circle class="vf" cx="100" cy="76" r="22"/>
+  </g>
+  <text class="vn" x="1766" y="1450" text-anchor="middle" font-size="34">nodeName</text>
+  <!-- scheduler: funnel -->
+  <g transform="translate(1976,1290) scale(0.5)">
+    <path class="vl" d="M24,36 H176 L116,110 V170 L84,186 V110 Z"/>
+    <path class="vs" d="M24,36 H176 L116,110 V170 L84,186 V110 Z" stroke-width="10"/>
+  </g>
+  <text class="vn" x="2026" y="1450" text-anchor="middle" font-size="34">scheduler</text>
+</svg>

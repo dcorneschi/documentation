@@ -1529,4 +1529,7 @@ ansible all -m setup > /dev/null
 9. **Least privilege** — only use `become` on tasks that need it
 10. **Separate environments** — use different inventory files/dirs for staging vs production
 
-Related: [Ansible Inventory Guide](../ansible-inventory-guide/index.md) and [Ansible and the Target's Python: Versions by OS](../ansible-python-interpreter/index.md).
+## See Also
+
+- [Ansible Inventory Guide](../ansible-inventory-guide/index.md)
+- [Ansible and the Target's Python: Versions by OS](../ansible-python-interpreter/index.md)

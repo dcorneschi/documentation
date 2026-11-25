@@ -1170,4 +1170,8 @@ Crontab entry:
 0 3 * * * /usr/local/bin/cleanup.sh
 ```
 
-Related: [Ansible Cheatsheet](../ansible-cheatsheet/index.md) (the `cron` module above), [ps Cheatsheet](../ps/index.md) (finding the cron daemon and running jobs) and [Terraform Provisioners Guide](../terraform-provisioners-guide/index.md) (another place where `%`, `/bin/sh` and "only on create" catch people out).
+## See Also
+
+- [Ansible Cheatsheet](../ansible-cheatsheet/index.md)
+- [Linux Processes and Signals Cheatsheet](../ps/index.md)
+- [Terraform Provisioners Guide](../terraform-provisioners-guide/index.md)

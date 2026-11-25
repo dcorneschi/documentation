@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 410" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Dedicated nodes: label and taint</title>
+  <desc id="d">Three workers: nodesel-worker with disktype=ssd, nodesel-worker2 with disktype=hdd, and nodesel-worker3 with the label gpu=true and the taint gpu=true:NoSchedule. The label attracts only pods that select it; the taint keeps out every pod that does not tolerate it. Test results: a plain pod with no selector and no toleration ran on nodesel-worker2 and could not use the GPU node; a pod with nodeSelector gpu=true but no toleration stayed Pending, because the only matching node rejected it with its taint; a pod with nodeSelector gpu=true and a toleration for gpu=true:NoSchedule ran on nodesel-worker3.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b8a3e"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .mx  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #b02a37; white-space: pre; }
+      .mg  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #2b8a3e; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lng { stroke: #2b8a3e; stroke-width: 2; fill: none; marker-end: url(#ag); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .gpu { fill: #f3effc; stroke: #a98eda; stroke-width: 1.5; }
+      .tnt { fill: #fff3bf; stroke: #f08c00; }
+    </style>
+  </defs>
+  <rect width="840" height="410" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Dedicated nodes: the label attracts, the taint repels</text>
+  <text class="sub" x="20" y="48">Three test pods against one GPU worker with gpu=true and gpu=true:NoSchedule (results from the kind cluster)</text>
+
+  <!-- pods -->
+  <rect class="n" x="40" y="68" width="210" height="84" rx="6"/>
+  <text class="tb" x="52" y="90">plain</text>
+  <text class="d" x="52" y="108">no nodeSelector, no toleration</text>
+  <text class="d" x="52" y="124">the taint keeps it off worker3</text>
+  <text class="mg" x="52" y="142">Running on worker2</text>
+
+  <rect class="x" x="315" y="68" width="210" height="84" rx="6"/>
+  <text class="tb" x="327" y="90">gpu-no-toleration</text>
+  <text class="ms" x="327" y="108">nodeSelector: gpu: "true"</text>
+  <text class="d" x="327" y="124">no toleration</text>
+  <text class="mx" x="327" y="142">Pending</text>
+
+  <rect class="g" x="590" y="68" width="210" height="84" rx="6"/>
+  <text class="tb" x="602" y="90">gpu-tolerated</text>
+  <text class="ms" x="602" y="108">nodeSelector: gpu: "true"</text>
+  <text class="ms" x="602" y="124">toleration gpu=true:NoSchedule</text>
+  <text class="mg" x="602" y="142">Running on worker3</text>
+
+  <!-- arrows -->
+  <path class="lng" d="M145,154 L380,262"/>
+  <path class="lnx" d="M470,154 L640,262"/>
+  <text class="d" x="545" y="222" text-anchor="end">label matches,</text>
+  <text class="d" x="545" y="237" text-anchor="end">taint rejects</text>
+  <text class="d" x="462" y="176" text-anchor="end">no other node has gpu=true</text>
+  <path class="lng" d="M695,154 L700,262"/>
+  <text class="d" x="708" y="214">toleration lets it in</text>
+
+  <!-- nodes -->
+  <rect class="r" x="40" y="266" width="210" height="96" rx="6"/>
+  <text class="tb" x="52" y="288">nodesel-worker</text>
+  <text class="m" x="52" y="308">disktype=ssd</text>
+  <text class="d" x="52" y="326">taints: none</text>
+
+  <rect class="r" x="315" y="266" width="210" height="96" rx="6"/>
+  <text class="tb" x="327" y="288">nodesel-worker2</text>
+  <text class="m" x="327" y="308">disktype=hdd</text>
+  <text class="d" x="327" y="326">taints: none</text>
+
+  <rect class="gpu" x="590" y="266" width="210" height="96" rx="6"/>
+  <text class="tb" x="602" y="288">nodesel-worker3</text>
+  <text class="m" x="602" y="308">gpu=true</text>
+  <text class="lb" x="602" y="326">LABEL: ATTRACTS SELECTORS</text>
+  <rect class="tnt" x="598" y="334" width="194" height="22" rx="3"/>
+  <text class="m" x="604" y="349">gpu=true:NoSchedule</text>
+
+  <text class="c" x="40" y="390">A selector without a toleration can't use the node; a toleration without a selector doesn't send the pod there.</text>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 430" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">nodeName vs nodeSelector</title>
+  <desc id="d">A pod with nodeSelector goes to the kube-scheduler, which filters and scores nodes. If a node fits, the scheduler binds the pod and the kubelet starts it; if none fits, the pod stays Pending with a FailedScheduling event and is retried. A pod with nodeName skips the scheduler. If the named node does not exist, the pod stays Pending and the pod garbage collector deletes it: in the test it was gone 61 seconds after it was created. If the node exists, its kubelet admits the pod: a NoSchedule taint is ignored and the pod runs; a request larger than the node makes the kubelet reject it, and the pod is Failed with reason OutOfmemory; a NoExecute taint makes the kubelet reject it with Predicate TaintToleration failed, and the taint-eviction-controller deletes it.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnd { stroke: #495057; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#a); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .y   { fill: #fff3bf; stroke: #f08c00; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .lane{ fill: none; stroke: #dee2e6; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+  <rect width="840" height="430" fill="#ffffff"/>
+  <text class="h" x="20" y="28">nodeName vs nodeSelector</text>
+  <text class="sub" x="20" y="48">nodeName skips the scheduler, not the kubelet (results from the kind cluster, Kubernetes 1.37)</text>
+
+  <!-- lane 1: nodeSelector -->
+  <rect class="lane" x="12" y="62" width="816" height="112" rx="8"/>
+  <text class="lb" x="24" y="80">NODESELECTOR</text>
+  <rect class="n" x="24" y="90" width="150" height="70" rx="6"/>
+  <text class="m" x="36" y="112">nodeSelector:</text>
+  <text class="m" x="36" y="128">  disktype: ssd</text>
+  <text class="d" x="36" y="148">no node chosen yet</text>
+  <path class="lne" d="M176,125 L206,125"/>
+  <rect class="r" x="210" y="90" width="190" height="70" rx="6"/>
+  <text class="tb" x="222" y="112">kube-scheduler</text>
+  <text class="d" x="222" y="130">filters, scores, binds</text>
+  <text class="d" x="222" y="148">taints and resources checked</text>
+  <path class="lne" d="M402,110 L432,110"/>
+  <text class="ms" x="404" y="102">fits</text>
+  <path class="lnx" d="M402,142 L622,142"/>
+  <text class="ms" x="450" y="136">no node fits</text>
+  <rect class="g" x="436" y="88" width="170" height="36" rx="6"/>
+  <text class="c" x="448" y="110">kubelet starts it: Running</text>
+  <rect class="x" x="626" y="120" width="190" height="44" rx="6"/>
+  <text class="c" x="638" y="138">Pending, retried</text>
+  <text class="d" x="638" y="155">FailedScheduling event says why</text>
+
+  <!-- lane 2: nodeName -->
+  <rect class="lane" x="12" y="186" width="816" height="232" rx="8"/>
+  <text class="lb" x="24" y="204">NODENAME</text>
+  <rect class="n" x="24" y="214" width="150" height="70" rx="6"/>
+  <text class="m" x="36" y="236">nodeName:</text>
+  <text class="m" x="36" y="252">  worker-3</text>
+  <text class="d" x="36" y="272">scheduler never sees it</text>
+
+  <path class="lne" d="M176,239 L262,239"/>
+  <text class="ms" x="182" y="232">node missing</text>
+  <rect class="x" x="266" y="214" width="290" height="50" rx="6"/>
+  <text class="c" x="278" y="234">Pending, then deleted by the pod garbage</text>
+  <text class="d" x="278" y="252">collector: still there at 50 s, gone at 61 s</text>
+
+  <path class="lne" d="M100,286 L100,316 L206,316"/>
+  <text class="ms" x="108" y="306">node exists</text>
+  <rect class="rw" x="210" y="286" width="190" height="120" rx="6"/>
+  <text class="tb" x="222" y="308">kubelet admission</text>
+  <text class="d" x="222" y="328">the only check left:</text>
+  <text class="d" x="222" y="344">resources, NoExecute taints,</text>
+  <text class="d" x="222" y="360">OS, host ports …</text>
+  <text class="d" x="222" y="380">NoSchedule taints are</text>
+  <text class="d" x="222" y="396">not checked here</text>
+
+  <path class="lne" d="M402,300 L432,300"/>
+  <rect class="g" x="436" y="280" width="380" height="38" rx="6"/>
+  <text class="m" x="448" y="296">nn-tainted</text>
+  <text class="d" x="530" y="296">NoSchedule taint, no toleration</text>
+  <text class="c" x="448" y="311">Running: the taint is ignored</text>
+
+  <path class="lnx" d="M402,342 L432,342"/>
+  <rect class="x" x="436" y="324" width="380" height="38" rx="6"/>
+  <text class="m" x="448" y="340">nn-big</text>
+  <text class="d" x="530" y="340">requests 64Gi on a ~6 GiB node</text>
+  <text class="c" x="448" y="355">Failed, OutOfmemory: rejected, never started</text>
+
+  <path class="lnx" d="M402,386 L432,386"/>
+  <rect class="y" x="436" y="368" width="380" height="38" rx="6"/>
+  <text class="m" x="448" y="384">nn-noexecute</text>
+  <text class="d" x="530" y="384">maintenance=true:NoExecute taint</text>
+  <text class="c" x="448" y="399">rejected (TaintToleration), deleted by the taint controller</text>
+</svg>

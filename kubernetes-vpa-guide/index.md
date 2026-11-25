@@ -2,8 +2,6 @@
 
 ![Kubernetes Vertical Pod Autoscaler (VPA)](cover.svg)
 
-Related: [VPA on GitHub](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler) · [Kubernetes CPU and Memory Requests and Limits](../kubernetes-cpu-memory-requests-limits/index.md) · [Kubernetes Cluster Autoscaler](../kubernetes-cluster-autoscaler-guide/index.md)
-
 Everything below was tested with VPA 1.8.1 and metrics-server v0.9.1 on a three-node kind cluster running Kubernetes 1.37.0. The test workload keeps one CPU thread busy and holds about 150 MiB of memory.
 
 ## What VPA Does
@@ -503,3 +501,9 @@ kubectl get vpa my-app-vpa -o jsonpath='{.status.recommendation.containerRecomme
 ```
 
 Every eviction creates two events: `EvictedByVPA` on the pod and `EvictedPod` on the VPA object (`VPA Updater evicted Pod my-app-69969cf598-pvl2v to apply resource recommendation.`).
+
+## See Also
+
+- [VPA on GitHub](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
+- [Kubernetes CPU and Memory Requests and Limits: What Each Value Really Does](../kubernetes-cpu-memory-requests-limits/index.md)
+- [Kubernetes Cluster Autoscaler: Scale-Up, Scale-Down, Expanders and EKS Setup](../kubernetes-cluster-autoscaler-guide/index.md)

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 470" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">The scheduling cycle</title>
+  <desc id="d">A new pod goes through the kube-scheduler. Filter plugins drop every node that cannot run it: NodeAffinity checks nodeSelector and required node affinity, TaintToleration checks NoSchedule and NoExecute taints, NodeResourcesFit checks that the requests fit, NodeUnschedulable skips cordoned nodes, PodTopologySpread enforces DoNotSchedule spread and InterPodAffinity enforces required pod affinity and anti-affinity. If no node is left the pod stays Pending with a FailedScheduling event and is retried. Score plugins rank the remaining nodes: NodeAffinity adds the weights of preferred node affinity, TaintToleration penalises PreferNoSchedule taints, NodeResourcesFit and NodeResourcesBalancedAllocation look at free resources, ImageLocality prefers nodes with the image, PodTopologySpread with ScheduleAnyway and preferred InterPodAffinity add their scores. DefaultBinder writes the chosen node into spec.nodeName and the kubelet on that node admits and starts the pod. A pod that already has spec.nodeName skips the scheduler and goes straight to the kubelet; a pod with another schedulerName is ignored by the default scheduler.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .mb  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #1c5bd8; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11px; fill: #b02a37; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .lnd { stroke: #495057; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#a); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .hl  { fill: #fff3bf; }
+    </style>
+  </defs>
+  <rect width="840" height="470" fill="#ffffff"/>
+  <text class="h" x="20" y="28">The scheduling cycle</text>
+  <text class="sub" x="20" y="48">kube-scheduler on Kubernetes 1.37: where nodeSelector, node affinity, taints and nodeName act</text>
+
+  <!-- pod -->
+  <rect class="n" x="20" y="70" width="128" height="140" rx="6"/>
+  <text class="tb" x="32" y="92">new pod</text>
+  <text class="ms" x="32" y="114">nodeSelector</text>
+  <text class="ms" x="32" y="130">affinity</text>
+  <text class="ms" x="32" y="146">tolerations</text>
+  <text class="ms" x="32" y="162">resources</text>
+  <text class="ms" x="32" y="178">topologySpread…</text>
+  <text class="d" x="32" y="200">no nodeName yet</text>
+  <path class="lne" d="M150,140 L170,140"/>
+
+  <!-- filter -->
+  <rect class="r" x="174" y="70" width="228" height="246" rx="6"/>
+  <text class="lb" x="186" y="90">1 · FILTER: CAN IT RUN HERE?</text>
+  <rect class="hl" x="182" y="98" width="212" height="34" rx="3"/>
+  <text class="mb" x="186" y="112">NodeAffinity</text>
+  <text class="d" x="186" y="127">nodeSelector + required node affinity</text>
+  <text class="m" x="186" y="150">TaintToleration</text>
+  <text class="d" x="186" y="165">NoSchedule and NoExecute taints</text>
+  <text class="m" x="186" y="186">NodeResourcesFit</text>
+  <text class="d" x="186" y="201">requests fit in what is left</text>
+  <text class="m" x="186" y="222">NodeUnschedulable</text>
+  <text class="d" x="186" y="237">cordoned nodes</text>
+  <text class="m" x="186" y="258">PodTopologySpread</text>
+  <text class="d" x="186" y="273">whenUnsatisfiable: DoNotSchedule</text>
+  <text class="m" x="186" y="294">InterPodAffinity</text>
+  <text class="d" x="186" y="309">required pod (anti-)affinity</text>
+  <path class="lne" d="M404,140 L424,140"/>
+
+  <!-- score -->
+  <rect class="w" x="428" y="70" width="228" height="246" rx="6"/>
+  <text class="lb" x="440" y="90">2 · SCORE: RANK THE NODES LEFT</text>
+  <text class="m" x="440" y="112">NodeAffinity</text>
+  <text class="d" x="440" y="127">preferred node affinity weights</text>
+  <text class="m" x="440" y="150">TaintToleration</text>
+  <text class="d" x="440" y="165">PreferNoSchedule taints</text>
+  <text class="m" x="440" y="186">NodeResourcesFit</text>
+  <text class="d" x="440" y="201">+ BalancedAllocation: free resources</text>
+  <text class="m" x="440" y="222">ImageLocality</text>
+  <text class="d" x="440" y="237">image already on the node</text>
+  <text class="m" x="440" y="258">PodTopologySpread</text>
+  <text class="d" x="440" y="273">whenUnsatisfiable: ScheduleAnyway</text>
+  <text class="m" x="440" y="294">InterPodAffinity</text>
+  <text class="d" x="440" y="309">preferred pod (anti-)affinity</text>
+  <path class="lne" d="M658,140 L678,140"/>
+
+  <!-- bind + kubelet -->
+  <rect class="g" x="682" y="70" width="138" height="104" rx="6"/>
+  <text class="lb" x="694" y="90">3 · BIND</text>
+  <text class="m" x="694" y="112">DefaultBinder</text>
+  <text class="d" x="694" y="132">writes the node into</text>
+  <text class="ms" x="694" y="148">spec.nodeName</text>
+  <text class="d" x="694" y="166">highest score wins</text>
+  <path class="lne" d="M751,176 L751,206"/>
+  <rect class="rw" x="682" y="210" width="138" height="106" rx="6"/>
+  <text class="tb" x="694" y="232">kubelet</text>
+  <text class="d" x="694" y="252">admits the pod again:</text>
+  <text class="d" x="694" y="268">resources, NoExecute</text>
+  <text class="d" x="694" y="284">taints, then starts it</text>
+  <text class="ms" x="694" y="304">OutOfmemory if not</text>
+
+  <!-- pending -->
+  <path class="lnx" d="M288,318 L288,352"/>
+  <rect class="x" x="174" y="356" width="482" height="44" rx="6"/>
+  <text class="c" x="186" y="374">No node left: the pod stays Pending, with a FailedScheduling event, and is retried</text>
+  <text class="ms" x="186" y="391">0/4 nodes are available: … didn't match Pod's node affinity/selector</text>
+
+  <!-- bypass lanes -->
+  <rect class="n" x="20" y="414" width="128" height="44" rx="6"/>
+  <text class="m" x="32" y="432">spec.nodeName</text>
+  <text class="d" x="32" y="449">set by you</text>
+  <path class="lnd" d="M150,436 L670,436 C700,436 726,410 742,320"/>
+  <text class="d" x="190" y="430">skips filter, score and bind: only the kubelet checks it</text>
+  <text class="d" x="190" y="452">schedulerName: other-scheduler → the default scheduler ignores the pod (no events)</text>
+</svg>
