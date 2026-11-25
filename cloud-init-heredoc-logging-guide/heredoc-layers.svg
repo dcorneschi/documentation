@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 478" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Three layers between user-data and the file</title>
+  <desc id="d">A heredoc in runcmd passes three layers. First YAML: the | block scalar keeps the lines and strips the block indentation. Second cloud-init: the runcmd module in the Config stage writes all runcmd items into one script, /var/lib/cloud/instance/scripts/runcmd, starting with #!/bin/sh, and scripts_user in the Final stage runs it. Third the shell, dash on Ubuntu: with a quoted 'EOF' the file gets the literal text $(hostname); with an unquoted EOF it gets the expanded hostname, ci-web-01. Under dash, set -o pipefail and process substitution fail and stop the script, and $HOSTNAME is empty.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11.5px; fill: #212529; white-space: pre; }
+      .mk  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11.5px; fill: #868e96; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11.5px; fill: #b02a37; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .ind { fill: #fff3cd; }
+      .il  { font-size: 10.5px; font-weight: 700; fill: #997404; }
+      .ia  { stroke: #997404; stroke-width: 1.3; fill: none; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+    </style>
+  </defs>
+  <rect width="840" height="478" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Three layers between user-data and the file</text>
+  <text class="sub" x="20" y="48">A runcmd heredoc as cloud-init 26.2 handles it on Ubuntu 24.04, where /bin/sh is dash</text>
+
+  <!-- 1. YAML -->
+  <rect class="n" x="20" y="66" width="250" height="258" rx="6"/>
+  <text class="lb" x="32" y="86">1 · YAML (USER-DATA)</text>
+  <rect class="s" x="32" y="98" width="226" height="134" rx="6"/>
+  <text class="m" x="42" y="120">runcmd:</text>
+  <text class="m" x="42" y="138">  - |</text>
+  <rect class="ind" x="42" y="146" width="28" height="56"/>
+  <text class="m" x="42" y="158">    cat &lt;&lt; EOF &gt; /etc/motd</text>
+  <text class="m" x="42" y="176">    Host: $(hostname)</text>
+  <text class="m" x="42" y="194">    EOF</text>
+  <path class="ia" d="M56,206 V214 H78"/>
+  <text class="il" x="82" y="218">4 spaces: stripped by YAML</text>
+  <text class="c" x="32" y="252">The | block keeps the lines but drops</text>
+  <text class="c" x="32" y="268">the block indentation: EOF ends up at</text>
+  <text class="c" x="32" y="284">column 0 in the script.</text>
+  <text class="d" x="32" y="302">A less indented line ends the block:</text>
+  <text class="d" x="32" y="316">invalid YAML, the whole config is ignored.</text>
+
+  <!-- arrow 1 -> 2 -->
+  <path class="lne" d="M272,156 L318,156"/>
+  <text class="ms" x="295" y="146" text-anchor="middle">writes</text>
+  <text class="ms" x="295" y="176" text-anchor="middle">Config</text>
+
+  <!-- 2. cloud-init script -->
+  <rect class="r" x="322" y="66" width="250" height="258" rx="6"/>
+  <text class="lb" x="334" y="86">2 · CLOUD-INIT</text>
+  <text class="ms" x="334" y="102" style="font-size:9.5px">/var/lib/cloud/instance/scripts/runcmd</text>
+  <rect class="s" x="334" y="110" width="226" height="106" rx="6"/>
+  <text class="m" x="344" y="132">#!/bin/sh</text>
+  <text class="m" x="344" y="152">cat &lt;&lt; EOF &gt; /etc/motd</text>
+  <text class="m" x="344" y="170">Host: $(hostname)</text>
+  <text class="m" x="344" y="188">EOF</text>
+  <text class="mk" x="344" y="206">… every other runcmd item</text>
+  <text class="c" x="334" y="238">All items become one script. An</text>
+  <text class="c" x="334" y="254">exec &gt; file in one item redirects</text>
+  <text class="c" x="334" y="270">every item after it, and a failing</text>
+  <text class="c" x="334" y="286">line stops the rest.</text>
+  <text class="d" x="334" y="306">scripts_user (Final stage) runs it.</text>
+
+  <!-- arrow 2 -> 3 -->
+  <path class="lne" d="M574,156 L620,156"/>
+  <text class="ms" x="597" y="146" text-anchor="middle">runs</text>
+  <text class="ms" x="597" y="176" text-anchor="middle">Final</text>
+
+  <!-- 3. shell -->
+  <rect class="g" x="624" y="66" width="196" height="258" rx="6"/>
+  <text class="lb" x="636" y="86">3 · SHELL (DASH)</text>
+  <text class="tb" x="636" y="110">cat &lt;&lt; 'EOF'</text>
+  <rect class="s" x="636" y="118" width="172" height="28" rx="6"/>
+  <text class="m" x="646" y="136">Host: $(hostname)</text>
+  <text class="d" x="636" y="160">quoted: written literally</text>
+  <text class="tb" x="636" y="188">cat &lt;&lt; EOF</text>
+  <rect class="s" x="636" y="196" width="172" height="28" rx="6"/>
+  <text class="m" x="646" y="214">Host: ci-web-01</text>
+  <text class="d" x="636" y="238">unquoted: expanded when the</text>
+  <text class="d" x="636" y="252">script runs</text>
+  <text class="d" x="636" y="280">The result lands in</text>
+  <text class="ms" x="636" y="296">/etc/motd</text>
+
+  <!-- dash limits -->
+  <rect class="x" x="20" y="342" width="800" height="118" rx="6"/>
+  <text class="lb" x="32" y="362">WHAT /bin/sh (DASH 0.5.12) DOES NOT HAVE</text>
+  <text class="m" x="32" y="386">set -o pipefail</text>
+  <text class="cx" x="300" y="386">set: Illegal option -o pipefail  → script stops</text>
+  <text class="m" x="32" y="408">exec &gt; &gt;(tee -a log) 2&gt;&amp;1</text>
+  <text class="cx" x="300" y="408">Syntax error: redirection unexpected  → script stops</text>
+  <text class="m" x="32" y="430">echo $HOSTNAME</text>
+  <text class="cx" x="300" y="430">empty: a bash variable, use $(hostname)</text>
+  <text class="d" x="32" y="450">Need bash? Write the script with write_files and #!/bin/bash, or run bash -c '…'. set -eux, functions and local work in dash.</text>
+</svg>

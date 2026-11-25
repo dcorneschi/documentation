@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-83 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+84 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (19) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (15) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (19) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (16) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -86,6 +86,7 @@
 - [Escaping Special Characters in Bash](bash-escaping-special-characters/index.md)
 - [fssh: Pick an SSH Host from ~/.ssh/config with fzf](fzf-ssh-host-picker/index.md)
 - [cloud-init: bootcmd vs runcmd](cloud-init-bootcmd-vs-runcmd/index.md)
+- [cloud-init Heredocs and Logging](cloud-init-heredoc-logging-guide/index.md)
 - [Bash Aliases and Functions](bash-aliases-functions/index.md)
 - [Cron Cheatsheet](cron-cheatsheet/index.md)
 - [ProxMenux Monitor: A Web Dashboard for Proxmox VE](proxmenux-monitor/index.md)

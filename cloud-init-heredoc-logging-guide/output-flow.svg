@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 420" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Where runcmd output goes</title>
+  <desc id="d">The runcmd script's stdout and stderr go to cloud-init, which sends them through the output directive; the default on Ubuntu is all: | tee -a /var/log/cloud-init-output.log, so they land in that file and on the console. A command with | tee -a file writes to its own file and to the same output. An exec > /var/log/x.log 2>&amp;1 in one runcmd item sends that item and every later item only to its own file, so they never reach cloud-init-output.log. Output directive values are not run by a shell: "> file 2>&amp;1" creates a file whose name ends in 2>&amp;1; use a [stdout, stderr] list with "&amp;1" instead.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11.5px; fill: #212529; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11px; fill: #b02a37; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+    </style>
+  </defs>
+  <rect width="840" height="420" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Where runcmd output goes</text>
+  <text class="sub" x="20" y="48">cloud-init 26.2 on Ubuntu 24.04 with the default output directive</text>
+
+  <!-- the runcmd script -->
+  <rect class="n" x="20" y="66" width="290" height="226" rx="6"/>
+  <text class="lb" x="32" y="86">RUNCMD SCRIPT (ONE /bin/sh SCRIPT)</text>
+  <rect class="s" x="32" y="98" width="266" height="40" rx="6"/>
+  <text class="ms" x="42" y="114">item 1</text>
+  <text class="m" x="42" y="130">echo "starting"</text>
+  <rect class="s" x="32" y="146" width="266" height="40" rx="6"/>
+  <text class="ms" x="42" y="162">item 2</text>
+  <text class="m" x="42" y="178">apt-get update | tee -a setup.log</text>
+  <rect class="w" x="32" y="194" width="266" height="40" rx="6"/>
+  <text class="ms" x="42" y="210">item 3</text>
+  <text class="m" x="42" y="226">exec &gt; /var/log/x.log 2&gt;&amp;1</text>
+  <rect class="w" x="32" y="242" width="266" height="40" rx="6"/>
+  <text class="ms" x="42" y="258">item 4</text>
+  <text class="m" x="42" y="274">echo "done"</text>
+
+  <!-- cloud-init + output directive -->
+  <rect class="r" x="370" y="96" width="200" height="104" rx="6"/>
+  <text class="lb" x="382" y="116">OUTPUT DIRECTIVE</text>
+  <text class="ms" x="382" y="136">output:</text>
+  <text class="ms" x="382" y="152">  all: "| tee -a</text>
+  <text class="ms" x="382" y="168">    /var/log/cloud-init-</text>
+  <text class="ms" x="382" y="184">    output.log"</text>
+
+  <path class="lne" d="M300,118 L366,130"/>
+  <path class="lne" d="M300,166 L366,158"/>
+  <text class="d" x="300" y="86">stdout + stderr</text>
+
+  <!-- targets -->
+  <rect class="g" x="604" y="80" width="216" height="56" rx="6"/>
+  <text class="lb" x="616" y="100">FILE</text>
+  <text class="ms" x="616" y="120" style="font-size:10px">/var/log/cloud-init-output.log</text>
+  <rect class="g" x="604" y="150" width="216" height="44" rx="6"/>
+  <text class="lb" x="616" y="170">CONSOLE / JOURNAL</text>
+  <text class="d" x="616" y="186">tee also writes to its stdout</text>
+  <path class="lne" d="M572,136 L600,112"/>
+  <path class="lne" d="M572,160 L600,170"/>
+
+  <!-- item 2 tee -->
+  <rect class="s" x="604" y="208" width="216" height="34" rx="6"/>
+  <text class="ms" x="616" y="230">setup.log (item 2's own copy)</text>
+  <path class="lne" d="M300,170 C470,250 540,232 600,226"/>
+
+  <!-- exec bypass -->
+  <rect class="x" x="604" y="256" width="216" height="36" rx="6"/>
+  <text class="ms" x="616" y="279">/var/log/x.log (items 3 and 4)</text>
+  <path class="lnx" d="M300,262 L600,274"/>
+  <text class="cx" x="330" y="304">exec in item 3: items 3 and 4 never reach cloud-init-output.log</text>
+
+  <!-- notes -->
+  <rect class="n" x="20" y="316" width="800" height="88" rx="6"/>
+  <text class="lb" x="32" y="336">OUTPUT DIRECTIVE VALUES ARE NOT RUN BY A SHELL</text>
+  <text class="m" x="32" y="358">init: "&gt; /var/log/cloud-init-init.log 2&gt;&amp;1"</text>
+  <text class="cx" x="412" y="358">creates a file named  cloud-init-init.log 2&gt;&amp;1</text>
+  <text class="m" x="32" y="380">init: ["&gt;&gt; /var/log/cloud-init-init.log", "&amp;1"]</text>
+  <text class="c" x="412" y="380">stdout to the file, stderr ("&amp;1") to the same place</text>
+  <text class="d" x="32" y="398">Forms: "&gt; file" overwrite · "&gt;&gt; file" append · "| command" pipe · [stdout, stderr] list · {output, error} mapping</text>
+</svg>

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2752" height="1536" viewBox="0 0 2752 1536" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">cloud-init Heredocs and Logging</title>
+  <desc id="d">cloud-init Heredocs and Logging: Write files from runcmd and see what ran. runcmd, heredoc, /bin/sh (dash), set -x, tee, output directive, cloud-init-output.log, Ubuntu 24.04. Small drawings: a terminal with a quoted heredoc writing config.yml, a user-data file turning into a /bin/sh script and a log file, and icons for heredoc, /bin/sh, set -x, tee, output log and schema.</desc>
+  <defs>
+    <style>
+      .bg  { fill: #f8f9fa; }
+      .a   { fill: #40c057; }
+      .ink { fill: #343a40; }
+      .pap { fill: #ffffff; stroke: #ced4da; stroke-width: 6; }
+      .ln  { stroke: #adb5bd; stroke-width: 10; stroke-linecap: round; fill: none; }
+      .al  { stroke: #40c057; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .wt  { fill: #ffffff; }
+      .h   { font-weight: 700; fill: #212529; letter-spacing: -2px; }
+      .s   { fill: #495057; }
+      .n   { fill: #868e96; }
+      .r   { stroke: #dee2e6; stroke-width: 2; }
+      .vf  { fill: #40c057; }
+      .vs  { stroke: #40c057; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .vl  { fill: #40c057; fill-opacity: .18; }
+      .vp  { fill: #ffffff; }
+      .vg  { stroke: #ced4da; fill: none; stroke-linecap: round; }
+      .vn  { fill: #868e96; }
+      .vterm { fill: #212529; }
+      .vtbar { fill: #343a40; }
+      .vtx { fill: #e9ecef; }
+      .vtg { fill: #8ce99a; }
+      .vtd { fill: #adb5bd; }
+      @media (prefers-color-scheme: dark) {
+        .bg  { fill: #161b22; }
+        .ink { fill: #c9d1d9; }
+        .pap { fill: #0d1117; stroke: #30363d; }
+        .ln  { stroke: #484f58; }
+        .h   { fill: #f0f6fc; }
+        .s   { fill: #c9d1d9; }
+        .n   { fill: #8b949e; }
+        .r   { stroke: #30363d; }
+        .vp  { fill: #0d1117; }
+        .vg  { stroke: #484f58; }
+        .vn  { fill: #8b949e; }
+        .vterm { fill: #0d1117; stroke: #30363d; stroke-width: 4; }
+        .vtbar { fill: #21262d; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="2752" height="1536"/>
+
+  <!-- top left: terminal writing a file with a quoted heredoc -->
+  <g transform="translate(150,150)">
+    <rect class="vterm" x="0" y="0" width="760" height="460" rx="22"/>
+    <rect class="vtbar" x="0" y="0" width="760" height="56" rx="22"/>
+    <rect class="vtbar" x="0" y="34" width="760" height="22"/>
+    <circle cx="40" cy="28" r="11" fill="#ff5f57"/><circle cx="80" cy="28" r="11" fill="#febc2e"/><circle cx="120" cy="28" r="11" fill="#28c840"/>
+    <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="34">
+      <text class="vtx" x="36" y="120">$ cat &lt;&lt; 'EOF' &gt; config.yml</text>
+      <text class="vtd" x="36" y="172">&gt; server:</text>
+      <text class="vtd" x="36" y="218">&gt;   port: 8080</text>
+      <text class="vtd" x="36" y="264">&gt; EOF</text>
+      <text class="vtx" x="36" y="324">$ cat config.yml</text>
+      <text class="vtg" x="36" y="372">server:</text>
+      <text class="vtg" x="36" y="418">  port: 8080</text>
+    </g>
+  </g>
+
+  <!-- top centre: user-data -> /bin/sh script -->
+  <rect class="pap" x="1000" y="190" width="300" height="360" rx="24"/>
+  <path class="ln" d="M1050,260 H1250 M1050,310 H1210 M1080,360 H1250 M1080,410 H1230 M1080,460 H1190"/>
+  <text class="n" x="1150" y="610" text-anchor="middle" font-size="38">user-data</text>
+  <path class="al" d="M1330,370 H1460 M1430,344 L1460,370 L1430,396"/>
+  <rect class="pap" x="1490" y="190" width="300" height="360" rx="24"/>
+  <text class="ink" x="1520" y="262" font-size="40" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">#!/bin/sh</text>
+  <path class="ln" d="M1540,320 H1740 M1540,370 H1700 M1540,420 H1740 M1540,470 H1660"/>
+  <text class="n" x="1640" y="610" text-anchor="middle" font-size="38">runcmd script</text>
+
+  <!-- top right: a log file -->
+  <rect class="pap" x="1960" y="190" width="620" height="360" rx="24"/>
+  <rect class="a" x="1960" y="190" width="620" height="70" rx="24"/>
+  <rect class="a" x="1960" y="230" width="620" height="30"/>
+  <text class="wt" x="2000" y="240" font-size="38" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">cloud-init-output.log</text>
+  <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="32">
+    <text class="ink" x="2000" y="320">+ cat</text>
+    <text class="ink" x="2000" y="370">+ echo === config.yml ===</text>
+    <text class="n" x="2000" y="420">server:</text>
+    <text class="n" x="2000" y="470">  port: 8080</text>
+    <text class="ink" x="2000" y="520">+ echo === End ===</text>
+  </g>
+
+  <text class="h" x="1376" y="880" text-anchor="middle" font-size="140">cloud-init Heredocs and Logging</text>
+  <text class="s" x="1376" y="1030" text-anchor="middle" font-size="86">Write files from runcmd and see what ran</text>
+  <line class="r" x1="776" y1="1105" x2="1976" y2="1105"/>
+  <text class="n" x="1376" y="1210" text-anchor="middle" font-size="47">runcmd · heredoc · /bin/sh (dash) · set -x · tee · output: · cloud-init-output.log · Ubuntu 24.04</text>
+
+  <!-- icon row -->
+  <g transform="translate(676,1290) scale(0.5)">
+    <path class="vp" d="M44,14 H126 L162,50 V186 H44 Z" stroke="#40c057" stroke-width="9"/>
+    <path class="vl" d="M126,14 V50 H162 Z"/>
+    <text class="vf" x="62" y="128" font-size="58" font-weight="700" font-family="Menlo, Consolas, monospace">&lt;&lt;</text>
+  </g>
+  <text class="vn" x="726" y="1450" text-anchor="middle" font-size="34">heredoc</text>
+  <g transform="translate(936,1290) scale(0.5)">
+    <rect class="vf" x="14" y="30" width="172" height="140" rx="18"/>
+    <path d="M44,74 L84,100 L44,126" stroke="#ffffff" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M100,130 H150" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <text class="vn" x="986" y="1450" text-anchor="middle" font-size="34">/bin/sh</text>
+  <g transform="translate(1196,1290) scale(0.5)">
+    <circle class="vl" cx="100" cy="100" r="86"/>
+    <path class="vs" d="M100,52 V148 M52,100 H148" stroke-width="22"/>
+  </g>
+  <text class="vn" x="1246" y="1450" text-anchor="middle" font-size="34">set -x</text>
+  <g transform="translate(1456,1290) scale(0.5)">
+    <path class="vs" d="M20,100 H100 M100,100 L176,40 M100,100 L176,160 M150,30 L180,40 L168,70 M150,170 L180,160 L168,130" stroke-width="18"/>
+  </g>
+  <text class="vn" x="1506" y="1450" text-anchor="middle" font-size="34">tee</text>
+  <g transform="translate(1716,1290) scale(0.5)">
+    <rect class="vp" x="30" y="16" width="140" height="170" rx="14" stroke="#40c057" stroke-width="9"/>
+    <path class="vs" d="M56,60 H144 M56,96 H144 M56,132 H120" stroke-width="12"/>
+  </g>
+  <text class="vn" x="1766" y="1450" text-anchor="middle" font-size="34">output log</text>
+  <g transform="translate(1976,1290) scale(0.5)">
+    <circle class="vf" cx="100" cy="100" r="86"/>
+    <path d="M58,102 L88,132 L146,70" stroke="#ffffff" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text class="vn" x="2026" y="1450" text-anchor="middle" font-size="34">schema</text>
+</svg>
