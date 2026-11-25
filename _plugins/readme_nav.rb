@@ -8,6 +8,14 @@
 # and on every article page: category, category_id, prev, next, and image (og.png).
 # The build fails if the README links an article that does not exist, or if an
 # article folder is missing from the README.
+#
+# site.data["latest"] lists the 10 newest articles for the home page. An article's
+# date is its blog publication date from _data/published.yml, otherwise the date of
+# the git commit that added its index.md (CI needs the full history for that:
+# fetch-depth: 0), otherwise now (not committed yet).
+
+require "open3"
+require "time"
 
 module TTY
   class ReadmeNav < Jekyll::Generator
@@ -56,11 +64,31 @@ module TTY
           page.data["image"] ||= "/#{entry['slug']}/og.png" if File.exist?(og)
           # The cover already shows the title (see themed_covers.rb).
           page.data["has_cover"] = File.exist?(File.join(site.source, entry["slug"], "cover.svg"))
+          page.data["published"] = entry["date"] = published_date(site, entry["slug"])
         end
       end
+
+      # Newest first; on equal dates keep the README order.
+      order = listed.each_with_index.to_h
+      site.data["latest"] = nav.flat_map { |cat| cat["pages"].map { |p| p.merge("category" => cat["title"], "category_id" => cat["id"]) } }
+                               .sort_by { |p| [-p["date"].to_i, order[p["slug"]]] }
+                               .first(10)
     end
 
     private
+
+    def published_date(site, slug)
+      from_blog = (site.data["published"] || {})[slug]
+      return to_time(from_blog) if from_blog
+
+      out, status = Open3.capture2("git", "-C", site.source, "log", "--diff-filter=A", "--format=%cI", "--", "#{slug}/index.md")
+      added = out.lines.last&.strip if status.success?
+      added && !added.empty? ? Time.parse(added) : Time.now
+    end
+
+    def to_time(value)
+      value.is_a?(Time) ? value : Time.parse(value.to_s)
+    end
 
     def slugify(text)
       Jekyll::Utils.slugify(text.gsub("&", "and"))

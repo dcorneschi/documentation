@@ -438,6 +438,27 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 .stats li { border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; background: var(--bg-alt); font-size: 13px; color: var(--muted); }
 .stats b { color: var(--accent-2); font-size: 1.15rem; margin-right: 4px; }
 .hint code { color: var(--accent); }
+
+/* latest articles (ls -lt style), between the terminal and the category grid */
+.latest { margin: 0 0 48px; }
+.latest-list {
+  list-style: none; margin: 0; padding: 6px 0;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt);
+  font-size: 13px; line-height: 1.5;
+}
+.latest-list li {
+  display: grid; grid-template-columns: 96px 190px minmax(0, 1fr); gap: 0 18px; align-items: baseline;
+  padding: 5px 16px;
+}
+.latest-list li + li { border-top: 1px dashed var(--border); }
+.latest-list time { color: var(--muted); }
+.latest-list .dir { text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.latest-list .latest-title { color: var(--fg); text-decoration: none; }
+.latest-list .latest-title:hover { color: var(--accent); }
+@media (max-width: 640px) {
+  .latest-list li { grid-template-columns: 96px minmax(0, 1fr); }
+  .latest-list .dir { display: none; }
+}
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
 .cat {
   border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt);

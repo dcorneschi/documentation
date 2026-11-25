@@ -32,6 +32,19 @@ layout: default
     </div>
   </section>
 
+  <section class="latest" aria-label="Latest articles">
+    <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> ls -lt ~/*/ | head -{{ site.data.latest | size }}</div>
+    <ol class="latest-list">
+      {% for p in site.data.latest %}
+      <li>
+        <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%Y-%m-%d" }}</time>
+        <a class="dir" href="#{{ p.category_id }}">{{ p.category_id }}/</a>
+        <a class="latest-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
   <section class="cats" aria-label="All articles by category">
     <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> ls -1 ~/*/</div>
     <div class="cat-grid">
