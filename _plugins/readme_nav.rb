@@ -54,6 +54,8 @@ module TTY
           page.data["next"] = cat["pages"][i + 1]
           og = File.join(site.source, entry["slug"], "og.png")
           page.data["image"] ||= "/#{entry['slug']}/og.png" if File.exist?(og)
+          # The cover already shows the title (see themed_covers.rb).
+          page.data["has_cover"] = File.exist?(File.join(site.source, entry["slug"], "cover.svg"))
         end
       end
     end

@@ -7,7 +7,8 @@ layout: default
     <article class="article">
       <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> cat {{ page.category_id | default: "." }}/{{ page.dir | remove: "/" }}.md</div>
       <header class="article-head">
-        <h1>{{ page.title }}</h1>
+        {%- comment -%} The cover shows the title, so the heading is only for screen readers, search engines and the search index. {%- endcomment %}
+        <h1{% if page.has_cover %} class="visually-hidden"{% endif %}>{{ page.title }}</h1>
         {% assign words = page.content | number_of_words %}
         <p class="meta">
           {% if page.category %}<a class="tag" href="{{ '/' | relative_url }}#{{ page.category_id }}">{{ page.category }}</a>{% endif %}
