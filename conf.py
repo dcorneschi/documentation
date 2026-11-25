@@ -51,15 +51,13 @@ suppress_warnings = ["myst.strikethrough"]  # strikethrough is HTML-only, fine h
 highlight_language = "none"
 
 # HTML output
-import sphinx_readable_theme
-
-html_theme = "readable"
-html_theme_path = [sphinx_readable_theme.get_html_theme_path()]
+html_theme = "traditional"  # built into Sphinx
 html_title = "DevOps Wiki"
 html_copy_source = False
 html_show_sourcelink = False
 html_theme_options = {
     "sidebarwidth": "280",
+    "body_max_width": "none",  # text fills the window next to the sidebar
     "globaltoc_maxdepth": "1",  # article titles only, grouped by category
 }
 # Sidebar: this page's headings, then every article, then search.

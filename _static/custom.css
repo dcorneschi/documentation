@@ -1,12 +1,13 @@
-/* The Readable theme caps the page at 940px and the text column at 880px;
-   the cheatsheets are mostly wide tables and long commands, so give them
-   more room. */
-div.document {
-  max-width: 1400px;
-}
-
+/* Traditional theme: use the full window width for the text.
+   The cheatsheets are mostly wide tables and long commands. */
 div.body {
   max-width: none;
+  padding: 0 24px 30px 24px;
+}
+
+/* Sidebar box: less outer margin, so the text column gets that space. */
+div.sphinxsidebarwrapper {
+  margin: 10px 10px 10px 0;
 }
 
 /* Long code lines scroll inside their block instead of widening the page. */
