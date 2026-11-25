@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 436" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Your tee inside cloud-init's tee</title>
+  <desc id="d">In runcmd, a command's output goes through your tee, which writes your file and passes a copy on its stdout. That stdout belongs to cloud-init, whose output directive (default | tee -a /var/log/cloud-init-output.log) writes cloud-init-output.log and the console. Four things break or change that path: a > file before the pipe leaves the pipe empty; | logger at the end takes tee's stdout so nothing reaches cloud-init; exec > file sends everything after it only to that file; tee -a /var/log/cloud-init-output.log writes every line twice.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11.5px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10.5px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11px; fill: #b02a37; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+    </style>
+  </defs>
+  <rect width="840" height="436" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Your tee inside cloud-init's tee</text>
+  <text class="sub" x="20" y="48">runcmd: apt-get install -y nginx 2&gt;&amp;1 | tee -a /var/log/my-setup.log, with the default output directive</text>
+
+  <!-- the pipeline inside the runcmd script -->
+  <rect class="n" x="20" y="66" width="470" height="150" rx="6"/>
+  <text class="lb" x="32" y="86">INSIDE THE RUNCMD SCRIPT (/bin/sh)</text>
+  <rect class="s" x="32" y="100" width="130" height="50" rx="6"/>
+  <text class="m" x="44" y="122">apt-get</text>
+  <text class="ms" x="44" y="139">stdout + 2&gt;&amp;1</text>
+  <path class="lne" d="M164,125 L212,125"/>
+  <rect class="w" x="216" y="100" width="150" height="50" rx="6"/>
+  <text class="m" x="228" y="122">your tee</text>
+  <text class="ms" x="228" y="139">tee -a my-setup.log</text>
+  <path class="lne" d="M291,152 L291,180"/>
+  <rect class="g" x="210" y="182" width="154" height="26" rx="6"/>
+  <text class="ms" x="220" y="199">/var/log/my-setup.log</text>
+  <path class="lne" d="M368,125 L474,125"/>
+  <text class="d" x="380" y="116">copy on stdout</text>
+
+  <!-- cloud-init -->
+  <rect class="r" x="510" y="66" width="310" height="150" rx="6"/>
+  <text class="lb" x="522" y="86">CLOUD-INIT (FINAL STAGE)</text>
+  <rect class="s" x="522" y="100" width="286" height="50" rx="6"/>
+  <text class="m" x="534" y="122">cloud-init's tee</text>
+  <text class="ms" x="534" y="139" style="font-size:9.5px">all: '| tee -a /var/log/cloud-init-output.log'</text>
+  <path class="lne" d="M600,152 L600,180"/>
+  <path class="lne" d="M730,152 L730,180"/>
+  <rect class="g" x="522" y="182" width="158" height="26" rx="6"/>
+  <text class="ms" x="530" y="199">cloud-init-output.log</text>
+  <rect class="g" x="690" y="182" width="118" height="26" rx="6"/>
+  <text class="ms" x="700" y="199">console</text>
+  <path class="lne" d="M478,125 L518,125"/>
+
+  <!-- what breaks it -->
+  <rect class="x" x="20" y="236" width="800" height="184" rx="6"/>
+  <text class="lb" x="32" y="256">WHAT BREAKS OR CHANGES THE PATH (TESTED)</text>
+  <text class="m" x="32" y="282">cmd &gt; a 2&gt;&amp;1 | tee b</text>
+  <text class="cx" x="380" y="282">&gt; takes stdout before the pipe: b is empty, nothing reaches cloud-init</text>
+  <text class="m" x="32" y="306">... | tee -a file | logger</text>
+  <text class="cx" x="380" y="306">logger takes tee's copy: journal yes, cloud-init-output.log no</text>
+  <text class="m" x="32" y="330">exec &gt; file 2&gt;&amp;1</text>
+  <text class="cx" x="380" y="330">everything after it goes only to file, later runcmd items too</text>
+  <text class="m" x="32" y="354">... | tee -a /var/log/cloud-init-output.log</text>
+  <text class="cx" x="380" y="354">your tee and cloud-init's tee both write it: every line twice</text>
+  <text class="m" x="32" y="378">[echo, "x", "|", "tee", "f"]</text>
+  <text class="cx" x="380" y="378">list form: every element quoted, the | is printed, not run</text>
+  <text class="d" x="32" y="406">Without 2&gt;&amp;1 stderr skips your tee but still reaches cloud-init-output.log.</text>
+</svg>

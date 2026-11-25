@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 520" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Where the output lands</title>
+  <desc id="d">Results of booting each runcmd pattern with cloud-init 26.2 on Ubuntu 24.04. cmd 2>&amp;1 | tee -a file: in your file and in cloud-init-output.log. List form with "|": no file, the pipe is printed as text in cloud-init-output.log. cmd > a 2>&amp;1 | tee b: a gets the output, b is empty, nothing in cloud-init-output.log. tee -a file | logger: your file and the journal, not cloud-init-output.log. tee -a /var/log/cloud-init-output.log: every line twice. Without 2>&amp;1: errors not in your file but in cloud-init-output.log. tee into a missing directory: no file, the error in cloud-init-output.log, status still done. cmd >> file 2>&amp;1: only your file. exec > >(tee -a file): syntax error under dash, nothing runs, status error. { ...; } 2>&amp;1 | tee -a file: your file and cloud-init-output.log.</desc>
+  <defs>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .th  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .d   { font-size: 10.5px; fill: #495057; }
+      .ok  { font-size: 12px; font-weight: 700; fill: #2b8a3e; }
+      .no  { font-size: 12px; font-weight: 700; fill: #c92a2a; }
+      .wn  { font-size: 12px; font-weight: 700; fill: #b35c00; }
+      .na  { font-size: 12px; fill: #adb5bd; }
+      .row { fill: #ffffff; }
+      .alt { fill: #f8f9fa; }
+      .bad { fill: #fff5f5; }
+      .good{ fill: #ebfbee; }
+      .grid{ stroke: #dee2e6; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="840" height="520" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Where the output lands</text>
+  <text class="sub" x="20" y="48">Each runcmd line booted on its own: cloud-init 26.2, Ubuntu 24.04, default output directive</text>
+
+  <!-- header -->
+  <text class="th" x="32" y="80">RUNCMD LINE</text>
+  <text class="th" x="436" y="80" text-anchor="middle">YOUR FILE</text>
+  <text class="th" x="560" y="80" text-anchor="middle">OUTPUT.LOG</text>
+  <text class="th" x="666" y="80" text-anchor="middle">JOURNAL</text>
+  <text class="th" x="702" y="80">NOTE</text>
+  <line class="grid" x1="20" y1="90" x2="820" y2="90"/>
+
+  <!-- rows: y = 92 + 40*i -->
+  <rect class="good" x="20" y="92" width="800" height="40"/>
+  <text class="m" x="32" y="116">cmd 2&gt;&amp;1 | tee -a file</text>
+  <text class="ok" x="436" y="116" text-anchor="middle">✓</text><text class="ok" x="560" y="116" text-anchor="middle">✓</text><text class="na" x="666" y="116" text-anchor="middle">–</text>
+  <text class="d" x="702" y="116">works</text>
+
+  <rect class="alt" x="20" y="132" width="800" height="40"/>
+  <text class="m" x="32" y="156">[echo, "x", "|", "tee", "file"]</text>
+  <text class="no" x="436" y="156" text-anchor="middle">✗</text><text class="wn" x="560" y="156" text-anchor="middle">text</text><text class="na" x="666" y="156" text-anchor="middle">–</text>
+  <text class="d" x="702" y="156">prints "x | tee file"</text>
+
+  <rect class="row" x="20" y="172" width="800" height="40"/>
+  <text class="m" x="32" y="196">cmd &gt; a 2&gt;&amp;1 | tee b</text>
+  <text class="wn" x="436" y="196" text-anchor="middle">a only</text><text class="no" x="560" y="196" text-anchor="middle">✗</text><text class="na" x="666" y="196" text-anchor="middle">–</text>
+  <text class="d" x="702" y="196">b: 0 bytes</text>
+
+  <rect class="alt" x="20" y="212" width="800" height="40"/>
+  <text class="m" x="32" y="236">cmd 2&gt;&amp;1 | tee -a file | logger</text>
+  <text class="ok" x="436" y="236" text-anchor="middle">✓</text><text class="no" x="560" y="236" text-anchor="middle">✗</text><text class="ok" x="666" y="236" text-anchor="middle">✓</text>
+  <text class="d" x="702" y="236">logger eats stdout</text>
+
+  <rect class="row" x="20" y="252" width="800" height="40"/>
+  <text class="m" x="32" y="276">cmd | tee -a /var/log/cloud-init-output.log</text>
+  <text class="na" x="436" y="276" text-anchor="middle">–</text><text class="wn" x="560" y="276" text-anchor="middle">2×</text><text class="na" x="666" y="276" text-anchor="middle">–</text>
+  <text class="d" x="702" y="276">every line twice</text>
+
+  <rect class="alt" x="20" y="292" width="800" height="40"/>
+  <text class="m" x="32" y="316">ls /missing | tee -a file</text>
+  <text class="wn" x="436" y="316" text-anchor="middle">no errors</text><text class="ok" x="560" y="316" text-anchor="middle">✓</text><text class="na" x="666" y="316" text-anchor="middle">–</text>
+  <text class="d" x="702" y="316">add 2&gt;&amp;1</text>
+
+  <rect class="row" x="20" y="332" width="800" height="40"/>
+  <text class="m" x="32" y="356">echo x | tee /no-such-dir/f</text>
+  <text class="no" x="436" y="356" text-anchor="middle">✗</text><text class="ok" x="560" y="356" text-anchor="middle">✓</text><text class="na" x="666" y="356" text-anchor="middle">–</text>
+  <text class="d" x="702" y="356">status still done</text>
+
+  <rect class="alt" x="20" y="372" width="800" height="40"/>
+  <text class="m" x="32" y="396">cmd &gt;&gt; file 2&gt;&amp;1</text>
+  <text class="ok" x="436" y="396" text-anchor="middle">✓</text><text class="no" x="560" y="396" text-anchor="middle">✗</text><text class="na" x="666" y="396" text-anchor="middle">–</text>
+  <text class="d" x="702" y="396">by design</text>
+
+  <rect class="bad" x="20" y="412" width="800" height="40"/>
+  <text class="m" x="32" y="436">exec &gt; &gt;(tee -a file)</text>
+  <text class="no" x="436" y="436" text-anchor="middle">✗</text><text class="no" x="560" y="436" text-anchor="middle">✗</text><text class="na" x="666" y="436" text-anchor="middle">–</text>
+  <text class="d" x="702" y="436">dash: syntax error</text>
+
+  <rect class="good" x="20" y="452" width="800" height="40"/>
+  <text class="m" x="32" y="476">{ cmd1; cmd2; } 2&gt;&amp;1 | tee -a file</text>
+  <text class="ok" x="436" y="476" text-anchor="middle">✓</text><text class="ok" x="560" y="476" text-anchor="middle">✓</text><text class="na" x="666" y="476" text-anchor="middle">–</text>
+  <text class="d" x="702" y="476">works in /bin/sh</text>
+
+  <line class="grid" x1="20" y1="492" x2="820" y2="492"/>
+  <text class="d" x="20" y="510">OUTPUT.LOG = /var/log/cloud-init-output.log · ✓ there · ✗ not there · – not involved</text>
+</svg>
