@@ -13,7 +13,6 @@ layout: default
           {% if page.category %}<a class="tag" href="{{ '/' | relative_url }}#{{ page.category_id }}">{{ page.category }}</a>{% endif %}
           <span>{{ words }} words</span>
           <span>~{{ words | divided_by: 200 | plus: 1 }} min read</span>
-          <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.path }}">edit on github</a>
         </p>
       </header>
       <div class="prose" data-pagefind-body>
