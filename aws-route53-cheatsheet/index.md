@@ -1205,5 +1205,5 @@ aws route53 get-hosted-zone --id Z0123456789ABCDEFGHIJ --query 'DelegationSet.Na
 - [What are Route 53 Profiles?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/profiles.html)
 - [Route 53 quotas](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html)
 - [Amazon Route 53 pricing](https://aws.amazon.com/route53/pricing/)
-- [AWS Certificate Manager guide](/posts/aws-certificate-manager-guide/)
-- [AWS S3 Cheatsheet](/cheatsheet/aws-s3-cheatsheet/)
+- [AWS Certificate Manager guide](../aws-certificate-manager-guide/index.md)
+- [AWS S3 Cheatsheet](../aws-s3-cheatsheet/index.md)

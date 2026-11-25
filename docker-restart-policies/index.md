@@ -124,7 +124,7 @@ secrets:
     file: ./db_root.txt
 ```
 
-> Compose v2 ignores the obsolete top-level `version:` key; omit it. Prefer a Docker secret or an `_FILE` environment variable over putting a database password directly in the Compose file. See [Defining Variables in Docker Compose]({{< relref "/posts/docker-compose-variables-env" >}}).
+> Compose v2 ignores the obsolete top-level `version:` key; omit it. Prefer a Docker secret or an `_FILE` environment variable over putting a database password directly in the Compose file. See [Defining Variables in Docker Compose](../docker-compose-variables-env/index.md).
 
 ### Restart policy vs healthcheck
 
@@ -291,4 +291,4 @@ docker logs --tail 50 my-service
 | Debugging a crash | `no` |
 | Failure/chaos testing of recovery | `unless-stopped` |
 
-For related material, see the [Docker Cheatsheet]({{< relref "/cheatsheet/docker-cheatsheet" >}}), [Docker Compose Cheatsheet]({{< relref "/cheatsheet/docker-compose" >}}), and [Defining Variables in Docker Compose]({{< relref "/posts/docker-compose-variables-env" >}}).
+For related material, see the [Docker Cheatsheet](../docker-cheatsheet/index.md), [Docker Compose Cheatsheet](../docker-compose/index.md), and [Defining Variables in Docker Compose](../docker-compose-variables-env/index.md).

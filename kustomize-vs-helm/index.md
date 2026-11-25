@@ -587,21 +587,10 @@ Gateway API.
 
 Charts can live in any OCI registry (ECR, GHCR, Harbor, Docker Hub) next to the images; no `helm repo add`, no `index.yaml`:
 
-```text
-$ helm package my-chart
-Successfully packaged chart and saved it to: .../my-chart-0.1.0.tgz
-$ helm push my-chart-0.1.0.tgz oci://localhost:5050/charts --plain-http
-Pushed: localhost:5050/charts/my-chart:0.1.0
-Digest: sha256:85a49adc8d665d3bc50f6cde84ece7041af77c8010e9c0a943f1b54fe07565a8
-$ helm show chart oci://localhost:5050/charts/my-chart --version 0.1.0 --plain-http
-Pulled: localhost:5050/charts/my-chart:0.1.0
-Digest: sha256:85a49adc8d665d3bc50f6cde84ece7041af77c8010e9c0a943f1b54fe07565a8
-apiVersion: v2
-appVersion: 1.16.0
-description: A Helm chart for Kubernetes
-name: my-chart
-type: application
-version: 0.1.0
+```bash
+helm package my-chart
+helm push my-chart-0.1.0.tgz oci://localhost:5050/charts --plain-http
+helm show chart oci://localhost:5050/charts/my-chart --version 0.1.0 --plain-http
 ```
 
 - `helm registry login <registry>` for private registries; `--plain-http` only for a local registry without TLS.
@@ -985,4 +974,4 @@ helm diff upgrade <release> <chart> -f values.yaml -n <ns>
 - [Helm documentation](https://helm.sh/docs/) and [Helm 4 plugin migration](https://helm.sh/docs/plugins/migrate)
 - [Use OCI-based registries with Helm](https://helm.sh/docs/topics/registries/)
 - [Strategic merge patch](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md)
-- [Kubernetes Cluster Autoscaler guide](/posts/kubernetes-cluster-autoscaler-guide/)
+- [Kubernetes Cluster Autoscaler guide](../kubernetes-cluster-autoscaler-guide/index.md)

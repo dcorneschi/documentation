@@ -378,10 +378,6 @@ printf 'vm.swappiness = 10\n' | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo sysctl --system
 ```
 
-```
-* Applying /etc/sysctl.d/99-swappiness.conf ...
-```
-
 This doesn't prevent swapping, it only shifts the kernel's preference toward reclaiming file-backed pages first.
 
 ### 5. Ask the DBA team or Oracle Support
@@ -422,4 +418,4 @@ Everything except the database example was run as root on a throwaway Colima VM:
 - [ipcs(1)](https://man7.org/linux/man-pages/man1/ipcs.1.html) and [shmctl(2)](https://man7.org/linux/man-pages/man2/shmctl.2.html) — segments, `IPC_RMID`, `SHM_LOCK`
 - [HugeTLB pages](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html) and [Transparent Hugepage support](https://docs.kernel.org/admin-guide/mm/transhuge.html)
 - [/proc/sys/vm](https://docs.kernel.org/admin-guide/sysctl/vm.html) — `swappiness`, `nr_hugepages`
-- [Linux Memory: RSS, VSZ, and Why RSS Alone Is Misleading](/posts/linux-memory-rss-vsz/) — RSS, PSS, USS and what the OOM killer counts
+- [Linux Memory: RSS, VSZ, and Why RSS Alone Is Misleading](../linux-memory-rss-vsz/index.md) — RSS, PSS, USS and what the OOM killer counts

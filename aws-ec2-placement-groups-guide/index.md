@@ -349,7 +349,7 @@ You can share a placement group with other accounts, or with an organization or 
 ## 12. With Auto Scaling, Launch Templates, Containers and EFA
 
 - **Launch template**: put the group name in the template's placement section, so every launch uses it.
-- **Auto Scaling group**: `--placement-group <name>` on `create-auto-scaling-group`. A **cluster** group is in one AZ, so **you cannot specify several AZs with a cluster placement group**. See [Amazon EC2 Auto Scaling Groups](/posts/aws-auto-scaling-groups-guide/).
+- **Auto Scaling group**: `--placement-group <name>` on `create-auto-scaling-group`. A **cluster** group is in one AZ, so **you cannot specify several AZs with a cluster placement group**. See [Amazon EC2 Auto Scaling Groups](../aws-auto-scaling-groups-guide/index.md).
 - **Karpenter**: an `EC2NodeClass` can name **one** placement group (by name or ID) and supports cluster, partition and spread groups. The Karpenter role needs `ec2:DescribePlacementGroups` and `ec2:RunInstances` or `ec2:CreateFleet`. See the [Karpenter `EC2NodeClass` docs](https://karpenter.sh/docs/concepts/nodeclasses/).
 - **Kubernetes topology**: Karpenter exposes the partition number as a label (`karpenter.k8s.aws/placement-group-partition`), so pods can use `topologySpreadConstraints` across partitions.
 - **HPC, MPI and ML training**: a cluster group is the usual base for **Elastic Fabric Adapter (EFA)** nodes (section 3), for example in AWS Batch with a cluster group in a Region that supports EFA.
@@ -494,4 +494,4 @@ Checked with Terraform 1.17.1 and AWS provider 6.71.0 (`terraform fmt`, `validat
 - [Capacity Blocks for ML](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-blocks.html)
 - [Get started with EFA and MPI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html)
 - [Amazon EC2 instance network bandwidth](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html)
-- [Amazon EC2 Auto Scaling Groups](/posts/aws-auto-scaling-groups-guide/)
+- [Amazon EC2 Auto Scaling Groups](../aws-auto-scaling-groups-guide/index.md)

@@ -4,7 +4,7 @@
 
 "Helm or Argo CD?" and "Kustomize or Flux?" come up all the time, and they compare tools that do different jobs. Helm and Kustomize **produce** Kubernetes manifests. Argo CD and Flux **keep a cluster equal to Git**, and use Helm or Kustomize to produce what's in Git. This article puts them side by side on the same small app, and measures what each one does when a resource is removed, when someone changes the cluster by hand, and when you need to go back.
 
-For the details of Kustomize and Helm themselves (overlays, merge rules, Helm in production) see [Kustomize vs Helm](/posts/kustomize-vs-helm/); for Argo CD's rollback see [Argo CD Rollback](/posts/argocd-rollback-out-of-sync/).
+For the details of Kustomize and Helm themselves (overlays, merge rules, Helm in production) see [Kustomize vs Helm](../kustomize-vs-helm/index.md); for Argo CD's rollback see [Argo CD Rollback](../argocd-rollback-out-of-sync/index.md).
 
 ## Scope
 
@@ -215,11 +215,8 @@ So under Helm 4, manual changes no longer get silently overwritten by the next d
 
 Helmfile doesn't render anything itself: it runs Helm for a list of releases and environments, from one file. Its container image comes with Helm 4.3.1 and kubectl, and `helmfile apply` (a diff, then the upgrade) worked in it without installing anything:
 
-```text
-$ helmfile -e prod apply
-================= Updated Releases =================
-NAME   NAMESPACE   CHART          VERSION   DURATION
-shop   hf-prod     ../helm/shop   0.1.0           0s
+```bash
+helmfile -e prod apply
 ```
 
 `helmfile -e dev sync` installed the dev release (`replicas=1 image=nginx:1.28-alpine`). The result is ordinary Helm releases, visible with `helm list -A`, so everything in the Helm section applies, including the server-side apply conflicts.
@@ -272,7 +269,7 @@ After a commit that removed the ConfigMap, all four deleted it: Argo CD with aut
 
 ### Going Back
 
-Argo CD has `argocd app rollback` (temporary, see [Argo CD Rollback](/posts/argocd-rollback-out-of-sync/)); Flux has no rollback command, only `git revert`. A HelmRelease can roll back on its own when an upgrade fails (`upgrade.remediation`). The [rollback comparison](/posts/argocd-rollback-out-of-sync/#compared-with-other-tools) has the measured details for both.
+Argo CD has `argocd app rollback` (temporary, see [Argo CD Rollback](../argocd-rollback-out-of-sync/index.md)); Flux has no rollback command, only `git revert`. A HelmRelease can roll back on its own when an upgrade fails (`upgrade.remediation`). The [rollback comparison](../argocd-rollback-out-of-sync/index.md#compared-with-other-tools) has the measured details for both.
 
 ## 8. Choosing
 
@@ -304,8 +301,8 @@ The combinations used most: **Argo CD or Flux + Kustomize** for in-house apps, a
 
 ## See Also
 
-- [Kustomize vs Helm: Overlays, Charts, Merge Rules and Using Both](/posts/kustomize-vs-helm/)
-- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](/posts/argocd-rollback-out-of-sync/)
+- [Kustomize vs Helm: Overlays, Charts, Merge Rules and Using Both](../kustomize-vs-helm/index.md)
+- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](../argocd-rollback-out-of-sync/index.md)
 - [Kubernetes docs: Declarative management with kubectl (ApplySets)](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/)
 - [Helm docs: helm upgrade](https://helm.sh/docs/helm/helm_upgrade/)
 - [Flux docs: HelmRelease drift detection](https://fluxcd.io/flux/components/helm/helmreleases/)

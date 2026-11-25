@@ -318,5 +318,5 @@ Bad owner or permissions on /root/.ssh/config
 
 - [`ssh_config(5)`](https://man.openbsd.org/ssh_config) for every option, token and `Match` criterion
 - [lssh](https://github.com/blacknon/lssh)
-- [fzf Cheatsheet](/cheatsheet/fzf/) (the original `fssh` and other fzf functions)
-- [Connecting to EC2: SSH vs EC2 Instance Connect vs Session Manager](/posts/aws-ec2-connection-methods-compared/)
+- [fzf Cheatsheet](../fzf/index.md) (the original `fssh` and other fzf functions)
+- [Connecting to EC2: SSH vs EC2 Instance Connect vs Session Manager](../aws-ec2-connection-methods-compared/index.md)

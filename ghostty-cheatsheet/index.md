@@ -474,5 +474,5 @@ The exit code is 1, so it works in a dotfiles CI check.
 - [Keybind actions](https://ghostty.org/docs/config/keybind/reference)
 - [Installing Ghostty](https://ghostty.org/docs/install/binary)
 - [Terminfo and SSH](https://ghostty.org/docs/help/terminfo)
-- [tmux Cheatsheet](/cheatsheet/tmux/)
-- [fzf Cheatsheet](/cheatsheet/fzf/)
+- [tmux Cheatsheet](../tmux/index.md)
+- [fzf Cheatsheet](../fzf/index.md)

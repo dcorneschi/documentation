@@ -579,4 +579,4 @@ Where only `'...'` is listed, double quotes don't help: `$`, `` ` ``, `\`, `"` a
 - [GNU Bash manual: Quoting](https://www.gnu.org/software/bash/manual/bash.html#Quoting)
 - [GNU Bash manual: Shell Expansions](https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions)
 - [GNU Bash manual: History Expansion](https://www.gnu.org/software/bash/manual/bash.html#History-Interaction)
-- [Bash Aliases and Functions](/posts/bash-aliases-functions/)
+- [Bash Aliases and Functions](../bash-aliases-functions/index.md)

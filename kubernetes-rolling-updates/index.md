@@ -83,7 +83,7 @@ kubectl get deploy web -o jsonpath='{range .status.conditions[*]}{.type}={.statu
 
 The test changed the readiness path to one that returns 404, so the new pods never became Ready. The rollout created **2 new pods** (1 surge + 1 replacing an old pod, from the 25% defaults), stopped, and stayed there: `READY 3/4`, `UP-TO-DATE 2`, the old ReplicaSet at 3 ready pods. The test client got **1435 responses, all `v1` and all successful**: the broken pods never received traffic because they never became Ready.
 
-Without a readiness probe the same broken version would have been "Running", counted as available, and rolled out completely. **The readiness probe is what makes a rolling update safe.** Probe setup is in [Kubernetes Health Checks](/posts/kubernetes-health-checks-probes/).
+Without a readiness probe the same broken version would have been "Running", counted as available, and rolled out completely. **The readiness probe is what makes a rolling update safe.** Probe setup is in [Kubernetes Health Checks](../kubernetes-health-checks-probes/index.md).
 
 After `progressDeadlineSeconds` (set to 60 for the test; the default is 600), the condition changed to `Progressing=False ProgressDeadlineExceeded: ReplicaSet "web-79d95dd85f" has timed out progressing`, and `kubectl rollout status` exited with `deployment "web" exceeded its progress deadline` (exit code 1). Use that exit code to fail a CI pipeline.
 
@@ -126,7 +126,7 @@ kubectl set env deploy/web VERSION=v3
 
 The old `--record` flag still works but prints `Flag --record has been deprecated`; it writes the whole kubectl command line into the same annotation.
 
-- **`undo` on a Deployment managed with `kubectl apply`** warns that it won't update the `last-applied-configuration` annotation: the next `kubectl apply` of your file rolls forward again. In a GitOps setup, roll back in Git; [Argo CD Rollback](/posts/argocd-rollback-out-of-sync/) shows the same effect with Argo CD.
+- **`undo` on a Deployment managed with `kubectl apply`** warns that it won't update the `last-applied-configuration` annotation: the next `kubectl apply` of your file rolls forward again. In a GitOps setup, roll back in Git; [Argo CD Rollback](../argocd-rollback-out-of-sync/index.md) shows the same effect with Argo CD.
 
 ## 7. Pause, Resume and Restart
 
@@ -236,9 +236,9 @@ kubectl annotate deploy/<name> kubernetes.io/change-cause="<text>" --overwrite
 
 ## See Also
 
-- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](/posts/kubernetes-health-checks-probes/)
-- [Kubernetes Pod Lifecycle Management](/posts/kubernetes-pod-lifecycle-management/)
-- [Kubernetes Troubleshooting: 10 Failures, Reproduced and Fixed](/posts/kubernetes-troubleshooting-techniques/)
-- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](/posts/argocd-rollback-out-of-sync/)
-- [Helm vs Argo CD vs Kustomize vs Flux](/posts/helm-argocd-kustomize-flux-compared/)
+- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](../kubernetes-health-checks-probes/index.md)
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes Troubleshooting: 10 Failures, Reproduced and Fixed](../kubernetes-troubleshooting-techniques/index.md)
+- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](../argocd-rollback-out-of-sync/index.md)
+- [Helm vs Argo CD vs Kustomize vs Flux](../helm-argocd-kustomize-flux-compared/index.md)
 - [Kubernetes docs: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)

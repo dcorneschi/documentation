@@ -869,10 +869,8 @@ spec:
       storage: 100Gi
 ```
 
-```console
-$ kubectl apply --dry-run=server -f ebs-gp3.yaml
-storageclass.storage.k8s.io/ebs-gp3 created (server dry run)
-persistentvolumeclaim/data created (server dry run)
+```bash
+kubectl apply --dry-run=server -f ebs-gp3.yaml
 ```
 
 - `WaitForFirstConsumer` matters because volumes are AZ-scoped: with `Immediate`, the volume can be created in an AZ where the pod can't run.
@@ -943,7 +941,7 @@ The `Backup = "true"` tag is the one the DLM policy above targets.
 
 ## See Also
 
-- [AWS Lightsail Cheatsheet](/cheatsheet/aws-lightsail/): exporting a Lightsail snapshot to EC2 creates an AMI and an EBS snapshot.
-- [Terraform Provisioners Guide](/posts/terraform-provisioners-guide/): formats and mounts an `aws_ebs_volume` from Terraform.
-- [Terraform Cheatsheet](/cheatsheet/terraform-cheatsheet/): the Terraform commands behind the snippet above.
-- [Kubernetes emptyDir Volumes](/posts/kubernetes-emptydir-volumes/): node-local scratch space, the opposite of an EBS-backed PVC.
+- [AWS Lightsail Cheatsheet](../aws-lightsail/index.md): exporting a Lightsail snapshot to EC2 creates an AMI and an EBS snapshot.
+- [Terraform Provisioners Guide](../terraform-provisioners-guide/index.md): formats and mounts an `aws_ebs_volume` from Terraform.
+- [Terraform Cheatsheet](../terraform-cheatsheet/index.md): the Terraform commands behind the snippet above.
+- [Kubernetes emptyDir Volumes](../kubernetes-emptydir-volumes/index.md): node-local scratch space, the opposite of an EBS-backed PVC.

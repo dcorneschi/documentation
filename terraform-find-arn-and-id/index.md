@@ -278,8 +278,8 @@ The IAM policy error is the misleading one: the policy existed, but the provider
 
 ## See Also
 
-- [Terraform Variables: Declaration, Validation, Precedence and Sensitive Values](/posts/terraform-variables-guide/)
-- [terraform.tfstate vs .terraform/terraform.tfstate](/posts/terraform-tfstate-vs-terraform-directory-state/)
-- [Terraform Cheatsheet](/cheatsheet/terraform-cheatsheet/)
+- [Terraform Variables: Declaration, Validation, Precedence and Sensitive Values](../terraform-variables-guide/index.md)
+- [terraform.tfstate vs .terraform/terraform.tfstate](../terraform-tfstate-vs-terraform-directory-state/index.md)
+- [Terraform Cheatsheet](../terraform-cheatsheet/index.md)
 - [Terraform docs: References to Named Values](https://developer.hashicorp.com/terraform/language/expressions/references)
 - [Terraform docs: Import blocks](https://developer.hashicorp.com/terraform/language/import)

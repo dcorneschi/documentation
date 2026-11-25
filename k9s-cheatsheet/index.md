@@ -21,12 +21,6 @@ k9s is a terminal UI for Kubernetes: launch flags, resource commands, keys for p
 k9s version
 ```
 
-```text
-Version              0.51.0
-Commit               558caafe7ba067467de46b320cc22ef11fef9c34
-Date                 n/a
-```
-
 [![The k9s pods view with numbered parts: header with context, read-write mode, cluster, user and versions; namespace shortcuts 0 all, 1 demo, 2 default; key hints; logo; view title pods(demo)[2] with the filter </fred>; sorted NAME column; crumbs; message line](k9s-screen.svg)](k9s-screen.svg "Open the diagram full size")
 
 ## Launch & General

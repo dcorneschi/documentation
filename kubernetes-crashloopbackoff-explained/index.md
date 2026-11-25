@@ -162,7 +162,7 @@ kubectl events --for pod/<pod> | grep -E 'Unhealthy|Killing'
 
 An nginx container with a liveness probe on a path that returns 404 was killed after every second failure: `Liveness probe failed: HTTP probe failed with statuscode: 404`, then `Container web failed liveness probe, will be restarted`, 3 restarts in 45 seconds, `CrashLoopBackOff`. The **exit code depends on the app**: nginx stops cleanly on SIGTERM, so `lastState` said `Completed`, exit code **0**; a `sleep` process (which ignores SIGTERM as PID 1) was killed after the grace period with `Error`, **137**. Don't read a 0 or a 137 alone: check the `Killing` events.
 
-The trap is a liveness probe that checks a **dependency**. Three replicas of an app whose liveness probe called a database Service: when the database was scaled to 0, all three were restarted at the same moment (2 restarts each within 75 seconds), and the restarts did nothing for the database. Liveness should answer "is this process alive and not stuck"; put dependency checks in the readiness probe, which only takes the pod out of the Service. Slow starters need a `startupProbe`. Probe setup: [Kubernetes Health Checks](/posts/kubernetes-health-checks-probes/).
+The trap is a liveness probe that checks a **dependency**. Three replicas of an app whose liveness probe called a database Service: when the database was scaled to 0, all three were restarted at the same moment (2 restarts each within 75 seconds), and the restarts did nothing for the database. Liveness should answer "is this process alive and not stuck"; put dependency checks in the readiness probe, which only takes the pod out of the Service. Slow starters need a `startupProbe`. Probe setup: [Kubernetes Health Checks](../kubernetes-health-checks-probes/index.md).
 
 ### Missing Config, Wrong Image, Wrong Port
 
@@ -287,9 +287,9 @@ kubectl get pods -n <ns> -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{ra
 
 ## See Also
 
-- [Kubernetes Troubleshooting: 10 Failures, Reproduced and Fixed](/posts/kubernetes-troubleshooting-techniques/)
-- [kubectl describe vs kubectl logs](/posts/kubectl-describe-vs-logs/)
-- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](/posts/kubernetes-health-checks-probes/)
-- [Kubernetes Pod Lifecycle Management](/posts/kubernetes-pod-lifecycle-management/)
-- [Kubernetes Rolling Updates: What Actually Happens, Measured](/posts/kubernetes-rolling-updates/)
+- [Kubernetes Troubleshooting: 10 Failures, Reproduced and Fixed](../kubernetes-troubleshooting-techniques/index.md)
+- [kubectl describe vs kubectl logs](../kubectl-describe-vs-logs/index.md)
+- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](../kubernetes-health-checks-probes/index.md)
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes Rolling Updates: What Actually Happens, Measured](../kubernetes-rolling-updates/index.md)
 - [Kubernetes docs: Pod Lifecycle, container restarts](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-restarts)

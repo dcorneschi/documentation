@@ -541,22 +541,11 @@ Resources:
         Version: !GetAtt WebLaunchTemplate.LatestVersionNumber
 ```
 
-```console
-$ aws cloudformation deploy --stack-name web --template-file asg.yaml \
+```bash
+aws cloudformation deploy --stack-name web --template-file asg.yaml \
     --parameter-overrides SubnetIds=<subnet-id-a>,<subnet-id-b>
-
-Waiting for changeset to be created..
-Waiting for stack create/update to complete
-Successfully created/updated stack - web
-
-$ aws cloudformation describe-stack-resources --stack-name web \
+aws cloudformation describe-stack-resources --stack-name web \
     --query 'StackResources[].[LogicalResourceId,ResourceType,ResourceStatus]' --output table
---------------------------------------------------------------------------------
-|                            DescribeStackResources                            |
-+--------------------+--------------------------------------+------------------+
-|  WebLaunchTemplate |  AWS::EC2::LaunchTemplate            |  CREATE_COMPLETE |
-|  WebGroup          |  AWS::AutoScaling::AutoScalingGroup  |  CREATE_COMPLETE |
-+--------------------+--------------------------------------+------------------+
 ```
 
 The group is named after the stack (`web-WebGroup-WUOAGZQCH972`) and came up at `2 / 2 / 8` with both instances in service.
@@ -572,7 +561,7 @@ aws eks update-nodegroup-config \
 ```
 
 - **Cluster Autoscaler** changes the desired size between min and max from pending pods. It never goes outside them, so set max high enough for the largest scale-out you expect.
-  See [Kubernetes Cluster Autoscaler](/posts/kubernetes-cluster-autoscaler-guide/).
+  See [Kubernetes Cluster Autoscaler](../kubernetes-cluster-autoscaler-guide/index.md).
 - **Karpenter** doesn't use node group sizes at all. It launches instances directly and has its own limits in the NodePool.
 
 ## 15. Gotchas
@@ -589,6 +578,6 @@ aws eks update-nodegroup-config \
 
 ## See Also
 
-- [Amazon EC2 Auto Scaling Groups: Capacity, Scaling Policies, Lifecycle Hooks and Instance Refresh](/posts/aws-auto-scaling-groups-guide/)
-- [Kubernetes Cluster Autoscaler: Scale-Up, Scale-Down, Expanders and EKS Setup](/posts/kubernetes-cluster-autoscaler-guide/)
-- [EC2 Billing and Purchasing Options](/posts/aws-ec2-billing-purchasing-options/)
+- [Amazon EC2 Auto Scaling Groups: Capacity, Scaling Policies, Lifecycle Hooks and Instance Refresh](../aws-auto-scaling-groups-guide/index.md)
+- [Kubernetes Cluster Autoscaler: Scale-Up, Scale-Down, Expanders and EKS Setup](../kubernetes-cluster-autoscaler-guide/index.md)
+- [EC2 Billing and Purchasing Options](../aws-ec2-billing-purchasing-options/index.md)

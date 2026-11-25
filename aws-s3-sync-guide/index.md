@@ -9,7 +9,7 @@ Everything below was run with **AWS CLI 2.39.3** on macOS 27.2 against a local S
 ## Prerequisites
 
 - AWS CLI v2 ([install guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)). On macOS, `brew install awscli` also works.
-- Credentials configured with `aws configure` or a profile ([configuration and credential files](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)). Use an IAM user or role, not root keys (see [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/)). Check who you are:
+- Credentials configured with `aws configure` or a profile ([configuration and credential files](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)). Use an IAM user or role, not root keys (see [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md)). Check who you are:
 
 ```bash
 aws sts get-caller-identity
@@ -418,5 +418,5 @@ upload: public/index.html to s3://sync-site/index.html
 - [AWS CLI return codes](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html)
 - [Case conflicts on case-insensitive file systems](https://docs.aws.amazon.com/cli/latest/topic/s3-case-insensitivity.html)
 - [S3 Object Ownership and disabling ACLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)
-- [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/)
-- [AWS EBS Cheatsheet](/cheatsheet/aws-ebs-cheatsheet/)
+- [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md)
+- [AWS EBS Cheatsheet](../aws-ebs-cheatsheet/index.md)

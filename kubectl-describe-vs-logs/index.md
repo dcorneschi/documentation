@@ -414,8 +414,8 @@ kubectl get events --sort-by=.lastTimestamp   # also for things that aren't pods
 
 ## See Also
 
-- [Kubernetes Health Checks: Liveness, Readiness and Startup Probes](/posts/kubernetes-health-checks-probes/)
-- [Kubernetes Pod Lifecycle Management](/posts/kubernetes-pod-lifecycle-management/)
-- [Kubernetes CPU and Memory Requests and Limits](/posts/kubernetes-cpu-memory-requests-limits/)
+- [Kubernetes Health Checks: Liveness, Readiness and Startup Probes](../kubernetes-health-checks-probes/index.md)
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes CPU and Memory Requests and Limits](../kubernetes-cpu-memory-requests-limits/index.md)
 - [Kubernetes docs: Logging architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
 - [Kubernetes docs: kubectl logs](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/)

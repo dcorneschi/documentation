@@ -303,7 +303,7 @@ What counts toward the limit is more than the application's heap:
 
 - the runtime itself: the interpreter, a JVM's metaspace, thread stacks and native buffers, Node.js memory outside the V8 heap;
 - page cache for files the container reads and writes (the kernel can reclaim much of it before killing anything);
-- files in a memory-backed `emptyDir` (`medium: Memory`): see [Kubernetes emptyDir Volumes]({{< ref "/posts/kubernetes-emptydir-volumes" >}}).
+- files in a memory-backed `emptyDir` (`medium: Memory`): see [Kubernetes emptyDir Volumes](../kubernetes-emptydir-volumes/index.md).
 
 Memory limits are checked against the peak, not the average: startup, cache warm-up and garbage collection spikes are when containers get killed.
 
@@ -459,7 +459,7 @@ Normally all containers share all CPUs, and requests and limits only divide CPU 
 
 ## See Also
 
-- [Kubernetes emptyDir Volumes]({{< ref "/posts/kubernetes-emptydir-volumes" >}}): memory-backed volumes count toward the memory limit
-- [Kubernetes Cluster Autoscaler]({{< ref "/posts/kubernetes-cluster-autoscaler-guide" >}}): adds nodes for Pods that stay Pending because their requests don't fit
-- [Kubernetes Pod Lifecycle Management]({{< ref "/posts/kubernetes-pod-lifecycle-management" >}})
-- [Linux Memory: RSS vs VSZ]({{< ref "/posts/linux-memory-rss-vsz" >}})
+- [Kubernetes emptyDir Volumes](../kubernetes-emptydir-volumes/index.md): memory-backed volumes count toward the memory limit
+- [Kubernetes Cluster Autoscaler](../kubernetes-cluster-autoscaler-guide/index.md): adds nodes for Pods that stay Pending because their requests don't fit
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Linux Memory: RSS vs VSZ](../linux-memory-rss-vsz/index.md)

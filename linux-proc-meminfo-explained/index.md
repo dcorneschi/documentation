@@ -125,7 +125,7 @@ Unevictable:       65520 kB
 Mlocked:           65520 kB
 ```
 
-A System V segment locked with `shmctl(SHM_LOCK)` is counted in `Unevictable` but **not** in `Mlocked`; see [Linux Swap Usage](/posts/linux-swap-shm-segments/#2-lock-the-segment-in-ram).
+A System V segment locked with `shmctl(SHM_LOCK)` is counted in `Unevictable` but **not** in `Mlocked`; see [Linux Swap Usage](../linux-swap-shm-segments/index.md#2-lock-the-segment-in-ram).
 
 Older guides describe `Inact_dirty`, `Inact_clean` and `Inact_target`. Those were 2.4-kernel (RHEL 3 era) fields and don't exist on any current release.
 
@@ -150,7 +150,7 @@ cat /sys/kernel/mm/lru_gen/enabled     # 0x0000 = off; any other value = on (eac
 | `Writeback` | Dirty data being written to disk right now. Constantly high = storage can't keep up |
 | `AnonPages` | Memory not backed by a file, mapped into processes |
 | `Mapped` | Files mapped into processes, such as shared libraries and `mmap()`ed files |
-| `Shmem` | Shared memory (System V, POSIX) and tmpfs (`/dev/shm`, `/run`). Counted in `Cached` but only freed when the files or segments are deleted. See [Linux Swap Usage: When Processes Aren't the Culprit](/posts/linux-swap-shm-segments/) |
+| `Shmem` | Shared memory (System V, POSIX) and tmpfs (`/dev/shm`, `/run`). Counted in `Cached` but only freed when the files or segments are deleted. See [Linux Swap Usage: When Processes Aren't the Culprit](../linux-swap-shm-segments/index.md) |
 | `KReclaimable` (RHEL 8+, Ubuntu 20.04+) | Kernel memory the kernel can free under pressure (includes `SReclaimable`) |
 | `Slab` | In-kernel data structure cache (`SReclaimable` + `SUnreclaim`) |
 | `SReclaimable` | Slab that can be freed, mainly dentry and inode caches. Large values are normal |
@@ -199,7 +199,7 @@ sysctl vm.overcommit_memory vm.overcommit_ratio vm.overcommit_kbytes
 grep -E '^(CommitLimit|Committed_AS):' /proc/meminfo
 ```
 
-When the bet goes wrong, the kernel's **OOM killer** picks a process to kill: see [what the OOM killer looks at](/posts/linux-memory-rss-vsz/#what-the-oom-killer-looks-at).
+When the bet goes wrong, the kernel's **OOM killer** picks a process to kill: see [what the OOM killer looks at](../linux-memory-rss-vsz/index.md#what-the-oom-killer-looks-at).
 
 ### zswap and zram: Swap in RAM
 
@@ -397,7 +397,7 @@ SReclaimable:      14068 kB      →     12752 kB
 
 ### Inside Containers
 
-`/proc/meminfo` is not aware of containers: inside a container it shows the host's memory. A container's own numbers are in its cgroup's `memory.stat`, with fields that mirror `/proc/meminfo`: `anon` (≈ `AnonPages`), `file` (≈ `Cached`), `shmem`, `slab_reclaimable`, `slab_unreclaimable`, `active_file`, `inactive_file`. See [Memory Inside Containers and Kubernetes](/posts/linux-memory-rss-vsz/#memory-inside-containers-and-kubernetes).
+`/proc/meminfo` is not aware of containers: inside a container it shows the host's memory. A container's own numbers are in its cgroup's `memory.stat`, with fields that mirror `/proc/meminfo`: `anon` (≈ `AnonPages`), `file` (≈ `Cached`), `shmem`, `slab_reclaimable`, `slab_unreclaimable`, `active_file`, `inactive_file`. See [Memory Inside Containers and Kubernetes](../linux-memory-rss-vsz/index.md#memory-inside-containers-and-kubernetes).
 
 ---
 
@@ -426,5 +426,5 @@ SReclaimable:      14068 kB      →     12752 kB
 - [Overcommit accounting](https://docs.kernel.org/mm/overcommit-accounting.html) and [/proc/sys/vm](https://docs.kernel.org/admin-guide/sysctl/vm.html) — `overcommit_*`, `min_free_kbytes`, `watermark_scale_factor`
 - [PSI - Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
 - [Multi-Gen LRU](https://docs.kernel.org/admin-guide/mm/multigen_lru.html), [zswap](https://docs.kernel.org/admin-guide/mm/zswap.html) and [zram](https://docs.kernel.org/admin-guide/blockdev/zram.html)
-- [Linux Memory: RSS, VSZ, and Why RSS Alone Is Misleading](/posts/linux-memory-rss-vsz/)
-- [Linux Swap Usage: When Processes Aren't the Culprit](/posts/linux-swap-shm-segments/)
+- [Linux Memory: RSS, VSZ, and Why RSS Alone Is Misleading](../linux-memory-rss-vsz/index.md)
+- [Linux Swap Usage: When Processes Aren't the Culprit](../linux-swap-shm-segments/index.md)

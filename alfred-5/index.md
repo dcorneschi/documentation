@@ -101,7 +101,7 @@ Two settings help on a DevOps laptop:
 - In **Features → Default Results → Search Scope**, add `~/Code` (or wherever your repos live) and
   exclude `node_modules`-heavy folders. Otherwise file results become noisy.
 - In **Features → Terminal**, choose iTerm2, Ghostty or a custom AppleScript, so `>` opens your terminal
-  instead of Terminal.app (see [the terminal comparison](/posts/macos-terminal-emulators-compared/)).
+  instead of Terminal.app (see [the terminal comparison](../macos-terminal-emulators-compared/index.md)).
 
 ## Where Alfred Keeps Its Settings
 

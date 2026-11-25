@@ -47,7 +47,7 @@ Terraform has two unrelated "lock files":
 
 | File | What it locks | Where |
 |------|---------------|-------|
-| `.terraform.lock.hcl` | The **provider versions and checksums** your configuration was initialized with | Your working directory, commit it to Git. See [Terraform Lock File Checksums: zh and h1 Hashes]({{< relref "/posts/terraform-lock-file-checksums" >}}) |
+| `.terraform.lock.hcl` | The **provider versions and checksums** your configuration was initialized with | Your working directory, commit it to Git. See [Terraform Lock File Checksums: zh and h1 Hashes](../terraform-lock-file-checksums/index.md) |
 | `terraform.tfstate.tflock` | The **state**, so two runs cannot write it at once | A temporary object in the S3 bucket, created by `use_lockfile` |
 
 The deprecation message is about the second one.
@@ -222,10 +222,6 @@ terraform force-unlock <LOCK_ID>          # asks for "yes"; answering no printed
 terraform force-unlock -force <LOCK_ID>   # no prompt
 ```
 
-```text
-Terraform state has been successfully unlocked!
-```
-
 The `.tflock` object was removed and the next plan worked. Two safety points:
 
 - **The ID must match.** A wrong ID is refused: `Failed to unlock state: lock ID '1234' does not match the existing lock ID '479ea5c2-...'`, followed by the lock info. Copy the ID from the `Lock Info` block (the line that starts with `ID:`), not from the `StatusCode: 412, RequestID: ...` line above it.
@@ -332,5 +328,5 @@ Based on the permission list in the backend documentation. Lock object permissio
 
 ## See Also
 
-- [Terraform Lock File Checksums: zh and h1 Hashes]({{< relref "/posts/terraform-lock-file-checksums" >}})
-- [terraform.tfstate vs .terraform/terraform.tfstate]({{< relref "/posts/terraform-tfstate-vs-terraform-directory-state" >}})
+- [Terraform Lock File Checksums: zh and h1 Hashes](../terraform-lock-file-checksums/index.md)
+- [terraform.tfstate vs .terraform/terraform.tfstate](../terraform-tfstate-vs-terraform-directory-state/index.md)

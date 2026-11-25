@@ -366,8 +366,8 @@ Delete test accelerators, since a disabled one keeps billing, and estimate DT-Pr
 
 ## See Also
 
-- [AWS Network Firewall: Rules, Routing, Logging and Cost]({{< relref "/posts/aws-network-firewall-guide" >}})
-- [AWS Route 53 Cheatsheet]({{< relref "/cheatsheet/aws-route53-cheatsheet" >}})
+- [AWS Network Firewall: Rules, Routing, Logging and Cost](../aws-network-firewall-guide/index.md)
+- [AWS Route 53 Cheatsheet](../aws-route53-cheatsheet/index.md)
 - [What is AWS Global Accelerator?](https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html)
 - [How failover works for unhealthy endpoints](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoints-endpoint-weights.unhealthy-endpoints.html)
 - [Ensure health check access for your accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups-health-check-options.html)

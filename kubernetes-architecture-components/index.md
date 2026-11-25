@@ -478,9 +478,9 @@ And the kubeadm files worth knowing:
 
 ## See Also
 
-- [kubectl describe vs kubectl logs](/posts/kubectl-describe-vs-logs/)
-- [Kubernetes Pod Lifecycle Management](/posts/kubernetes-pod-lifecycle-management/)
-- [Kubernetes Cluster Autoscaler Guide](/posts/kubernetes-cluster-autoscaler-guide/)
+- [kubectl describe vs kubectl logs](../kubectl-describe-vs-logs/index.md)
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes Cluster Autoscaler Guide](../kubernetes-cluster-autoscaler-guide/index.md)
 - [Kubernetes docs: Cluster Architecture](https://kubernetes.io/docs/concepts/architecture/)
 - [Kubernetes docs: Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 - [Kubernetes docs: Encrypting Confidential Data at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)

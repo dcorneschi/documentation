@@ -405,7 +405,7 @@ It lists every name on a `Host` line of `~/.ssh/config` and of every file in `~/
 `Host web1 web2` gives two entries and `Host *.internal` none. Includes from other directories and `Host=name` lines are not read. `find` instead of
 `~/.ssh/config.d/*` keeps zsh from failing with `no matches found` when the directory does not exist. Ctrl+G can start it:
 `bindkey -s '^G' 'fssh\n'` in zsh, `bind '"\C-g": "fssh\n"'` in bash. How it works line by line, and the `~/.ssh/config` that makes it useful:
-[fssh: Pick an SSH Host from ~/.ssh/config with fzf](/posts/fzf-ssh-host-picker/).
+[fssh: Pick an SSH Host from ~/.ssh/config with fzf](../fzf-ssh-host-picker/index.md).
 
 #### fport: list listening ports
 

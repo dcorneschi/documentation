@@ -517,4 +517,4 @@ So an on-call user with only `sync` can roll back an app whose auto-sync is alre
 - [Argo CD docs: Multiple sources for an application](https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/)
 - [Argo CD docs: ApplicationSet ignoreApplicationDifferences](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Controlling-Resource-Modification/)
 - [Flux docs: HelmRelease upgrade remediation](https://fluxcd.io/flux/components/helm/helmreleases/)
-- [Kustomize vs Helm](/posts/kustomize-vs-helm/)
+- [Kustomize vs Helm](../kustomize-vs-helm/index.md)

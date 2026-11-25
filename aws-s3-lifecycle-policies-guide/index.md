@@ -4,7 +4,7 @@
 
 An **S3 Lifecycle configuration** is a set of rules on a bucket that tells S3 to **move objects to a cheaper storage class** (transition) or **delete them** (expiration) as they age, without you running a job. This article
 covers how the rules are built, which transitions are allowed, what the small-object and minimum-duration rules cost you, how versioned buckets behave, and the edge cases that make a rule seem not to work. The lifecycle
-section of the [AWS S3 Cheatsheet](/cheatsheet/aws-s3-cheatsheet/) is the quick version.
+section of the [AWS S3 Cheatsheet](../aws-s3-cheatsheet/index.md) is the quick version.
 
 The facts come from the [Amazon S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html), the CloudTrail User Guide, AWS Knowledge Center pages and the AWS Storage Blog. The commands
 were checked with **AWS CLI 2.39.3**. Prices are left out on purpose: they change and differ by Region, so read them from the [S3 pricing page](https://aws.amazon.com/s3/pricing/). Bucket names are placeholders.
@@ -518,5 +518,5 @@ objects, to pick the Standard-IA age). For unknown patterns, **Intelligent-Tieri
 - [Transitioning objects using S3 Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html)
 - [How S3 Lifecycle interacts with other bucket configurations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-and-other-bucket-config.html)
 - [Logging Amazon S3 data events, including lifecycle events (CloudTrail)](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-s3-data-events-governance.html)
-- [AWS S3 Cheatsheet](/cheatsheet/aws-s3-cheatsheet/)
-- [AWS S3 Sync Guide](/posts/aws-s3-sync-guide/)
+- [AWS S3 Cheatsheet](../aws-s3-cheatsheet/index.md)
+- [AWS S3 Sync Guide](../aws-s3-sync-guide/index.md)

@@ -413,12 +413,6 @@ for svc in ssm ssmmessages ec2messages; do
 done
 ```
 
-```text
-com.amazonaws.eu-west-1.ssm	Interface	True	available
-com.amazonaws.eu-west-1.ssmmessages	Interface	True	available
-com.amazonaws.eu-west-1.ec2messages	Interface	True	available
-```
-
 Add `logs` for session logs to CloudWatch Logs, `kms` for KMS-encrypted sessions, and an S3 gateway endpoint for agent updates and session logs to S3. If
 you run your own DNS server, forward `amazonaws.com` queries to the VPC resolver, or private DNS does not work. Interface endpoints are billed per hour
 and per GB, in each AZ you put them in.
@@ -1037,20 +1031,6 @@ output "ssm" {
 }
 ```
 
-```text
-  # aws_ec2_instance_connect_endpoint.this will be created
-  # aws_iam_instance_profile.ssm will be created
-  # aws_iam_role.ssm will be created
-  # aws_iam_role_policy_attachment.ssm_core will be created
-  # aws_instance.app will be created
-  # aws_security_group.app will be created
-  # aws_security_group.eice will be created
-  # aws_vpc_security_group_egress_rule.app_https_out will be created
-  # aws_vpc_security_group_egress_rule.eice_to_app will be created
-  # aws_vpc_security_group_ingress_rule.app_from_eice will be created
-Plan: 10 to add, 0 to change, 0 to destroy.
-```
-
 - The separate `aws_vpc_security_group_*_rule` resources keep each rule its own resource, so the two groups can reference each other without a cycle.
 - `preserve_client_ip = false` means the instance sees the endpoint's private address as the source; with `true` it sees your IP (IPv4 endpoints only).
 - `http_tokens = "required"` turns on IMDSv2, which is also what Default Host Management Configuration needs if you drop the instance profile.
@@ -1090,5 +1070,5 @@ Checked with Terraform 1.17.1 and AWS provider 6.71.0 (`terraform fmt`, `validat
 - [Just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html)
 - [Fleet Manager Remote Desktop](https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-remote-desktop-connections.html)
 - [Using AWS CloudShell in Amazon VPC](https://docs.aws.amazon.com/cloudshell/latest/userguide/using-cshell-in-vpc.html)
-- [AWS Auto Scaling Groups guide](/posts/aws-auto-scaling-groups-guide/)
-- [AWS IAM concepts](/posts/aws-iam-concepts-guide/)
+- [AWS Auto Scaling Groups guide](../aws-auto-scaling-groups-guide/index.md)
+- [AWS IAM concepts](../aws-iam-concepts-guide/index.md)

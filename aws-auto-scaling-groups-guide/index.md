@@ -490,7 +490,7 @@ The CLI validates names and required options before anything is sent (a missing 
 `TargetValue` gives `Missing required parameter in TargetTrackingConfiguration: "TargetValue"`). Rules between values, such as the minimum not being above the maximum, are checked by the service.
 
 The IAM side of the group uses a [service-linked role](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html) that Auto Scaling creates, and your launch template's **instance profile**
-(see [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/)). Bootstrap with [user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) and the instance metadata.
+(see [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md)). Bootstrap with [user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) and the instance metadata.
 To patch, use [Systems Manager Patch Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html), or better, build a **new AMI and refresh**.
 
 ## 13. Troubleshooting Failed Launches
@@ -563,5 +563,5 @@ Also check:
 - [Health checks for instances in an Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-health-checks.html)
 - [Elastic Load Balancing with Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html)
 - [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)
-- [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/)
-- [AWS EBS Cheatsheet](/cheatsheet/aws-ebs-cheatsheet/)
+- [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md)
+- [AWS EBS Cheatsheet](../aws-ebs-cheatsheet/index.md)

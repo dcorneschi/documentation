@@ -3,7 +3,7 @@
 ![AWS S3 Cheatsheet](cover.svg)
 
 AWS S3 (Simple Storage Service) CLI commands for managing buckets, objects, permissions, lifecycle policies, and data
-transfers. For everything about `aws s3 sync`, see the [AWS S3 Sync guide](/posts/aws-s3-sync-guide/).
+transfers. For everything about `aws s3 sync`, see the [AWS S3 Sync guide](../aws-s3-sync-guide/index.md).
 
 ## Storage Classes
 
@@ -459,7 +459,7 @@ aws s3 rm s3://my-bucket/ --recursive --exclude "*" --include "*.log"
 ## Sync
 
 `sync` compares source and destination by **size and modification time** (never content) and transfers only new or
-changed files. The details, including the same-size download trap, are in the [AWS S3 Sync guide](/posts/aws-s3-sync-guide/).
+changed files. The details, including the same-size download trap, are in the [AWS S3 Sync guide](../aws-s3-sync-guide/index.md).
 
 ```bash
 # Sync local directory to S3
@@ -829,7 +829,7 @@ limiting what `ListBucket` may return:
 - Within one account an IAM policy on the user (or a role users switch to) does the same without touching the bucket
   policy; across accounts both policies must allow it.
 
-See also [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/).
+See also [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md).
 
 ---
 
@@ -1010,7 +1010,7 @@ aws s3 sync ./site/ s3://my-bucket/ --delete
 
 Website endpoint, depending on the Region: `http://bucket-name.s3-website-region.amazonaws.com` or
 `http://bucket-name.s3-website.region.amazonaws.com`. It serves **HTTP only** and only publicly readable content;
-for HTTPS put CloudFront in front (see the static-site recipe in the [AWS S3 Sync guide](/posts/aws-s3-sync-guide/)).
+for HTTPS put CloudFront in front (see the static-site recipe in the [AWS S3 Sync guide](../aws-s3-sync-guide/index.md)).
 
 To serve the website endpoint directly, the objects must be publicly readable. Block Public Access rejects a public
 policy, so turn it off for this bucket first:
@@ -1333,6 +1333,6 @@ aws sts get-caller-identity
 
 ## Useful Links
 
-- [AWS S3 Sync guide](/posts/aws-s3-sync-guide/)
+- [AWS S3 Sync guide](../aws-s3-sync-guide/index.md)
 - AWS S3 Documentation: https://docs.aws.amazon.com/s3/
 - [Bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)

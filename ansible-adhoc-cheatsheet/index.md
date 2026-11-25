@@ -6,7 +6,7 @@ Ad-hoc commands run one module against your hosts without writing a playbook. Th
 
 ## Scope
 
-Everything below was run with ansible-core 2.21.4 (the Ansible 14.4 package) on the control node against two Ubuntu 24.04 hosts (`web01`, `web02`) and one Rocky Linux 9 host (`db01`). Outputs are from those runs. For playbooks, inventories, variables, roles and Vault see the [Ansible Cheatsheet](/cheatsheet/ansible-cheatsheet/).
+Everything below was run with ansible-core 2.21.4 (the Ansible 14.4 package) on the control node against two Ubuntu 24.04 hosts (`web01`, `web02`) and one Rocky Linux 9 host (`db01`). Outputs are from those runs. For playbooks, inventories, variables, roles and Vault see the [Ansible Cheatsheet](../ansible-cheatsheet/index.md).
 
 The inventory used throughout:
 
@@ -128,7 +128,7 @@ $ ansible 'webservers[0:1]' --list-hosts
     web02
 ```
 
-There is no step syntax: `'all[::2]'` matches nothing (`Could not match supplied host pattern, ignoring: all[::2]`). Ranges like `web[01:05]` work only inside the inventory file, where they define hosts, not in patterns. The [Ansible Cheatsheet](/cheatsheet/ansible-cheatsheet/#host-patterns) has a diagram of every pattern operator.
+There is no step syntax: `'all[::2]'` matches nothing (`Could not match supplied host pattern, ignoring: all[::2]`). Ranges like `web[01:05]` work only inside the inventory file, where they define hosts, not in patterns. The [Ansible Cheatsheet](../ansible-cheatsheet/index.md#host-patterns) has a diagram of every pattern operator.
 
 ## Connection & Authentication
 

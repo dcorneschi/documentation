@@ -517,7 +517,7 @@ Every item below is a silent failure seen in the lab; most of them leave nothing
 
 ## Managing Cron with Ansible
 
-The `ansible.builtin.cron` module manages entries idempotently: it marks each one with a `#Ansible: <name>` comment and finds it again by that name. See the [Ansible Cheatsheet]({{< relref "cheatsheet/ansible-cheatsheet" >}}) for the rest of Ansible.
+The `ansible.builtin.cron` module manages entries idempotently: it marks each one with a `#Ansible: <name>` comment and finds it again by that name. See the [Ansible Cheatsheet](../ansible-cheatsheet/index.md) for the rest of Ansible.
 
 ```yaml
 - name: Manage cron entries
@@ -1170,4 +1170,4 @@ Crontab entry:
 0 3 * * * /usr/local/bin/cleanup.sh
 ```
 
-Related: [Ansible Cheatsheet]({{< relref "cheatsheet/ansible-cheatsheet" >}}) (the `cron` module above), [ps Cheatsheet]({{< relref "cheatsheet/ps" >}}) (finding the cron daemon and running jobs) and [Terraform Provisioners Guide]({{< relref "posts/terraform-provisioners-guide" >}}) (another place where `%`, `/bin/sh` and "only on create" catch people out).
+Related: [Ansible Cheatsheet](../ansible-cheatsheet/index.md) (the `cron` module above), [ps Cheatsheet](../ps/index.md) (finding the cron daemon and running jobs) and [Terraform Provisioners Guide](../terraform-provisioners-guide/index.md) (another place where `%`, `/bin/sh` and "only on create" catch people out).

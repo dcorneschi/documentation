@@ -505,17 +505,6 @@ output "cloudfront_certificate_arn" {
 }
 ```
 
-```text
-Plan: 6 to add, 0 to change, 0 to destroy.
-aws_acm_certificate.cloudfront: Creation complete after 0s [id=arn:aws:acm:us-east-1:123456789012:certificate/24f9d4b4-81f5-486d-9151-b43be59b94c0]
-aws_acm_certificate.alb: Creation complete after 0s [id=arn:aws:acm:eu-west-1:123456789012:certificate/177b0a6f-67aa-45e8-81f9-998925642cbc]
-aws_route53_record.validation["example.com"]: Creation complete after 15s [id=BQOYWGCV6FQG22B4RZPQUW__d930b28be6c5927595552b219965053e.example.com._CNAME]
-aws_route53_record.validation["*.example.com"]: Creation complete after 15s [id=BQOYWGCV6FQG22B4RZPQUW__d930b28be6c5927595552b219965053e.example.com._CNAME]
-aws_acm_certificate_validation.alb: Creation complete after 53s [id=2026-11-03 12:48:01 +0000 UTC]
-aws_acm_certificate_validation.cloudfront: Creation complete after 53s [id=2026-11-03 12:48:01 +0000 UTC]
-Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
-```
-
 - **Key the `for_each` by `domain_name`.** Keying by `resource_record_name` looks cleaner (one record instead of two) but fails with
   `Invalid for_each argument`, because the record names are only known after the certificate exists.
 - **`create_before_destroy`:** adding a name replaces the certificate; the new one is created and attached before the old one is
@@ -687,5 +676,5 @@ use a wildcard when you have many subdomains.
 - [Use condition keys with ACM](https://docs.aws.amazon.com/acm/latest/userguide/acm-conditions.html)
 - [Private certificates in ACM](https://docs.aws.amazon.com/acm/latest/userguide/private-certificates.title.html)
 - [ACM quotas](https://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html)
-- [AWS Auto Scaling Groups guide](/posts/aws-auto-scaling-groups-guide/)
-- [AWS IAM concepts](/posts/aws-iam-concepts-guide/)
+- [AWS Auto Scaling Groups guide](../aws-auto-scaling-groups-guide/index.md)
+- [AWS IAM concepts](../aws-iam-concepts-guide/index.md)

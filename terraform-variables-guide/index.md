@@ -780,5 +780,5 @@ resource "aws_s3_bucket_public_access_block" "example" {
 - [Terraform: Input variables](https://developer.hashicorp.com/terraform/language/values/variables)
 - [Terraform: Custom validation rules](https://developer.hashicorp.com/terraform/language/expressions/custom-conditions)
 - [Terraform: Ephemeral values](https://developer.hashicorp.com/terraform/language/manage-sensitive-data/ephemeral)
-- [Terraform Provisioners Guide](/posts/terraform-provisioners-guide/)
-- [Terraform Lock File Checksums](/posts/terraform-lock-file-checksums/)
+- [Terraform Provisioners Guide](../terraform-provisioners-guide/index.md)
+- [Terraform Lock File Checksums](../terraform-lock-file-checksums/index.md)

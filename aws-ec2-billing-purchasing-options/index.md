@@ -561,4 +561,4 @@ volume) is billed at normal rates, so a "free" instance can still produce a smal
 - [Unlimited mode for burstable instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html)
 - [Track your Free Tier usage for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-free-tier-usage.html)
 - [Amazon EC2 Dedicated Hosts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)
-- [Amazon EC2 Auto Scaling Groups](/posts/aws-auto-scaling-groups-guide/)
+- [Amazon EC2 Auto Scaling Groups](../aws-auto-scaling-groups-guide/index.md)

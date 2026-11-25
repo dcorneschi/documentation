@@ -280,10 +280,8 @@ Default output format [None]: json
 
 It writes two files, both readable only by you:
 
-```text
-$ ls -l ~/.aws
--rw------- 1 root root  43 Nov 17 07:34 config
--rw------- 1 root root 116 Nov 17 07:34 credentials
+```bash
+ls -l ~/.aws
 ```
 
 Long-lived access keys are the simplest setup and the riskiest one. For people, IAM Identity Center (`aws configure sso`) gives short-lived credentials; on EC2, ECS and Lambda use the role the service provides and configure no keys at all.
@@ -552,5 +550,5 @@ aws sts get-caller-identity         # who you really are
 - [AWS CLI install guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [AWS CLI configuration and credential precedence](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-authentication.html)
 - [AWS CLI v2 changelog](https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst)
-- [AWS IAM Concepts Guide](/posts/aws-iam-concepts-guide/)
-- [AWS S3 Sync Guide](/posts/aws-s3-sync-guide/)
+- [AWS IAM Concepts Guide](../aws-iam-concepts-guide/index.md)
+- [AWS S3 Sync Guide](../aws-s3-sync-guide/index.md)

@@ -1142,4 +1142,4 @@ The script name changes on every run; set `script_path` in the `connection` bloc
 | `triggers` | Map that forces re-creation when values change (null_resource) |
 | `triggers_replace` | List that forces replacement (terraform_data) |
 
-Related: [Terraform Cheatsheet]({{< relref "cheatsheet/terraform-cheatsheet" >}}), [What's New in Terraform]({{< relref "posts/terraform-whats-new" >}}) (`terraform_data` in 1.4, Actions in 1.14), [Ansible Cheatsheet]({{< relref "cheatsheet/ansible-cheatsheet" >}}) and [Ansible Inventory Guide]({{< relref "posts/ansible-inventory-guide" >}}).
+Related: [Terraform Cheatsheet](../terraform-cheatsheet/index.md), [What's New in Terraform](../terraform-whats-new/index.md) (`terraform_data` in 1.4, Actions in 1.14), [Ansible Cheatsheet](../ansible-cheatsheet/index.md) and [Ansible Inventory Guide](../ansible-inventory-guide/index.md).

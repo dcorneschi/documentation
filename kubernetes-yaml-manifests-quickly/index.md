@@ -363,9 +363,9 @@ rules:
 
 ## See Also
 
-- [Kubernetes Architecture on a kubeadm Cluster](/posts/kubernetes-architecture-components/)
-- [Kustomize vs Helm](/posts/kustomize-vs-helm/)
-- [Helm vs Argo CD vs Kustomize vs Flux](/posts/helm-argocd-kustomize-flux-compared/)
-- [Helm Cheatsheet](/cheatsheet/helm/)
-- [Argo CD Cheatsheet](/cheatsheet/argocd-cheatsheet/)
+- [Kubernetes Architecture on a kubeadm Cluster](../kubernetes-architecture-components/index.md)
+- [Kustomize vs Helm](../kustomize-vs-helm/index.md)
+- [Helm vs Argo CD vs Kustomize vs Flux](../helm-argocd-kustomize-flux-compared/index.md)
+- [Helm Cheatsheet](../helm/index.md)
+- [Argo CD Cheatsheet](../argocd-cheatsheet/index.md)
 - [Kubernetes docs: kubectl create](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/)

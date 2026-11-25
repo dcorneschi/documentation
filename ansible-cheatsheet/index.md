@@ -244,7 +244,7 @@ An `always` task runs whatever `--tags` selects; only `--skip-tags always` stops
 
 ## Inventory
 
-The [Ansible Inventory Guide]({{< relref "posts/ansible-inventory-guide" >}}) covers inventories in depth: `group_vars` directories, jump hosts, Docker and WinRM connections, and dynamic inventories for AWS, Azure, GCP and Terraform.
+The [Ansible Inventory Guide](../ansible-inventory-guide/index.md) covers inventories in depth: `group_vars` directories, jump hosts, Docker and WinRM connections, and dynamic inventories for AWS, Azure, GCP and Terraform.
 
 ### INI Format
 
@@ -370,7 +370,7 @@ Create host groups at runtime based on facts — no need to hardcode OS-specific
 | `ansible_user` | SSH user |
 | `ansible_password` | SSH password (use vault!) |
 | `ansible_ssh_private_key_file` | SSH key path |
-| `ansible_python_interpreter` | Path to Python on target (see [Ansible and the Target's Python]({{< relref "posts/ansible-python-interpreter" >}})) |
+| `ansible_python_interpreter` | Path to Python on target (see [Ansible and the Target's Python](../ansible-python-interpreter/index.md)) |
 | `ansible_become` | Enable privilege escalation |
 | `ansible_become_user` | Escalation user |
 | `ansible_become_method` | Method (sudo, su, pbrun, etc.) |
@@ -1529,4 +1529,4 @@ ansible all -m setup > /dev/null
 9. **Least privilege** — only use `become` on tasks that need it
 10. **Separate environments** — use different inventory files/dirs for staging vs production
 
-Related: [Ansible Inventory Guide]({{< relref "posts/ansible-inventory-guide" >}}) and [Ansible and the Target's Python: Versions by OS]({{< relref "posts/ansible-python-interpreter" >}}).
+Related: [Ansible Inventory Guide](../ansible-inventory-guide/index.md) and [Ansible and the Target's Python: Versions by OS](../ansible-python-interpreter/index.md).

@@ -744,7 +744,7 @@ The controller logs are JSON, one line per step, with the app name in the `appli
 - `kubectl -n <app-namespace> get applications` returns nothing: Applications live in `argocd`, not in the namespace they deploy to.
 - A sync started with `kubectl patch ... operation` ignores `spec.syncPolicy.syncOptions`. Put the options in the patch or use `argocd app sync`.
 - Changes made with `kubectl edit` or `kubectl scale` on a self-healed app are reverted within seconds. Change Git instead, or turn off self-heal while debugging.
-- `argocd app rollback` refuses to run while automated sync is on, because auto-sync would immediately roll forward again. After a rollback the app is OutOfSync by design: see [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](/posts/argocd-rollback-out-of-sync/).
+- `argocd app rollback` refuses to run while automated sync is on, because auto-sync would immediately roll forward again. After a rollback the app is OutOfSync by design: see [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](../argocd-rollback-out-of-sync/index.md).
 - `argocd app diff` exits with 1 when there are differences, and `argocd app sync` exits with 1 when something needs pruning and `--prune` wasn't given. In a script with `set -e` that ends the script.
 - An app without the `resources-finalizer.argocd.argoproj.io` finalizer leaves its workloads behind when deleted with kubectl. The CLI's `argocd app delete` cascades by default.
 - ApplicationSet-generated apps do have the finalizer: removing a list entry or a Git directory deletes the workloads.
@@ -756,9 +756,9 @@ The controller logs are JSON, one line per step, with the app name in the `appli
 
 ## See Also
 
-- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](/posts/argocd-rollback-out-of-sync/)
-- [Helm vs Argo CD vs Kustomize vs Flux](/posts/helm-argocd-kustomize-flux-compared/)
-- [Kustomize vs Helm](/posts/kustomize-vs-helm/)
-- [Helm Cheatsheet](/cheatsheet/helm/)
-- [k9s Cheatsheet](/cheatsheet/k9s-cheatsheet/)
+- [Argo CD Rollback: How It Works and Why the App Shows OutOfSync](../argocd-rollback-out-of-sync/index.md)
+- [Helm vs Argo CD vs Kustomize vs Flux](../helm-argocd-kustomize-flux-compared/index.md)
+- [Kustomize vs Helm](../kustomize-vs-helm/index.md)
+- [Helm Cheatsheet](../helm/index.md)
+- [k9s Cheatsheet](../k9s-cheatsheet/index.md)
 - [Argo CD documentation](https://argo-cd.readthedocs.io/en/stable/)

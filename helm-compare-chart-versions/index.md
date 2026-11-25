@@ -272,4 +272,4 @@ REVISION  STATUS      CHART                  APP VERSION  DESCRIPTION
 
 ## See Also
 
-- [Helm Cheatsheet]({{< ref "/cheatsheet/helm" >}})
+- [Helm Cheatsheet](../helm/index.md)

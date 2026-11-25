@@ -634,7 +634,7 @@ It is a fixed hourly cost even at low traffic, so it suits production and shared
 
 ## See Also
 
-- [AWS Route 53 Cheatsheet]({{< relref "/cheatsheet/aws-route53-cheatsheet" >}})
+- [AWS Route 53 Cheatsheet](../aws-route53-cheatsheet/index.md)
 - [What is AWS Network Firewall](https://docs.aws.amazon.com/network-firewall/latest/developerguide/what-is-aws-network-firewall.html)
 - [Managing evaluation order for Suricata compatible rules](https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
 - [Examples of stateful rules](https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-examples.html)

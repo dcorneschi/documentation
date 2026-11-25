@@ -401,6 +401,6 @@ docker compose exec app date
 
 ## See Also
 
-- [Docker Compose Cheatsheet]({{< ref "/cheatsheet/docker-compose" >}})
-- [Docker Cheatsheet]({{< ref "/cheatsheet/docker-cheatsheet" >}})
-- [How Docker Images Are Built: Layers, Cache and the Container on Top]({{< ref "/posts/docker-image-layers" >}}) (`ARG` vs `ENV` in the Dockerfile)
+- [Docker Compose Cheatsheet](../docker-compose/index.md)
+- [Docker Cheatsheet](../docker-cheatsheet/index.md)
+- [How Docker Images Are Built: Layers, Cache and the Container on Top](../docker-image-layers/index.md) (`ARG` vs `ENV` in the Dockerfile)

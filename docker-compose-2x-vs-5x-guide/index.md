@@ -259,6 +259,6 @@ So a per-user plugin overrides a system-wide one, which overrides the one the Do
 
 ## See Also
 
-- [Docker Compose Cheatsheet]({{< relref "cheatsheet/docker-compose" >}})
-- [Defining Variables in Docker Compose]({{< relref "posts/docker-compose-variables-env" >}})
-- [Docker Restart Policies]({{< relref "posts/docker-restart-policies" >}})
+- [Docker Compose Cheatsheet](../docker-compose/index.md)
+- [Defining Variables in Docker Compose](../docker-compose-variables-env/index.md)
+- [Docker Restart Policies](../docker-restart-policies/index.md)

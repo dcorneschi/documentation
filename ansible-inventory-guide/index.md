@@ -958,5 +958,5 @@ ansible-inventory -i inventory.ini --host web01.example.com
 6. **Test with `--list-hosts`** before running to confirm targeting
 7. **Use `group_vars/` and `host_vars/`** directories instead of inline `:vars` for complex configs
 8. **Default to key-based auth** — only use `ansible_ssh_pass` for legacy systems
-9. **Set `ansible_python_interpreter`** explicitly when interpreter discovery picks the wrong Python; see [Ansible and the Target's Python]({{< relref "/posts/ansible-python-interpreter" >}})
+9. **Set `ansible_python_interpreter`** explicitly when interpreter discovery picks the wrong Python; see [Ansible and the Target's Python](../ansible-python-interpreter/index.md)
 10. **Use `[all:vars]`** for settings that truly apply to every host (SSH args, Python path)

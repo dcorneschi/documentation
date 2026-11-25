@@ -185,7 +185,7 @@ The locked version is then listed as noncurrent (`"Latest": false`) under the de
 
 - **Delete markers are not WORM-protected**, whatever the lock on the object below.
 - **Lifecycle** still runs: it can add delete markers and transition locked versions between storage classes (the lock stays), but it **never permanently deletes a locked version**. See the
-  [S3 Lifecycle guide](/posts/aws-s3-lifecycle-policies-guide/).
+  [S3 Lifecycle guide](../aws-s3-lifecycle-policies-guide/index.md).
 - **Replication** copies the lock settings (mode, date, legal hold, event hold) with the object. The **destination bucket must have Object Lock** too, and the replication role needs `s3:GetObjectRetention` and
   `s3:GetObjectLegalHold` on the source.
 
@@ -305,5 +305,5 @@ aws backup delete-backup-vault-lock-configuration --backup-vault-name records
 - [Configuring S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html)
 - [Object Lock considerations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html)
 - [AWS Backup Vault Lock](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html)
-- [S3 Lifecycle Policies guide](/posts/aws-s3-lifecycle-policies-guide/)
-- [AWS S3 Cheatsheet](/cheatsheet/aws-s3-cheatsheet/)
+- [S3 Lifecycle Policies guide](../aws-s3-lifecycle-policies-guide/index.md)
+- [AWS S3 Cheatsheet](../aws-s3-cheatsheet/index.md)

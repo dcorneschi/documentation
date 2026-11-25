@@ -287,7 +287,7 @@ aws backup describe-backup-vault --backup-vault-name prod-vault --query '{Locked
 
 After the governance lock the vault reads back as `"Locked": true` with `"Min": 7` and `"Max": 400`. With compliance mode, `LockDate` is the end of the grace time: until then
 `delete-backup-vault-lock-configuration` still works, afterwards the lock, the vault and its recovery points within retention are **permanent** (the same idea as
-[S3 Object Lock compliance mode](/posts/aws-s3-object-lock-modes-guide/), but with a grace time of at least 72 hours).
+[S3 Object Lock compliance mode](../aws-s3-object-lock-modes-guide/index.md), but with a grace time of at least 72 hours).
 
 - With a minimum set, every backup or copy job into the vault **must have a lifecycle with at least that retention**, or the vault fails the job: set `DeleteAfterDays` on every rule and copy action.
 - Recovery points stored **before** the lock are not affected by it.
@@ -342,6 +342,6 @@ aws backup cancel-legal-hold --legal-hold-id <legal-hold-id> --cancel-descriptio
 - [AWS Backup Developer Guide](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html)
 - [Feature availability by resource and Region](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html)
 - [AWS Backup Vault Lock](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html)
-- [S3 Object Lock: Governance vs Compliance Mode](/posts/aws-s3-object-lock-modes-guide/)
-- [AWS EBS Cheatsheet](/cheatsheet/aws-ebs-cheatsheet/)
-- [AWS Storage Gateway Cheatsheet](/cheatsheet/aws-storage-gateway-cheatsheet/)
+- [S3 Object Lock: Governance vs Compliance Mode](../aws-s3-object-lock-modes-guide/index.md)
+- [AWS EBS Cheatsheet](../aws-ebs-cheatsheet/index.md)
+- [AWS Storage Gateway Cheatsheet](../aws-storage-gateway-cheatsheet/index.md)

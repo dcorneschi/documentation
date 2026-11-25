@@ -412,7 +412,7 @@ are deprecated but still work in Helm 4; `rollback --recreate-pods` is removed.
 
 ## See Also
 
-- [Comparing Helm Chart Versions Before an Upgrade](/posts/helm-compare-chart-versions/)
+- [Comparing Helm Chart Versions Before an Upgrade](../helm-compare-chart-versions/index.md)
   runs `helm diff` (helm-diff 3.15) on Helm 4.3.
 
 ## Sources

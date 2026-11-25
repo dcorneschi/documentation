@@ -26,7 +26,7 @@ kubectl events --for pod/<pod>               # only this pod's events
 | `Running` but `0/1` | Started, but the readiness probe fails | Events (`Unhealthy`) |
 | `Running`, Service doesn't answer | Selector or port mismatch | EndpointSlices |
 
-`describe` and `logs` read different sources, and they keep their data for different times; [kubectl describe vs kubectl logs](/posts/kubectl-describe-vs-logs/) covers that in detail. `kubectl get pod <pod> -o yaml` shows everything the API knows, including the defaults and the full `status.containerStatuses`.
+`describe` and `logs` read different sources, and they keep their data for different times; [kubectl describe vs kubectl logs](../kubectl-describe-vs-logs/index.md) covers that in detail. `kubectl get pod <pod> -o yaml` shows everything the API knows, including the defaults and the full `status.containerStatuses`.
 
 With more than one container in the pod, `logs` and `exec` pick the first one (`Defaulted container "web" out of: web, sidecar`). Name the one you want:
 
@@ -340,7 +340,7 @@ kubectl describe pod <pod> | grep -E 'probe failed|failed liveness'
 
 With a readiness probe on a file that didn't exist yet, both pods were `Running` but `0/1`, every endpoint was `ready=false`, and the Service sent them nothing. Creating the file made them `1/1` within one probe period; deleting it on one pod brought back `Readiness probe failed: HTTP probe failed with statuscode: 404` and took only that pod out of rotation, **without restarting it**. Breaking the liveness probe instead restarted the container after two failures: `Container web failed liveness probe, will be restarted`, and `RESTARTS` went to 1.
 
-So `0/1 Running` with no restarts points at readiness, and a climbing restart count with `Liveness probe failed` events points at liveness. How to set the probes, and the startup probe for slow apps: [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](/posts/kubernetes-health-checks-probes/).
+So `0/1 Running` with no restarts points at readiness, and a climbing restart count with `Liveness probe failed` events points at liveness. How to set the probes, and the startup probe for slow apps: [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](../kubernetes-health-checks-probes/index.md).
 
 ## 11. kubectl debug: When exec Isn't Enough
 
@@ -459,7 +459,7 @@ The env variable and the capability were there in the ephemeral container. Chang
 
 ## 12. Visual Tools
 
-A terminal UI shows the same data as the commands above, live: [k9s](/cheatsheet/k9s-cheatsheet/) lists pods with their status and restarts, opens `describe`, logs and events with one key, and works over the same kubeconfig. For history (memory over the last week, which deploy the errors started after), you need metrics and logs stored outside the cluster, in Prometheus and Grafana, Loki or a hosted monitoring service; `kubectl top` and events only show the present and the last hour.
+A terminal UI shows the same data as the commands above, live: [k9s](../k9s-cheatsheet/index.md) lists pods with their status and restarts, opens `describe`, logs and events with one key, and works over the same kubeconfig. For history (memory over the last week, which deploy the errors started after), you need metrics and logs stored outside the cluster, in Prometheus and Grafana, Loki or a hosted monitoring service; `kubectl top` and events only show the present and the last hour.
 
 ## Quick Reference
 
@@ -503,10 +503,10 @@ A terminal UI shows the same data as the commands above, live: [k9s](/cheatsheet
 
 ## See Also
 
-- [kubectl describe vs kubectl logs](/posts/kubectl-describe-vs-logs/)
-- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](/posts/kubernetes-health-checks-probes/)
-- [Kubernetes Pod Lifecycle Management](/posts/kubernetes-pod-lifecycle-management/)
-- [Kubernetes Architecture on a kubeadm Cluster](/posts/kubernetes-architecture-components/)
-- [k9s Cheatsheet](/cheatsheet/k9s-cheatsheet/)
+- [kubectl describe vs kubectl logs](../kubectl-describe-vs-logs/index.md)
+- [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](../kubernetes-health-checks-probes/index.md)
+- [Kubernetes Pod Lifecycle Management](../kubernetes-pod-lifecycle-management/index.md)
+- [Kubernetes Architecture on a kubeadm Cluster](../kubernetes-architecture-components/index.md)
+- [k9s Cheatsheet](../k9s-cheatsheet/index.md)
 - [Kubernetes docs: Debug Running Pods](https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/)
 - [Kubernetes docs: Auditing](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/)

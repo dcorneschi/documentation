@@ -522,5 +522,5 @@ API calls are in **CloudTrail**.
 - [Volume Gateway User Guide](https://docs.aws.amazon.com/storagegateway/latest/vgw/WhatIsStorageGateway.html)
 - [Tape Gateway User Guide](https://docs.aws.amazon.com/storagegateway/latest/tgw/WhatIsStorageGateway.html)
 - [Storage Gateway endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/sg.html)
-- [AWS S3 Cheatsheet](/cheatsheet/aws-s3-cheatsheet/)
-- [AWS EBS Cheatsheet](/cheatsheet/aws-ebs-cheatsheet/)
+- [AWS S3 Cheatsheet](../aws-s3-cheatsheet/index.md)
+- [AWS EBS Cheatsheet](../aws-ebs-cheatsheet/index.md)

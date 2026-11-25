@@ -173,5 +173,5 @@ jq -r '.transferred | to_entries[] | select(.value.duplicate_of == null) | "\(.v
 
 - [switch-screenshots-mac on GitHub](https://github.com/radical-beard/switch-screenshots-mac)
 - [gphoto2 documentation](http://www.gphoto.org/doc/)
-- [iTerm2 vs kitty vs Alacritty vs Ghostty vs Otty vs cmux]({{< relref "/posts/macos-terminal-emulators-compared" >}})
-- [Alfred 5 for DevOps]({{< relref "/posts/alfred-5" >}})
+- [iTerm2 vs kitty vs Alacritty vs Ghostty vs Otty vs cmux](../macos-terminal-emulators-compared/index.md)
+- [Alfred 5 for DevOps](../alfred-5/index.md)

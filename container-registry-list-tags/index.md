@@ -432,7 +432,7 @@ The answer's `name` was `gitea/gitea`, and it listed 914 tags (Docker Hub's `git
 curl -s -u "<user>:<token>" "https://gitea.example.com/v2/<owner>/<image>/tags/list?n=1000" | jq -r '.tags[]'
 ```
 
-(See the [Docker Cheatsheet]({{< relref "/cheatsheet/docker-cheatsheet" >}}) for the registry login and scopes.)
+(See the [Docker Cheatsheet](../docker-cheatsheet/index.md) for the registry login and scopes.)
 
 ### Quay
 
@@ -488,7 +488,7 @@ curl -s $R/v2/team/app/tags/list
 # {"name":"team/app","tags":["1.10","latest"]}
 ```
 
-Deleting the digest of `1.1` also removed `1.2`, because both pointed to the same manifest. After deleting the last two tags, `tags/list` answered `200` with `{"name":"team/app","tags":[]}` and `team/app` stayed in `_catalog`; a repository that never existed answers `404` with `NAME_UNKNOWN`. The blobs stay on disk until a garbage collection (see [How Docker Images Are Built]({{< relref "/posts/docker-image-layers" >}}), section 14).
+Deleting the digest of `1.1` also removed `1.2`, because both pointed to the same manifest. After deleting the last two tags, `tags/list` answered `200` with `{"name":"team/app","tags":[]}` and `team/app` stayed in `_catalog`; a repository that never existed answers `404` with `NAME_UNKNOWN`. The blobs stay on disk until a garbage collection (see [How Docker Images Are Built](../docker-image-layers/index.md), section 14).
 
 ## skopeo and crane: One Command for Every Registry
 
@@ -626,12 +626,12 @@ v=$(crane ls nginx | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1); 
 curl -s "https://hub.docker.com/v2/repositories/library/nginx/tags/?page_size=20" | jq -r '.results[] | "\(.last_updated[0:10]) \(.name)"'
 ```
 
-To see what a pull does with the digest you found, read [How docker pull Works]({{< relref "/posts/docker-pull-technical-details-guide" >}}).
+To see what a pull does with the digest you found, read [How docker pull Works](../docker-pull-technical-details-guide/index.md).
 
 ## See Also
 
-- [How docker pull Works: Technical Details]({{< relref "/posts/docker-pull-technical-details-guide" >}})
-- [How Docker Images Are Built: Layers, Cache and the Container on Top]({{< relref "/posts/docker-image-layers" >}})
-- [Docker Cheatsheet]({{< relref "/cheatsheet/docker-cheatsheet" >}})
+- [How docker pull Works: Technical Details](../docker-pull-technical-details-guide/index.md)
+- [How Docker Images Are Built: Layers, Cache and the Container on Top](../docker-image-layers/index.md)
+- [Docker Cheatsheet](../docker-cheatsheet/index.md)
 - [OCI Distribution Specification](https://github.com/opencontainers/distribution-spec/blob/main/spec.md): `tags/list`, `n`, `last` and the referrers tag fallback
 - [Docker Hub usage and rate limits](https://docs.docker.com/docker-hub/usage/)

@@ -571,7 +571,7 @@ Alibaba Cloud. It also reacts to **unschedulable pods**, but it does not resize 
 | Instance choice | Fixed per node group; the expander picks a group | Chosen per scale-up from every instance type the NodePool allows |
 | Scale-up speed | Node group API, then instance launch | Direct instance launch, retried quickly when a type has no capacity |
 | Removing nodes | Underutilized nodes after 10 minutes | **Consolidation**: removes empty or underutilized nodes, or **replaces** them with cheaper ones (`consolidationPolicy`: `WhenEmpty`, `Balanced`, `WhenEmptyOrUnderutilized` (default)) |
-| Keeping nodes up to date | Not its job (use node group updates or [ASG instance refresh](/posts/aws-auto-scaling-groups-guide/)) | **Drift**: replaces nodes that no longer match their NodePool or NodeClass (a new AMI, for example); **expiration** (`expireAfter`, default `720h`) recycles old nodes |
+| Keeping nodes up to date | Not its job (use node group updates or [ASG instance refresh](../aws-auto-scaling-groups-guide/index.md)) | **Drift**: replaces nodes that no longer match their NodePool or NodeClass (a new AMI, for example); **expiration** (`expireAfter`, default `720h`) recycles old nodes |
 | Spot interruptions | Node group's job (managed node groups, or the Node Termination Handler) | Built in once the interruption queue (SQS) is configured: taints, drains and replaces the node on the 2-minute warning |
 | Rate of change | Flags like `--max-drain-parallelism` | **Disruption budgets** per NodePool, including time windows (no changes during business hours, for example) |
 | Clouds | Many providers, plus Cluster API for on-premises | AWS, Azure, Alibaba Cloud |
@@ -605,5 +605,5 @@ Whichever you run:
 - [Cluster Autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)
 - [Cluster Autoscaler on AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md)
 - [Cluster Autoscaler Helm chart](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler/charts/cluster-autoscaler)
-- [Amazon EC2 Auto Scaling Groups](/posts/aws-auto-scaling-groups-guide/)
-- [What's New in Helm 4](/posts/helm-4-whats-new/)
+- [Amazon EC2 Auto Scaling Groups](../aws-auto-scaling-groups-guide/index.md)
+- [What's New in Helm 4](../helm-4-whats-new/index.md)

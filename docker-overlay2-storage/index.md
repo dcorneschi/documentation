@@ -4,7 +4,7 @@
 
 Docker keeps images and containers as stacks of directories and lets the kernel's overlay filesystem merge them into one root filesystem per container. This post looks at what's actually on disk: which directory is which, what a changed or deleted file turns into, how to map the hashes in `/var/lib/docker/overlay2` back to containers and images, and the limits and options that matter in practice.
 
-For how layers are built in the first place (Dockerfile instructions, the build cache, what a registry stores) see [How Docker Images Are Built](/posts/docker-image-layers/).
+For how layers are built in the first place (Dockerfile instructions, the build cache, what a registry stores) see [How Docker Images Are Built](../docker-image-layers/index.md).
 
 ## Scope
 
@@ -419,7 +419,7 @@ The two stores report different sizes for the same images and containers:
 | `web2` in `docker ps -s` | 1.09kB (virtual 61.6MB) | 81.9kB (virtual 66MB) |
 | Images in `docker system df` | 70.09MB | 106.1MB |
 
-The classic store counts the unpacked files. The containerd store also counts the compressed blobs it keeps, and measures a container's layer in disk blocks (`du`) rather than file sizes. The [image layers post](/posts/docker-image-layers/#9-why-the-two-image-stores-report-different-sizes) goes into the numbers.
+The classic store counts the unpacked files. The containerd store also counts the compressed blobs it keeps, and measures a container's layer in disk blocks (`du`) rather than file sizes. The [image layers post](../docker-image-layers/index.md#9-why-the-two-image-stores-report-different-sizes) goes into the numbers.
 
 ### Clean Up
 
@@ -607,7 +607,7 @@ The image has more than 127 layers; see [The Layer Limit](#image-layers-and-the-
 
 ## Links
 
-- [How Docker Images Are Built: Layers, Cache and the Container on Top](/posts/docker-image-layers/)
+- [How Docker Images Are Built: Layers, Cache and the Container on Top](../docker-image-layers/index.md)
 - [Docker docs: OverlayFS storage driver](https://docs.docker.com/engine/storage/drivers/overlayfs-driver/)
 - [Docker docs: containerd image store](https://docs.docker.com/engine/storage/containerd/)
 - [Linux kernel: Overlay Filesystem](https://docs.kernel.org/filesystems/overlayfs.html)

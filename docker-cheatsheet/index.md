@@ -2,7 +2,7 @@
 
 ![Docker Cheatsheet](cover.svg)
 
-Commands checked against Docker Engine 29.9.2 (containerd image store, cgroup v2) and Buildx 0.38.1. Where a command behaves differently than you might expect, a comment or note says so. Docker Compose has its own page: [Docker Compose Cheatsheet]({{< ref "/cheatsheet/docker-compose" >}}).
+Commands checked against Docker Engine 29.9.2 (containerd image store, cgroup v2) and Buildx 0.38.1. Where a command behaves differently than you might expect, a comment or note says so. Docker Compose has its own page: [Docker Compose Cheatsheet](../docker-compose/index.md).
 
 ## Container Lifecycle
 
