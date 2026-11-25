@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 500" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">The VPA loop</title>
+  <desc id="d">metrics-server serves the Metrics API. The VPA recommender reads it every minute, keeps decaying histograms in VerticalPodAutoscalerCheckpoint objects, and writes lowerBound, target and upperBound into the VPA status. The updater runs every minute and looks for pods whose requests are outside the lowerBound to upperBound range. In Recreate mode it evicts them through the Eviction API, respecting PodDisruptionBudgets, at least 2 live replicas by default and at most half of them at a time; the ReplicaSet creates a replacement and the admission controller webhook writes the target into it. In InPlaceOrRecreate mode it patches the pod's resize subresource and the kubelet applies the change; if that is impossible, for example a BestEffort pod whose QoS would change, it evicts. Off mode stops after the recommendation, Initial mode only uses the admission controller. If the webhook fails, its failurePolicy Ignore lets pods start unchanged and the updater evicts them again every minute.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11px; fill: #b02a37; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .s   { fill: #ffffff; stroke: #adb5bd; }
+    </style>
+  </defs>
+  <rect width="840" height="500" fill="#ffffff"/>
+  <text class="h" x="20" y="28">The VPA loop</text>
+  <text class="sub" x="20" y="48">VPA 1.8.1 on Kubernetes 1.37: who reads what, and how new requests reach a pod</text>
+
+  <!-- row 1: metrics -> recommender -> VPA status -->
+  <rect class="n" x="20" y="66" width="160" height="72" rx="6"/>
+  <text class="tb" x="32" y="88">metrics-server</text>
+  <text class="d" x="32" y="106">Metrics API</text>
+  <text class="ms" x="32" y="124">metrics.k8s.io</text>
+  <path class="lne" d="M182,102 L234,102"/>
+  <text class="ms" x="190" y="94">usage</text>
+
+  <rect class="r" x="238" y="66" width="190" height="72" rx="6"/>
+  <text class="tb" x="250" y="88">vpa-recommender</text>
+  <text class="d" x="250" y="106">every 1 min · decaying histograms</text>
+  <text class="d" x="250" y="124">saved in VPA checkpoint objects</text>
+  <path class="lne" d="M430,102 L482,102"/>
+  <text class="ms" x="440" y="94">writes</text>
+
+  <rect class="rw" x="486" y="66" width="334" height="72" rx="6"/>
+  <text class="tb" x="498" y="88">VerticalPodAutoscaler · status.recommendation</text>
+  <text class="m" x="498" y="108">lowerBound · target · upperBound</text>
+  <text class="d" x="498" y="126">updateMode Off stops here: recommendations only</text>
+
+  <!-- updater -->
+  <path class="lne" d="M652,140 L652,170"/>
+  <rect class="w" x="486" y="174" width="334" height="66" rx="6"/>
+  <text class="tb" x="498" y="196">vpa-updater · every 1 min</text>
+  <text class="d" x="498" y="214">acts on pods whose requests are outside</text>
+  <text class="d" x="498" y="230">lowerBound … upperBound</text>
+
+  <!-- two paths -->
+  <path class="lne" d="M560,242 L470,288"/>
+  <path class="lne" d="M740,242 L740,288"/>
+
+  <rect class="x" x="238" y="292" width="300" height="96" rx="6"/>
+  <text class="lb" x="250" y="312">RECREATE (AND DEPRECATED AUTO)</text>
+  <text class="c" x="250" y="332">evicts through the Eviction API</text>
+  <text class="d" x="250" y="350">PodDisruptionBudgets apply · needs 2 live replicas</text>
+  <text class="d" x="250" y="366">(--min-replicas, or VPA minReplicas) · at most</text>
+  <text class="d" x="250" y="382">half of them at once (--eviction-tolerance 0.5)</text>
+
+  <rect class="g" x="560" y="292" width="260" height="96" rx="6"/>
+  <text class="lb" x="572" y="312">INPLACEORRECREATE</text>
+  <text class="c" x="572" y="332">patches pods/resize; kubelet applies it</text>
+  <text class="ms" x="572" y="350">InPlaceResizedByVPA · ResizeCompleted</text>
+  <text class="d" x="572" y="366">same pod; RestartContainer restarts</text>
+  <text class="d" x="572" y="382">falls back to eviction (e.g. BestEffort QoS)</text>
+  <path class="lne" d="M560,370 L542,370"/>
+
+  <!-- admission -->
+  <path class="lne" d="M300,390 L300,416"/>
+  <text class="ms" x="308" y="408">ReplicaSet creates a new pod</text>
+  <rect class="r" x="20" y="420" width="518" height="62" rx="6"/>
+  <text class="tb" x="32" y="440">vpa-admission-controller · mutating webhook</text>
+  <text class="d" x="32" y="458">writes target (and proportional limits) into every new pod · updateMode Initial uses only this</text>
+  <text class="cx" x="32" y="474">webhook broken? failurePolicy Ignore: pods start unchanged and get evicted again every minute</text>
+  <path class="lnx" d="M540,466 C620,466 620,410 548,392"/>
+</svg>

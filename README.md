@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-85 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+86 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (19) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (17) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (20) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (17) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -40,6 +40,7 @@
 - [Kubernetes CPU and Memory Requests and Limits: What Each Value Really Does](kubernetes-cpu-memory-requests-limits/index.md)
 - [Kustomize vs Helm: Overlays, Charts, Merge Rules and Using Both](kustomize-vs-helm/index.md)
 - [Kubernetes Cluster Autoscaler: Scale-Up, Scale-Down, Expanders and EKS Setup](kubernetes-cluster-autoscaler-guide/index.md)
+- [Kubernetes Vertical Pod Autoscaler (VPA)](kubernetes-vpa-guide/index.md)
 - [What's New in Helm 4](helm-4-whats-new/index.md)
 - [Kubernetes emptyDir Volumes](kubernetes-emptydir-volumes/index.md)
 - [k9s Cheatsheet](k9s-cheatsheet/index.md)

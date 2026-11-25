@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2752" height="1536" viewBox="0 0 2752 1536" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Kubernetes Vertical Pod Autoscaler (VPA)</title>
+  <desc id="d">Kubernetes Vertical Pod Autoscaler (VPA): Right-size CPU and memory requests, by eviction or in place. recommender, updater, admission controller, InPlaceOrRecreate, minReplicas, metrics-server, VPA 1.8.1, Kubernetes 1.37. Small drawings: a terminal with kubectl get vpa showing a recommendation of 247m CPU and 250Mi memory, a pod growing from 50m/64Mi to 247m/250Mi, a recommended range with lowerBound, target and upperBound, and icons for metrics, recommender, updater, admission, in-place resize and eviction.</desc>
+  <defs>
+    <style>
+      .bg  { fill: #f8f9fa; }
+      .a   { fill: #326ce5; }
+      .ink { fill: #343a40; }
+      .pap { fill: #ffffff; stroke: #ced4da; stroke-width: 6; }
+      .al  { stroke: #326ce5; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .wt  { fill: #ffffff; }
+      .h   { font-weight: 700; fill: #212529; letter-spacing: -2px; }
+      .s   { fill: #495057; }
+      .n   { fill: #868e96; }
+      .r   { stroke: #dee2e6; stroke-width: 2; }
+      .band{ fill: #326ce5; fill-opacity: .16; stroke: #326ce5; stroke-width: 4; }
+      .axl { stroke: #868e96; stroke-width: 8; stroke-linecap: round; }
+      .tk  { stroke: #343a40; stroke-width: 8; }
+      .vf  { fill: #326ce5; }
+      .vs  { stroke: #326ce5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .vl  { fill: #326ce5; fill-opacity: .18; }
+      .vp  { fill: #ffffff; }
+      .vn  { fill: #868e96; }
+      .vterm { fill: #212529; }
+      .vtbar { fill: #343a40; }
+      .vtx { fill: #e9ecef; }
+      .vtb { fill: #74c0fc; }
+      @media (prefers-color-scheme: dark) {
+        .bg  { fill: #161b22; }
+        .ink { fill: #c9d1d9; }
+        .pap { fill: #0d1117; stroke: #30363d; }
+        .h   { fill: #f0f6fc; }
+        .s   { fill: #c9d1d9; }
+        .n   { fill: #8b949e; }
+        .r   { stroke: #30363d; }
+        .tk  { stroke: #c9d1d9; }
+        .vp  { fill: #0d1117; }
+        .vn  { fill: #8b949e; }
+        .vterm { fill: #0d1117; stroke: #30363d; stroke-width: 4; }
+        .vtbar { fill: #21262d; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="2752" height="1536"/>
+
+  <!-- top left: kubectl get vpa (real output from the test) -->
+  <g transform="translate(120,190)">
+    <rect class="vterm" x="0" y="0" width="860" height="330" rx="22"/>
+    <rect class="vtbar" x="0" y="0" width="860" height="56" rx="22"/>
+    <rect class="vtbar" x="0" y="34" width="860" height="22"/>
+    <circle cx="40" cy="28" r="11" fill="#ff5f57"/><circle cx="80" cy="28" r="11" fill="#febc2e"/><circle cx="120" cy="28" r="11" fill="#28c840"/>
+    <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="31">
+      <text class="vtx" x="32" y="126">$ kubectl get vpa</text>
+      <text class="vtx" x="32" y="186">NAME         MODE   CPU    MEM     PROVIDED</text>
+      <text class="vtb" x="32" y="236">my-app-vpa   Off    247m   250Mi   True</text>
+    </g>
+  </g>
+
+  <!-- centre: pod grows -->
+  <rect class="pap" x="1080" y="350" width="180" height="150" rx="22"/>
+  <text class="ink" x="1170" y="418" text-anchor="middle" font-size="30" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">50m</text>
+  <text class="ink" x="1170" y="460" text-anchor="middle" font-size="30" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">64Mi</text>
+  <path class="al" d="M1290,425 H1420 M1390,399 L1420,425 L1390,451"/>
+  <rect class="a" x="1450" y="250" width="330" height="300" rx="28"/>
+  <text class="wt" x="1615" y="380" text-anchor="middle" font-size="54" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">247m</text>
+  <text class="wt" x="1615" y="450" text-anchor="middle" font-size="54" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">250Mi</text>
+  <text class="n" x="1170" y="560" text-anchor="middle" font-size="34">requests</text>
+  <text class="n" x="1615" y="610" text-anchor="middle" font-size="34">recommended</text>
+
+  <!-- right: recommended range -->
+  <rect class="band" x="2010" y="300" width="480" height="150" rx="14"/>
+  <line class="axl" x1="1920" y1="450" x2="2620" y2="450"/>
+  <line class="tk" x1="2010" y1="280" x2="2010" y2="470"/>
+  <line x1="2190" y1="280" x2="2190" y2="470" stroke="#326ce5" stroke-width="10"/>
+  <line class="tk" x1="2490" y1="280" x2="2490" y2="470"/>
+  <circle cx="1960" cy="375" r="18" fill="#dc3545"/>
+  <circle cx="2340" cy="375" r="18" fill="#2b8a3e"/>
+  <text class="n" x="2010" y="530" text-anchor="middle" font-size="32">lower</text>
+  <text class="n" x="2190" y="530" text-anchor="middle" font-size="32">target</text>
+  <text class="n" x="2490" y="530" text-anchor="middle" font-size="32">upper</text>
+
+  <text class="h" x="1376" y="880" text-anchor="middle" font-size="128">Kubernetes Vertical Pod Autoscaler (VPA)</text>
+  <text class="s" x="1376" y="1030" text-anchor="middle" font-size="84">Right-size CPU and memory requests, by eviction or in place</text>
+  <line class="r" x1="776" y1="1105" x2="1976" y2="1105"/>
+  <text class="n" x="1376" y="1210" text-anchor="middle" font-size="44">recommender · updater · admission controller · InPlaceOrRecreate · minReplicas · metrics-server · VPA 1.8.1</text>
+
+  <!-- icon row -->
+  <g transform="translate(676,1290) scale(0.5)">
+    <path class="vs" d="M30,150 A80,80 0 1 1 170,150" stroke-width="16"/>
+    <path class="vs" d="M100,130 L140,80" stroke-width="16"/>
+    <circle class="vf" cx="100" cy="130" r="14"/>
+  </g>
+  <text class="vn" x="726" y="1450" text-anchor="middle" font-size="34">metrics</text>
+  <g transform="translate(936,1290) scale(0.5)">
+    <path class="vs" d="M24,170 H180" stroke-width="10"/>
+    <rect class="vl" x="36" y="96" width="30" height="70" rx="4"/>
+    <rect class="vf" x="86" y="46" width="30" height="120" rx="4"/>
+    <rect class="vl" x="136" y="76" width="30" height="90" rx="4"/>
+  </g>
+  <text class="vn" x="986" y="1450" text-anchor="middle" font-size="34">recommender</text>
+  <g transform="translate(1196,1290) scale(0.5)">
+    <path class="vs" d="M160,92 A62,62 0 1 0 140,148" stroke-width="16"/>
+    <path class="vf" d="M146,60 L180,96 L132,104 Z"/>
+  </g>
+  <text class="vn" x="1246" y="1450" text-anchor="middle" font-size="34">updater</text>
+  <g transform="translate(1456,1290) scale(0.5)">
+    <path class="vp" d="M100,16 L172,44 V102 C172,146 140,174 100,186 C60,174 28,146 28,102 V44 Z" stroke="#326ce5" stroke-width="10"/>
+    <path d="M66,100 L92,126 L138,78" stroke="#326ce5" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text class="vn" x="1506" y="1450" text-anchor="middle" font-size="34">admission</text>
+  <g transform="translate(1716,1290) scale(0.5)">
+    <rect class="vl" x="30" y="70" width="90" height="90" rx="12"/>
+    <rect class="vp" x="30" y="30" width="140" height="130" rx="14" stroke="#326ce5" stroke-width="9" stroke-dasharray="18 12"/>
+    <path class="vs" d="M100,110 L150,60 M120,58 H152 V90" stroke-width="14"/>
+  </g>
+  <text class="vn" x="1766" y="1450" text-anchor="middle" font-size="34">in place</text>
+  <g transform="translate(1976,1290) scale(0.5)">
+    <rect class="vp" x="20" y="50" width="100" height="100" rx="14" stroke="#326ce5" stroke-width="9"/>
+    <path class="vs" d="M90,100 H180 M150,70 L180,100 L150,130" stroke-width="16"/>
+  </g>
+  <text class="vn" x="2026" y="1450" text-anchor="middle" font-size="34">eviction</text>
+</svg>

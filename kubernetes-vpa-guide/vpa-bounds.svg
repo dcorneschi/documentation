@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 360" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">The recommended range</title>
+  <desc id="d">On the request axis, the recommender's floor (25m CPU, 250Mi memory per pod) is the lowest any value can be. lowerBound and upperBound frame the recommended range with target inside it. A pod whose request is below lowerBound or above upperBound is updated to target: evicted in Recreate, resized in InPlaceOrRecreate. A pod inside the range is left alone. In the test, the first recommendation after 41 seconds had lowerBound 25m and 250Mi, target 247m and 250Mi, and upperBound 10670647m and 8800013545702 bytes; the pods requested 50m and 64Mi, below the memory lowerBound, so they were updated.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .tb  { font-size: 12px; font-weight: 700; fill: #212529; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .c   { font-size: 11.5px; fill: #212529; }
+      .cx  { font-size: 11.5px; fill: #b02a37; font-weight: 700; }
+      .cg  { font-size: 11.5px; fill: #2b8a3e; font-weight: 700; }
+      .ax  { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .band{ fill: #e8f5ee; stroke: #75b798; }
+      .flr { fill: #f1f3f5; }
+      .tick{ stroke: #495057; stroke-width: 2; }
+      .tgt { stroke: #2b8a3e; stroke-width: 3; }
+      .pin { stroke: #dc3545; stroke-width: 2; }
+      .pok { stroke: #2b8a3e; stroke-width: 2; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+    </style>
+  </defs>
+  <rect width="840" height="360" fill="#ffffff"/>
+  <text class="h" x="20" y="28">The recommended range</text>
+  <text class="sub" x="20" y="48">What the updater compares a pod's request with (per resource, not to scale)</text>
+
+  <!-- axis -->
+  <rect class="flr" x="40" y="96" width="120" height="60"/>
+  <text class="d" x="48" y="210">below the floor:</text>
+  <text class="d" x="48" y="224">never recommended</text>
+  <rect class="band" x="300" y="96" width="400" height="60" rx="4"/>
+  <path class="ax" d="M40,156 L812,156"/>
+  <text class="d" x="760" y="176">request</text>
+
+  <line class="tick" x1="160" y1="88" x2="160" y2="164"/>
+  <text class="tb" x="160" y="80" text-anchor="middle">floor</text>
+  <text class="m" x="160" y="180" text-anchor="middle">25m / 250Mi</text>
+
+  <line class="tick" x1="300" y1="88" x2="300" y2="164"/>
+  <text class="tb" x="300" y="80" text-anchor="middle">lowerBound</text>
+  <line class="tgt" x1="470" y1="88" x2="470" y2="164"/>
+  <text class="tb" x="470" y="80" text-anchor="middle" fill="#2b8a3e">target</text>
+  <line class="tick" x1="700" y1="88" x2="700" y2="164"/>
+  <text class="tb" x="700" y="80" text-anchor="middle">upperBound</text>
+
+  <!-- pods -->
+  <line class="pin" x1="230" y1="104" x2="230" y2="150"/>
+  <circle cx="230" cy="126" r="6" fill="#dc3545"/>
+  <text class="cx" x="230" y="218" text-anchor="middle">pod below</text>
+  <text class="d" x="230" y="232" text-anchor="middle">updated to target</text>
+  <line class="pok" x1="560" y1="104" x2="560" y2="150"/>
+  <circle cx="560" cy="126" r="6" fill="#2b8a3e"/>
+  <text class="cg" x="560" y="218" text-anchor="middle">pod inside</text>
+  <text class="d" x="560" y="232" text-anchor="middle">left alone</text>
+  <line class="pin" x1="760" y1="104" x2="760" y2="150"/>
+  <circle cx="760" cy="126" r="6" fill="#dc3545"/>
+  <text class="cx" x="760" y="218" text-anchor="middle">pod above</text>
+  <text class="d" x="760" y="232" text-anchor="middle">updated to target</text>
+
+  <!-- test numbers -->
+  <rect class="n" x="20" y="252" width="800" height="92" rx="6"/>
+  <text class="lb" x="32" y="272">THE TEST, 41 SECONDS AFTER START (CPU / MEMORY)</text>
+  <text class="m" x="32" y="294">lowerBound 25m / 250Mi    target 247m / 250Mi    upperBound 10670647m / 8800013545702</text>
+  <text class="c" x="32" y="316">Pods requested 50m / 64Mi: memory below lowerBound, so Recreate replaced them with 247m / 250Mi.</text>
+  <text class="d" x="32" y="334">Early bounds are this wide because there are few samples; they narrow over hours and days. Memory target = the 250Mi floor (usage 154Mi).</text>
+</svg>
