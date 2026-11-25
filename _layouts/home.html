@@ -47,20 +47,36 @@ layout: default
     </ol>
   </section>
 
-  <section class="cats" aria-label="All articles by category">
-    <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> ls -1 ~/*/</div>
-    <div class="cat-grid">
-      {% for cat in site.data.nav %}
-      <section class="cat" id="{{ cat.id }}">
-        <h2><a href="#{{ cat.id }}"><span class="dir">{{ cat.id }}/</span></a> <span class="count">{{ cat.pages | size }}</span></h2>
-        <ul>
-          {% for p in cat.pages %}
-          <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endfor %}
+  {% assign act = site.data.activity %}
+  <section class="activity" aria-label="Publishing activity">
+    <div class="activity-box">
+      <p class="activity-total"><b>{{ act.total }}</b> article{% if act.total != 1 %}s{% endif %} published in the last year</p>
+      <div class="activity-scroll">
+        <div class="activity-graph" role="img" aria-label="{{ act.total }} articles published between {{ act.from }} and {{ act.to }}" style="--weeks: {{ act.weeks | size }}">
+          <div class="act-months" aria-hidden="true">{% for m in act.months %}<span style="grid-column: {{ m.col }}">{{ m.label }}</span>{% endfor %}</div>
+          <div class="act-days" aria-hidden="true"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+          <div class="act-cells" aria-hidden="true">
+            {%- for w in act.weeks -%}{%- for d in w -%}
+            {%- if d -%}<i class="l{{ d.level }}" title="{% if d.count == 0 %}No articles{% elsif d.count == 1 %}1 article{% else %}{{ d.count }} articles{% endif %} on {{ d.date | date: '%b %-d, %Y' }}{% for t in d.titles %}&#10;· {{ t | escape }}{% endfor %}"></i>{%- else -%}<i class="none"></i>{%- endif -%}
+            {%- endfor -%}{%- endfor -%}
+          </div>
+        </div>
+      </div>
+      <div class="activity-legend" aria-hidden="true">Less <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</div>
     </div>
+  </section>
+
+  {%- comment -%} Every article with "Cheatsheet" in its title, in README order. {%- endcomment %}
+  <section class="cheats" aria-label="Cheatsheets">
+    <div class="cmdline" aria-hidden="true"><span class="prompt-sign">$</span> ls ~/*/ | grep -i cheatsheet</div>
+    <ul class="cheat-row">
+      {%- for cat in site.data.nav -%}{%- for p in cat.pages -%}
+      {%- assign t = p.title | downcase -%}
+      {%- if t contains "cheatsheet" %}
+      <li><a href="{{ p.url | relative_url }}" title="{{ p.title | escape }}">{{ p.title | remove: " Cheatsheet" | remove: " cheatsheet" }}<span class="dir">{{ cat.id }}/</span></a></li>
+      {%- endif -%}
+      {%- endfor -%}{%- endfor %}
+    </ul>
   </section>
   <script id="nav-data" type="application/json">{{ site.data.nav | jsonify }}</script>
 </main>

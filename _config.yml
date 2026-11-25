@@ -28,12 +28,6 @@ profile:
     - {name: IBM AIX, issuer: IBM}
     - {name: HP-UX, issuer: HP}
     - {name: ITIL}
-  # Book from the blog's About page; set image to "" to hide the section.
-  reading:
-    title: The DevOps Solutions Handbook
-    author: Michael Cade
-    publisher: Packt
-    image: /assets/profile/book.jpg
   # Tech stack badges come from _data/stack.yml.
 
 # Theme ("tty"): palettes the reader can switch between, first one is the default.

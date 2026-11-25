@@ -5,7 +5,8 @@
       <input id="nav-filter" type="search" placeholder="filter" autocomplete="off" spellcheck="false" aria-label="Filter articles">
     </label>
     {% for cat in site.data.nav %}
-    <details class="nav-cat" data-cat="{{ cat.id }}"{% if cat.id == page.category_id %} open{% endif %}>
+    {%- comment -%} On the home page the categories are the targets of /#<category> links (article tags, latest list). {%- endcomment %}
+    <details class="nav-cat" data-cat="{{ cat.id }}"{% if page.layout == "home" %} id="{{ cat.id }}"{% endif %}{% if cat.id == page.category_id %} open{% endif %}>
       <summary><span class="dir">{{ cat.id }}/</span><span class="count">{{ cat.pages | size }}</span></summary>
       <ul>
         {% for p in cat.pages %}

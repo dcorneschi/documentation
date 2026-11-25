@@ -104,6 +104,30 @@
       });
     });
   }
+  // /#<category> (article tags, the home page's latest list): open that category in the sidebar.
+  function openCategory(id, fromLoad) {
+    var d = id && document.getElementById(id);
+    if (!d || !d.classList.contains("nav-cat")) return false;
+    d.open = true;
+    if (toggle && getComputedStyle(toggle).display !== "none") {
+      document.body.classList.add("nav-open");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+    var inner = d.closest(".sidebar-inner");
+    inner.scrollTop = d.offsetTop - inner.offsetTop - 8;
+    d.querySelector("summary").focus({ preventScroll: true });
+    if (fromLoad) window.scrollTo(0, 0); // the browser scrolled the page to the target
+    return true;
+  }
+  if (location.hash) openCategory(decodeURIComponent(location.hash.slice(1)), true);
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a && openCategory(decodeURIComponent(a.getAttribute("href").slice(1)))) {
+      e.preventDefault();
+      history.replaceState(null, "", a.getAttribute("href"));
+    }
+  });
+
   var cur = $('.sidebar a[aria-current="page"]');
   if (cur) {
     var inner = cur.closest(".sidebar-inner");

@@ -9,11 +9,13 @@
 # The build fails if the README links an article that does not exist, or if an
 # article folder is missing from the README.
 #
-# site.data["latest"] lists the 10 newest articles for the home page. An article's
+# site.data["latest"] lists the 10 newest articles for the home page, and
+# site.data["activity"] a year of publication dates (GitHub-style graph). An article's
 # date is its blog publication date from _data/published.yml, otherwise the date of
 # the git commit that added its index.md (CI needs the full history for that:
 # fetch-depth: 0), otherwise now (not committed yet).
 
+require "date"
 require "open3"
 require "time"
 
@@ -70,12 +72,39 @@ module TTY
 
       # Newest first; on equal dates keep the README order.
       order = listed.each_with_index.to_h
-      site.data["latest"] = nav.flat_map { |cat| cat["pages"].map { |p| p.merge("category" => cat["title"], "category_id" => cat["id"]) } }
-                               .sort_by { |p| [-p["date"].to_i, order[p["slug"]]] }
-                               .first(10)
+      newest = nav.flat_map { |cat| cat["pages"].map { |p| p.merge("category" => cat["title"], "category_id" => cat["id"]) } }
+                  .sort_by { |p| [-p["date"].to_i, order[p["slug"]]] }
+      site.data["latest"] = newest.first(10)
+      site.data["activity"] = activity(newest)
     end
 
     private
+
+    # GitHub-style activity graph of the last year: one column per week (Sunday
+    # first), one cell per day, the level is the number of articles published
+    # that day (0..4, 4 = four or more). Days after the build date are nil.
+    def activity(pages)
+      today = Date.today
+      start = today - 364
+      start -= start.wday # back to Sunday
+      by_day = pages.group_by { |p| p["date"].to_date }
+
+      weeks = []
+      months = []
+      (start..today).each_slice(7) do |days|
+        col = weeks.size
+        first = days.find { |d| d.mday == 1 } || (col.zero? && days.first)
+        months << { "col" => col + 1, "label" => first.strftime("%b") } if first && !(col.zero? && first.mday > 14) # no label crammed next to the next month's
+        weeks << days.map do |d|
+          titles = (by_day[d] || []).map { |p| p["title"] }
+          { "date" => d.iso8601, "count" => titles.size, "level" => [titles.size, 4].min, "titles" => titles }
+        end
+        weeks.last.fill(nil, weeks.last.size...7)
+      end
+
+      total = by_day.select { |d, _| d >= start && d <= today }.sum { |_, ps| ps.size }
+      { "weeks" => weeks, "months" => months, "total" => total, "from" => start.iso8601, "to" => today.iso8601 }
+    end
 
     def published_date(site, slug)
       from_blog = (site.data["published"] || {})[slug]
