@@ -1,0 +1,12 @@
+/* Read the Docs theme caps the content column at 800px; the cheatsheets
+   are mostly wide tables and long commands, so give them more room. */
+.wy-nav-content {
+  max-width: 1400px;
+}
+
+/* The theme keeps table cells on one line, which forces horizontal
+   scrolling for long descriptions; let them wrap instead. */
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+  white-space: normal;
+}

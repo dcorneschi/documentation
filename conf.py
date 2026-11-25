@@ -26,6 +26,7 @@ source_suffix = {".md": "markdown"}
 exclude_patterns = [
     "_build",
     "_ext",
+    "_static",
     ".venv",
     ".claude",
     ".github",
@@ -49,16 +50,24 @@ suppress_warnings = ["myst.strikethrough"]  # strikethrough is HTML-only, fine h
 highlight_language = "none"
 
 # HTML output
-html_theme = "furo"
+html_theme = "sphinx_rtd_theme"
 html_title = "DevOps Wiki"
 html_copy_source = False
 html_show_sourcelink = False
 html_theme_options = {
-    "source_repository": "https://github.com/dcorneschi/documentation/",
-    "source_branch": "main",
-    "source_directory": "",
-    "navigation_with_keys": True,
+    "collapse_navigation": False,  # keep every category expandable in the sidebar
+    "navigation_depth": 2,
+    "style_external_links": True,
 }
+# "Edit on GitHub" link at the top of each page
+html_context = {
+    "display_github": True,
+    "github_user": "dcorneschi",
+    "github_repo": "documentation",
+    "github_version": "main/",
+}
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]  # wider content area
 
 copybutton_prompt_text = r"^\$ "
 copybutton_prompt_is_regexp = True
