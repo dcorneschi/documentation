@@ -53,6 +53,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
+  --page-max: 1500px;                       /* home and article pages share this width */
+  --page-pad: clamp(16px, 3vw, 40px);
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font: 15px/1.7 var(--mono);
@@ -115,8 +117,9 @@ kbd {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr) 220px;
   width: 100%;
-  max-width: none;
+  max-width: var(--page-max);
   margin: 0 auto;
+  padding: 0 var(--page-pad);
 }
 .sidebar, .toc { position: relative; }
 .sidebar-inner, .toc-inner {
@@ -126,7 +129,7 @@ kbd {
   padding: 18px 14px 40px;
   scrollbar-width: thin;
 }
-.sidebar { border-right: 1px solid var(--border); background: var(--bg-alt); }
+.sidebar { border-right: 1px solid var(--border); border-left: 1px solid var(--border); background: var(--bg-alt); }
 .filter {
   display: flex; align-items: center; gap: 8px;
   border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px;
@@ -313,7 +316,7 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 .term-line input { caret-color: var(--accent); }
 
 /* ---------- home ---------- */
-.home { flex: 1; width: 100%; max-width: 1500px; margin: 0 auto; padding: 32px clamp(16px, 3vw, 40px) 60px; }
+.home { flex: 1; width: 100%; max-width: var(--page-max); margin: 0 auto; padding: 32px var(--page-pad) 60px; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; margin-bottom: 56px; }
 .hero-title { font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.1; margin: 0 0 16px; color: var(--accent); text-shadow: var(--glow); }
 .hero-lead { font-size: 1.05rem; margin: 0 0 22px; }
@@ -370,7 +373,7 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 }
 @media (max-width: 900px) {
   .nav-toggle { display: inline-block; }
-  .shell { grid-template-columns: minmax(0, 1fr); }
+  .shell { grid-template-columns: minmax(0, 1fr); padding: 0; }
   .sidebar {
     position: fixed; top: 52px; bottom: 0; left: 0; z-index: 15; width: min(320px, 86vw);
     transform: translateX(-102%); transition: transform .2s ease; box-shadow: 10px 0 30px #0007;
