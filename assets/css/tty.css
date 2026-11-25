@@ -89,7 +89,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  --page-max: 1900px;                       /* article pages (the home page is 1500px) */
+  --page-max: 1900px;                       /* article pages (the home page is 1800px) */
   --page-pad: clamp(16px, 3vw, 40px);
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -357,7 +357,7 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 .term-line input { caret-color: var(--accent); }
 
 /* ---------- home ---------- */
-.home { flex: 1; width: 100%; max-width: 1500px; margin: 0 auto; padding: 32px var(--page-pad) 60px; }
+.home { flex: 1; width: 100%; max-width: 1800px; margin: 0 auto; padding: 32px var(--page-pad) 60px; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; margin-bottom: 56px; }
 .hero-title { font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.1; margin: 0 0 16px; color: var(--accent); text-shadow: var(--glow); }
 .hero-lead { font-size: 1.05rem; margin: 0 0 22px; }
