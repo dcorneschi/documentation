@@ -23,11 +23,12 @@ profile:
     - {name: Red Hat Certified Engineer (RHCE), issuer: Red Hat}
     - {name: Cisco Certified Network Associate (CCNA), issuer: Cisco}
     - {name: "HashiCorp Certified: Terraform Associate", issuer: HashiCorp}
+    - {name: AWS Certified Solutions Architect – Associate, issuer: Amazon Web Services}
     - {name: AWS Certified SysOps Administrator – Associate, issuer: Amazon Web Services}
     - {name: Datadog Fundamentals, issuer: Datadog}
-    - {name: IBM AIX, issuer: IBM}
-    - {name: HP-UX, issuer: HP}
-    - {name: ITIL}
+    - {name: "IBM Certified System Administrator: AIX 6.1 Administration", issuer: IBM}
+    - {name: "HP Accredited Technical Professional: HP-UX 11i v3 Administrator", issuer: Hewlett-Packard}
+    - {name: ITIL Foundation Certificate in IT Service Management, issuer: PeopleCert}
   # Tech stack badges come from _data/stack.yml.
 
 # Theme ("tty"): palettes the reader can switch between, first one is the default.
