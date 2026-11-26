@@ -20,7 +20,7 @@ profile:
   github: https://github.com/dcorneschi
   # From the About page of the blog. Optional per entry: url (e.g. a Credly badge).
   certifications:
-    - {name: Red Hat Certified Engineer (RHCE), issuer: Red Hat}
+    - {name: "Red Hat Certified Engineer (RHCE): Red Hat Enterprise Linux 5", issuer: Red Hat}
     - {name: Cisco Certified Network Associate (CCNA), issuer: Cisco}
     - {name: "HashiCorp Certified: Terraform Associate", issuer: HashiCorp}
     - {name: AWS Certified Solutions Architect – Associate, issuer: Amazon Web Services}
