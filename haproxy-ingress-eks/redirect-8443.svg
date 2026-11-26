@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 330" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">The HTTP to HTTPS redirect and port 8443</title>
+  <desc id="d">For an Ingress with TLS, HAProxy answers plain HTTP with a 302 redirect. By default the Location is https://echo.example.test:8443/, because HAProxy listens on 8443 inside the pod. The NLB has listeners only on 80 and 443, so the client's request to port 8443 times out after 10 seconds. With ssl-redirect-port set to 443 the Location is https://echo.example.test:443/, which reaches the NLB's 443 listener; HAProxy terminates TLS and the app returns hello from haproxy with status 200.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b8a3e"/>
+    </marker>
+    <marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc3545"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .mx  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #b02a37; white-space: pre; }
+      .mg  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #2b8a3e; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lng { stroke: #2b8a3e; stroke-width: 1.8; fill: none; marker-end: url(#ag); }
+      .lnx { stroke: #dc3545; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#ax); }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .lane{ fill: none; stroke: #dee2e6; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+  <rect width="840" height="330" fill="#ffffff"/>
+  <text class="h" x="20" y="28">The HTTP → HTTPS redirect and port 8443</text>
+  <text class="sub" x="20" y="48">Ingress echo-tls with a TLS secret; NLB listeners on 80 and 443 only (curl results from the test)</text>
+
+  <!-- first request -->
+  <rect class="n" x="24" y="66" width="250" height="70" rx="6"/>
+  <text class="tb" x="36" y="88">client</text>
+  <text class="m" x="36" y="106">http://echo.example.test/</text>
+  <text class="d" x="36" y="124">plain HTTP to the NLB on port 80</text>
+  <path class="lne" d="M276,96 L326,96"/>
+
+  <!-- shared: NLB + HAProxy -->
+  <rect class="w" x="330" y="66" width="170" height="70" rx="6"/>
+  <text class="tb" x="342" y="88">NLB</text>
+  <text class="m" x="342" y="106">listens: 80, 443</text>
+  <text class="mx" x="342" y="124">no 8443</text>
+  <rect class="r" x="560" y="66" width="260" height="70" rx="6"/>
+  <text class="tb" x="572" y="88">HAProxy pod</text>
+  <text class="m" x="572" y="106">listens on 8080 / 8443</text>
+  <text class="d" x="572" y="124">TLS Ingress: HTTP gets a 302 to HTTPS</text>
+  <path class="lne" d="M502,96 L556,96"/>
+
+  <!-- default lane -->
+  <rect class="lane" x="12" y="150" width="816" height="78" rx="8"/>
+  <text class="lb" x="24" y="168">DEFAULT</text>
+  <rect class="n" x="24" y="176" width="180" height="44" rx="6"/>
+  <text class="m" x="36" y="194">302 Found</text>
+  <text class="mx" x="36" y="211">https://…:8443/</text>
+  <path class="lnx" d="M206,198 L326,198"/>
+  <text class="d" x="214" y="190">client follows it</text>
+  <rect class="x" x="330" y="176" width="490" height="44" rx="6"/>
+  <text class="tb" x="342" y="195">port 8443 on the NLB: nothing listens</text>
+  <text class="m" x="342" y="212">000 … (Connection timed out after 10003 milliseconds)</text>
+
+  <!-- fixed lane -->
+  <rect class="lane" x="12" y="240" width="816" height="78" rx="8"/>
+  <text class="lb" x="24" y="258">SSL-REDIRECT-PORT: "443"</text>
+  <rect class="n" x="24" y="266" width="180" height="44" rx="6"/>
+  <text class="m" x="36" y="284">302 Found</text>
+  <text class="mg" x="36" y="301">https://…:443/</text>
+  <path class="lng" d="M206,288 L326,288"/>
+  <text class="d" x="214" y="280">client follows it</text>
+  <rect class="g" x="330" y="266" width="490" height="44" rx="6"/>
+  <text class="tb" x="342" y="285">NLB 443 → HAProxy 8443 → echo</text>
+  <text class="m" x="342" y="302">hello from haproxy · 200, 1 redirect</text>
+</svg>

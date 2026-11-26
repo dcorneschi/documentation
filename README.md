@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-87 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+88 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (16) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (17) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -44,6 +44,7 @@
 - [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](kubernetes-health-checks-probes/index.md)
 - [Kubernetes Pod Lifecycle Management](kubernetes-pod-lifecycle-management/index.md)
 - [Kubernetes Node Selectors: nodeSelector, Node Affinity, Taints and nodeName](kubernetes-node-selectors/index.md)
+- [HAProxy Ingress Controller on EKS with a Network Load Balancer](haproxy-ingress-eks/index.md)
 
 ## Helm
 

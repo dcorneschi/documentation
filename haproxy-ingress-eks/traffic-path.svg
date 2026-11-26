@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 430" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">How traffic reaches the pods</title>
+  <desc id="d">A client on the internet connects to the internet-facing Network Load Balancer, which sits in the three public subnets tagged kubernetes.io/role/elb=1 and listens on TCP 80 and TCP 443. Its target groups use instance targets: the Service's NodePorts (30598 for http and 31829 for https in the test) on every worker node. kube-proxy on the node forwards to an HAProxy controller pod, which listens on 8080 and 8443. HAProxy matches the request against Ingress rules for its IngressClass and forwards to the application's Service and pods. The NLB itself is created by the built-in service controller in the EKS control plane, from the Service of type LoadBalancer with the aws-load-balancer-type nlb annotation, and it reports progress as events on that Service.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnd { stroke: #495057; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#a); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .zone{ fill: none; stroke: #ced4da; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+  <rect width="840" height="430" fill="#ffffff"/>
+  <text class="h" x="20" y="28">How traffic reaches the pods</text>
+  <text class="sub" x="20" y="48">HAProxy Ingress Controller behind an NLB on EKS 1.35, chart 1.57.1 (ports from the test)</text>
+
+  <!-- client -->
+  <rect class="n" x="20" y="82" width="110" height="56" rx="6"/>
+  <text class="tb" x="32" y="104">client</text>
+  <text class="d" x="32" y="122">internet</text>
+  <path class="lne" d="M132,110 L170,110"/>
+  <text class="ms" x="136" y="102">80/443</text>
+
+  <!-- NLB -->
+  <rect class="w" x="174" y="66" width="200" height="104" rx="6"/>
+  <text class="tb" x="186" y="88">Network Load Balancer</text>
+  <text class="d" x="186" y="106">internet-facing · listeners</text>
+  <text class="m" x="186" y="122">TCP 80 · TCP 443</text>
+  <text class="d" x="186" y="140">public subnets tagged</text>
+  <text class="ms" x="186" y="156">kubernetes.io/role/elb=1</text>
+  <path class="lne" d="M376,118 L414,118"/>
+  <text class="ms" x="378" y="110">instance</text>
+  <text class="ms" x="378" y="134">targets</text>
+
+  <!-- node -->
+  <rect class="zone" x="418" y="62" width="402" height="210" rx="8"/>
+  <text class="lb" x="430" y="80">EACH WORKER NODE (t3.small)</text>
+  <rect class="n" x="430" y="90" width="150" height="64" rx="6"/>
+  <text class="tb" x="442" y="110">NodePort</text>
+  <text class="m" x="442" y="128">30598 → http</text>
+  <text class="m" x="442" y="144">31829 → https</text>
+  <path class="lne" d="M582,122 L612,122"/>
+  <text class="ms" x="442" y="172">kube-proxy → pod</text>
+  <rect class="r" x="616" y="90" width="192" height="64" rx="6"/>
+  <text class="tb" x="628" y="110">HAProxy controller pod</text>
+  <text class="m" x="628" y="128">listens on 8080 / 8443</text>
+  <text class="d" x="628" y="145">2 replicas, 256Mi request</text>
+  <path class="lne" d="M712,156 L712,186"/>
+  <text class="d" x="704" y="176" text-anchor="end">Ingress rules, class haproxy</text>
+  <rect class="g" x="616" y="190" width="192" height="66" rx="6"/>
+  <text class="tb" x="628" y="210">app Service → pods</text>
+  <text class="m" x="628" y="228">echo:80 → :5678</text>
+  <text class="d" x="628" y="246">hello from haproxy</text>
+
+  <!-- control plane -->
+  <rect class="rw" x="174" y="300" width="380" height="104" rx="6"/>
+  <text class="tb" x="186" y="322">EKS control plane (managed by AWS)</text>
+  <text class="d" x="186" y="342">built-in service controller watches the Service</text>
+  <text class="m" x="186" y="360">type: LoadBalancer</text>
+  <text class="m" x="186" y="376">aws-load-balancer-type: nlb</text>
+  <text class="d" x="186" y="394">no pod to read logs from: it reports as Service events</text>
+  <path class="lnd" d="M274,298 L274,172"/>
+  <text class="d" x="282" y="236">creates and updates the NLB</text>
+
+  <rect class="n" x="574" y="300" width="246" height="104" rx="6"/>
+  <text class="tb" x="586" y="322">Service events to read</text>
+  <text class="ms" x="586" y="342">EnsuringLoadBalancer</text>
+  <text class="ms" x="586" y="358">SyncLoadBalancerFailed</text>
+  <text class="ms" x="586" y="374">EnsuredLoadBalancer</text>
+  <text class="d" x="586" y="394">kubectl describe svc -n haproxy-controller</text>
+</svg>

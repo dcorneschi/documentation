@@ -1,0 +1,52 @@
+# Values for the HAProxy Kubernetes Ingress Controller
+# Chart: haproxytech/kubernetes-ingress (https://haproxytech.github.io/helm-charts)
+# Tested with chart 1.57.1 (controller 3.4.1) on EKS 1.35 with t3.small nodes.
+# Install steps and troubleshooting: https://corneschi.ro/haproxy-ingress-eks/
+
+controller:
+  # Two replicas so one node going away doesn't take ingress down.
+  # Note: t3.small nodes fit only ~11 pods each.
+  replicaCount: 2
+
+  # The chart default requests 2Gi memory, which never fits on a t3.small
+  # (2 GiB total, ~1.4 GiB allocatable). These sizes suit a small demo cluster.
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+
+  service:
+    # Exposes HAProxy through an AWS Network Load Balancer.
+    # The NLB is placed in the public subnets tagged kubernetes.io/role/elb=1
+    # (set by Terraform or eksctl when the VPC is created).
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    # Ports exposed on the NLB.
+    # quic: off - it adds UDP 443 next to TCP 443, and EKS's built-in load balancer
+    #   controller rejects mixed TCP/UDP ("mixed protocol is not supported").
+    # stat/admin: off - keep the stats page and admin/pprof port off the internet;
+    #   they're still reachable inside the cluster (kubectl port-forward).
+    enablePorts:
+      http: true
+      https: true
+      quic: false
+      stat: false
+      admin: false
+
+  # Global controller settings (ConfigMap).
+  # ssl-redirect-port: HAProxy listens on 8443 inside the pod, so by default its
+  #   HTTP->HTTPS redirect points to https://host:8443/, which the NLB doesn't
+  #   expose. Redirect to the public port 443 instead (the Location header
+  #   then reads https://host:443/, which browsers treat as https://host/).
+  config:
+    ssl-redirect-port: "443"
+
+  # Registers the "haproxy" IngressClass and makes it the cluster default,
+  # so Ingress objects without ingressClassName are handled by HAProxy.
+  ingressClassResource:
+    name: haproxy
+    default: true
