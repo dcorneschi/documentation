@@ -277,6 +277,7 @@ kbd {
   overflow-y: auto;
   padding: 18px 14px 40px;
   scrollbar-width: thin;
+  font-family: var(--sans); /* same font as the profile sidebar on the right */
 }
 .sidebar { border-right: 1px solid var(--border); background: var(--bg-alt); }
 .filter {
@@ -301,7 +302,7 @@ kbd {
 .count { color: var(--muted); font-weight: 400; font-size: 12px; }
 .nav-cat ul { list-style: none; margin: 4px 0 10px; padding: 0 0 0 14px; border-left: 1px dashed var(--border); }
 .nav-cat li a {
-  display: block; padding: 3px 8px; font-size: 13px; line-height: 1.45;
+  display: block; padding: 3px 8px; font-size: 14px; line-height: 1.45;
   color: var(--fg); text-decoration: none; border-radius: 4px;
 }
 .nav-cat li a:hover { background: var(--bg-raised); color: var(--accent); }
@@ -604,4 +605,12 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
   .search-open .dim, .search-open kbd, .palette .dim { display: none; }
   .brand { font-size: 13px; }
   .main { padding: 20px 16px 48px; }
+}
+
+/* Readable UI text uses the same sans-serif font as the sidebars; terminal-styled parts
+   (prompt, $ command lines, the home terminal, headings, code) stay monospace. */
+.hero-lead, .stats, .hint, .latest-list, .activity-box, .cheat-row,
+.meta, .pager, .footer, .search-open, .palette, .search-results, .search-help {
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
 }
