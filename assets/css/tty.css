@@ -366,8 +366,9 @@ kbd {
 }
 .prose blockquote > :last-child { margin-bottom: 0; }
 .prose strong { color: var(--accent-2); }
+/* Inline code takes the font and size of the text around it (code blocks set their own monospace font). */
 .prose code {
-  font-family: var(--mono); font-size: 0.86em; padding: 0.05em 0.35em; border-radius: 4px;
+  font-family: inherit; font-size: 1em; padding: 0.05em 0.35em; border-radius: 4px;
   background: var(--code-bg); border: 1px solid var(--border); color: var(--accent);
   overflow-wrap: anywhere;
 }
@@ -387,9 +388,9 @@ kbd {
 .prose div.highlighter-rouge, .prose pre.highlight { position: relative; }
 .prose div.highlighter-rouge { margin: 0 0 1.3em; }
 .prose pre {
-  margin: 0; padding: 14px 16px; overflow-x: auto;
-  background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px;
-  font-family: var(--mono); font-size: 13.5px; line-height: 1.45; tab-size: 4;
+  margin: 0; padding: 20px; overflow-x: auto;
+  background: var(--code-bg); border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); border-radius: 8px;
+  font-family: "IBM Plex Mono", var(--mono); font-size: 13.5px; line-height: 1.7; tab-size: 4;
 }
 .prose pre code { background: none; border: 0; padding: 0; color: var(--fg); font-size: 1em; overflow-wrap: normal; white-space: pre; }
 .code-tools {
@@ -407,7 +408,7 @@ div.highlighter-rouge:hover .code-tools, .code-tools:focus-within { opacity: 1; 
 
 /* Rouge tokens */
 .highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .ch, .highlight .cp, .highlight .cpf { color: var(--c); font-style: italic; }
-.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kc, .highlight .kt, .highlight .kp, .highlight .ow { color: var(--k); }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kc, .highlight .kt, .highlight .kp, .highlight .ow { color: var(--k); font-weight: 600; }
 .highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss, .highlight .dl { color: var(--s); }
 .highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il, .highlight .mb { color: var(--n); }
 .highlight .nf, .highlight .fm, .highlight .nb, .highlight .bp, .highlight .nc, .highlight .nn { color: var(--f); }
