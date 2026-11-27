@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-90 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+91 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (18) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (10) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (19) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (10) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -42,6 +42,7 @@
 - [Kubernetes Vertical Pod Autoscaler (VPA)](kubernetes-vpa-guide/index.md)
 - [Kubernetes emptyDir Volumes](kubernetes-emptydir-volumes/index.md)
 - [k9s Cheatsheet](k9s-cheatsheet/index.md)
+- [ctr Cheatsheet (containerd CLI)](ctr-cheatsheet/index.md)
 - [Kubernetes Health Checks: Liveness, Readiness, and Startup Probes](kubernetes-health-checks-probes/index.md)
 - [Kubernetes Pod Lifecycle Management](kubernetes-pod-lifecycle-management/index.md)
 - [Kubernetes Node Selectors: nodeSelector, Node Affinity, Taints and nodeName](kubernetes-node-selectors/index.md)
