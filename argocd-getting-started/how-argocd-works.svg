@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 404" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">How Argo CD deploys Metrics Server</title>
+  <desc id="d">You apply the Application metrics-server to namespace argo with kubectl. It names a source (Helm repository https://kubernetes-sigs.github.io/metrics-server/, chart metrics-server, version 3.12.2, parameter args[0]=--kubelet-insecure-tls) and a destination (this cluster, namespace kube-system). The argo-argocd-repo-server downloads the chart from the Helm repository and renders it with the parameter. The argo-argocd-application-controller compares the rendered manifests with the live objects in kube-system and applies the difference: that is a sync. Automated sync syncs when the Application changes, self-heal when the live state drifts (a manual scale to 3 was back to 1 in 2 seconds), and prune deletes objects that are no longer rendered. The argo-argocd-server serves the UI and API, which you reach with kubectl port-forward on localhost 8080.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .lnd { stroke: #495057; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; marker-end: url(#a); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .rw  { fill: #f3effc; stroke: #a98eda; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .zone{ fill: none; stroke: #ced4da; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+  <rect width="840" height="404" fill="#ffffff"/>
+  <text class="h" x="20" y="28">How Argo CD deploys Metrics Server</text>
+  <text class="sub" x="20" y="48">Argo CD v3.6.3 (chart argo/argo-cd 10.20.0) on kind, Kubernetes 1.37</text>
+
+  <!-- you -->
+  <rect class="n" x="20" y="70" width="150" height="62" rx="6"/>
+  <text class="tb" x="32" y="92">you</text>
+  <text class="m" x="32" y="110">kubectl apply -f</text>
+  <text class="m" x="32" y="124">metrics-server-app.yaml</text>
+  <path class="lne" d="M172,100 L206,100"/>
+
+  <!-- Helm repo (outside) -->
+  <rect class="w" x="20" y="300" width="150" height="80" rx="6"/>
+  <text class="tb" x="32" y="322">Helm repository</text>
+  <text class="ms" x="32" y="340">kubernetes-sigs.github</text>
+  <text class="ms" x="32" y="354">.io/metrics-server/</text>
+  <text class="d" x="32" y="372">not Git: a chart repo</text>
+
+  <!-- cluster -->
+  <rect class="zone" x="190" y="60" width="638" height="334" rx="8"/>
+  <text class="lb" x="202" y="78">CLUSTER</text>
+
+  <!-- argo namespace -->
+  <rect class="zone" x="202" y="86" width="404" height="296" rx="8"/>
+  <text class="lb" x="214" y="104">NAMESPACE ARGO</text>
+
+  <rect class="rw" x="214" y="112" width="380" height="76" rx="6"/>
+  <text class="tb" x="226" y="132">Application metrics-server</text>
+  <text class="m" x="226" y="150">source: chart metrics-server 3.12.2</text>
+  <text class="m" x="226" y="164">  helm.parameters: args[0]=--kubelet-insecure-tls</text>
+  <text class="m" x="226" y="178">destination: this cluster / kube-system</text>
+
+  <rect class="r" x="214" y="214" width="180" height="70" rx="6"/>
+  <text class="tb" x="226" y="234">repo-server</text>
+  <text class="d" x="226" y="252">downloads the chart,</text>
+  <text class="d" x="226" y="268">renders it with the parameter</text>
+
+  <rect class="r" x="414" y="214" width="180" height="70" rx="6"/>
+  <text class="tb" x="426" y="234">application-controller</text>
+  <text class="d" x="426" y="252">compares rendered vs live,</text>
+  <text class="d" x="426" y="268">applies the difference (sync)</text>
+
+  <rect class="n" x="214" y="302" width="380" height="68" rx="6"/>
+  <text class="tb" x="226" y="322">argocd-server: UI and API</text>
+  <text class="m" x="226" y="340">kubectl port-forward service/argo-argocd-server</text>
+  <text class="m" x="226" y="354">  -n argo 8080:443   →  https://localhost:8080</text>
+
+  <path class="lne" d="M304,190 L304,210"/>
+  <path class="lne" d="M504,190 L504,210"/>
+  <text class="ms" x="510" y="204">watches</text>
+  <path class="lne" d="M396,249 L410,249"/>
+  <path class="lnd" d="M172,338 L190,338 L190,262 L210,262"/>
+  <text class="ms" x="122" y="294">chart .tgz</text>
+
+  <!-- kube-system -->
+  <rect class="zone" x="622" y="86" width="194" height="296" rx="8"/>
+  <text class="lb" x="634" y="104">NAMESPACE KUBE-SYSTEM</text>
+  <rect class="g" x="634" y="112" width="170" height="110" rx="6"/>
+  <text class="tb" x="646" y="132">metrics-server</text>
+  <text class="d" x="646" y="150">Deployment, Service,</text>
+  <text class="d" x="646" y="166">APIService, RBAC</text>
+  <text class="m" x="646" y="186">image v0.7.2</text>
+  <text class="d" x="646" y="206">kubectl top works</text>
+  <path class="lne" d="M596,240 L630,200"/>
+  <text class="ms" x="598" y="262">apply</text>
+
+  <rect class="n" x="634" y="236" width="170" height="134" rx="6"/>
+  <text class="tb" x="646" y="256">syncPolicy</text>
+  <text class="m" x="646" y="276">automated</text>
+  <text class="d" x="646" y="290">sync when the app changes</text>
+  <text class="m" x="646" y="310">selfHeal</text>
+  <text class="d" x="646" y="324">scale to 3 → back to 1 in 2 s</text>
+  <text class="m" x="646" y="344">prune</text>
+  <text class="d" x="646" y="358">removed PDB → deleted</text>
+</svg>

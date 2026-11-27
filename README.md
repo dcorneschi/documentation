@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-89 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+90 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (17) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (10) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (18) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (10) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -32,6 +32,7 @@
 - [Kubernetes Rolling Updates: What Actually Happens, Measured](kubernetes-rolling-updates/index.md)
 - [Kubernetes Troubleshooting: 10 Failures, Reproduced and Fixed](kubernetes-troubleshooting-techniques/index.md)
 - [How to Create Kubernetes YAML Manifests Quickly](kubernetes-yaml-manifests-quickly/index.md)
+- [Getting Started with Argo CD: Deploy Metrics Server from a Helm Chart](argocd-getting-started/index.md)
 - [Argo CD Cheatsheet](argocd-cheatsheet/index.md)
 - [Kubernetes Architecture on a kubeadm Cluster: What Each Component Does](kubernetes-architecture-components/index.md)
 - [kubectl describe vs kubectl logs: What Each One Shows and How Long It's Kept](kubectl-describe-vs-logs/index.md)
