@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2752" height="1536" viewBox="0 0 2752 1536" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Why Docker Compose Needs build.pull and pull_policy Set to build</title>
+  <desc id="d">Why Docker Compose Needs build.pull and pull_policy Set to build. When a service has image and build, Compose may reuse an old image, pull one from the registry, or build on an old base image. image plus build, pull_policy, build.pull, FROM digest, docker compose up, Compose v5.8.0. Small drawings: a terminal with docker compose up building and printing app v2 on base v2, a Dockerfile going to an image, the compose snippet with pull: true and pull_policy: build, and icons for the Dockerfile, build, registry, base image, cache and the container.</desc>
+  <defs>
+    <style>
+      .bg  { fill: #f8f9fa; }
+      .a   { fill: #1d63ed; }
+      .ink { fill: #343a40; }
+      .pap { fill: #ffffff; stroke: #ced4da; stroke-width: 6; }
+      .al  { stroke: #1d63ed; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .wt  { fill: #ffffff; }
+      .h   { font-weight: 700; fill: #212529; letter-spacing: -2px; }
+      .s   { fill: #495057; }
+      .n   { fill: #868e96; }
+      .r   { stroke: #dee2e6; stroke-width: 2; }
+      .vf  { fill: #1d63ed; }
+      .vs  { stroke: #1d63ed; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .vl  { fill: #1d63ed; fill-opacity: .18; }
+      .vp  { fill: #ffffff; }
+      .vn  { fill: #868e96; }
+      .vterm { fill: #212529; }
+      .vtbar { fill: #343a40; }
+      .vtx { fill: #e9ecef; }
+      .vtb { fill: #74c0fc; }
+      .key { fill: #1d63ed; }
+      @media (prefers-color-scheme: dark) {
+        .bg  { fill: #161b22; }
+        .ink { fill: #c9d1d9; }
+        .pap { fill: #0d1117; stroke: #30363d; }
+        .h   { fill: #f0f6fc; }
+        .s   { fill: #c9d1d9; }
+        .n   { fill: #8b949e; }
+        .r   { stroke: #30363d; }
+        .vp  { fill: #0d1117; }
+        .vn  { fill: #8b949e; }
+        .vterm { fill: #0d1117; stroke: #30363d; stroke-width: 4; }
+        .vtbar { fill: #21262d; }
+        .key { fill: #58a6ff; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="2752" height="1536"/>
+
+  <!-- top left: docker compose up with both settings (real output from the test) -->
+  <g transform="translate(100,190)">
+    <rect class="vterm" x="0" y="0" width="900" height="330" rx="22"/>
+    <rect class="vtbar" x="0" y="0" width="900" height="56" rx="22"/>
+    <rect class="vtbar" x="0" y="34" width="900" height="22"/>
+    <circle cx="40" cy="28" r="11" fill="#ff5f57"/><circle cx="80" cy="28" r="11" fill="#febc2e"/><circle cx="120" cy="28" r="11" fill="#28c840"/>
+    <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="30">
+      <text class="vtx" x="32" y="126">$ docker compose up</text>
+      <text class="vtx" x="32" y="180"> Image localhost:5000/app:latest Building</text>
+      <text class="vtx" x="32" y="230"> Image localhost:5000/app:latest Built</text>
+      <text class="vtb" x="32" y="284">app-1  | app v2 on base v2</text>
+    </g>
+  </g>
+
+  <!-- centre: Dockerfile -> image -->
+  <rect class="pap" x="1100" y="240" width="300" height="200" rx="24"/>
+  <text class="ink" x="1250" y="318" text-anchor="middle" font-size="40" font-weight="700">Dockerfile</text>
+  <text class="n" x="1250" y="378" text-anchor="middle" font-size="30" font-family="Menlo, Consolas, 'Liberation Mono', monospace">FROM base:1</text>
+  <path class="al" d="M1430,340 H1560 M1530,314 L1560,340 L1530,366"/>
+  <rect class="a" x="1590" y="230" width="300" height="220" rx="28"/>
+  <text class="wt" x="1740" y="325" text-anchor="middle" font-size="44" font-weight="700">image</text>
+  <text class="wt" x="1740" y="385" text-anchor="middle" font-size="30" font-weight="700" font-family="Menlo, Consolas, 'Liberation Mono', monospace">built, fresh</text>
+
+  <!-- right: compose snippet -->
+  <rect class="pap" x="1960" y="210" width="690" height="290" rx="24"/>
+  <g font-family="Menlo, Consolas, 'Liberation Mono', monospace" font-size="32">
+    <text class="ink" x="2000" y="270">app:</text>
+    <text class="ink" x="2000" y="318">  image: app:latest</text>
+    <text class="ink" x="2000" y="366">  build:</text>
+    <text class="key" x="2000" y="414" font-weight="700">    pull: true</text>
+    <text class="key" x="2000" y="462" font-weight="700">  pull_policy: build</text>
+  </g>
+
+  <text class="h" x="1376" y="880" text-anchor="middle" font-size="140">build.pull and pull_policy</text>
+  <text class="s" x="1376" y="1030" text-anchor="middle" font-size="80">Why Docker Compose needs both to really build from the Dockerfile</text>
+  <line class="r" x1="776" y1="1105" x2="1976" y2="1105"/>
+  <text class="n" x="1376" y="1210" text-anchor="middle" font-size="44">image + build · pull_policy · build.pull · FROM digest · docker compose up · Compose v5.8.0</text>
+
+  <!-- icon row -->
+  <!-- Dockerfile: page -->
+  <g transform="translate(676,1290) scale(0.5)">
+    <path class="vp" d="M50,20 H128 L160,52 V180 H50 Z" stroke="#1d63ed" stroke-width="10"/>
+    <path class="vs" d="M128,20 V52 H160 M74,92 H136 M74,122 H136 M74,152 H116" stroke-width="9"/>
+  </g>
+  <text class="vn" x="726" y="1450" text-anchor="middle" font-size="34">Dockerfile</text>
+  <!-- build: hammer-ish wrench -->
+  <g transform="translate(936,1290) scale(0.5)">
+    <rect class="vl" x="40" y="110" width="120" height="60" rx="8"/>
+    <rect class="vp" x="40" y="110" width="120" height="60" rx="8" fill="none" stroke="#1d63ed" stroke-width="10"/>
+    <rect class="vl" x="70" y="50" width="60" height="60" rx="8"/>
+    <rect class="vp" x="70" y="50" width="60" height="60" rx="8" fill="none" stroke="#1d63ed" stroke-width="10"/>
+  </g>
+  <text class="vn" x="986" y="1450" text-anchor="middle" font-size="34">build</text>
+  <!-- registry: stacked disks -->
+  <g transform="translate(1196,1290) scale(0.5)">
+    <ellipse class="vl" cx="100" cy="50" rx="66" ry="22"/>
+    <path class="vs" d="M34,50 A66,22 0 0 0 166,50 A66,22 0 0 0 34,50 V150 A66,22 0 0 0 166,150 V50 M34,100 A66,22 0 0 0 166,100" stroke-width="10"/>
+  </g>
+  <text class="vn" x="1246" y="1450" text-anchor="middle" font-size="34">registry</text>
+  <!-- pull: down arrow into tray -->
+  <g transform="translate(1456,1290) scale(0.5)">
+    <path class="vs" d="M100,24 V124 M60,86 L100,126 L140,86 M36,140 V176 H164 V140" stroke-width="14"/>
+  </g>
+  <text class="vn" x="1506" y="1450" text-anchor="middle" font-size="34">pull</text>
+  <!-- cache: layers -->
+  <g transform="translate(1716,1290) scale(0.5)">
+    <path class="vl" d="M100,30 L176,70 L100,110 L24,70 Z"/>
+    <path class="vs" d="M100,30 L176,70 L100,110 L24,70 Z M24,104 L100,144 L176,104 M24,138 L100,178 L176,138" stroke-width="10"/>
+  </g>
+  <text class="vn" x="1766" y="1450" text-anchor="middle" font-size="34">cache</text>
+  <!-- container: box -->
+  <g transform="translate(1976,1290) scale(0.5)">
+    <rect class="vl" x="30" y="50" width="140" height="110" rx="10"/>
+    <rect class="vp" x="30" y="50" width="140" height="110" rx="10" fill="none" stroke="#1d63ed" stroke-width="10"/>
+    <path class="vs" d="M58,50 V160 M86,50 V160 M114,50 V160 M142,50 V160" stroke-width="7"/>
+  </g>
+  <text class="vn" x="2026" y="1450" text-anchor="middle" font-size="34">container</text>
+</svg>

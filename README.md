@@ -1,8 +1,8 @@
 # DevOps Wiki
 
-88 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
+89 hands-on articles and cheatsheets on AWS, Kubernetes, Terraform, Docker, Ansible, Linux and terminal tools.
 
-[AWS](#aws) (19) · [Kubernetes](#kubernetes) (17) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (9) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
+[AWS](#aws) (19) · [Kubernetes](#kubernetes) (17) · [Helm](#helm) (5) · [Terraform](#terraform) (11) · [Docker](#docker) (10) · [Ansible](#ansible) (4) · [Linux & Bash](#linux--bash) (14) · [cloud-init](#cloud-init) (3) · [Terminal & macOS](#terminal--macos) (6)
 
 ## AWS
 
@@ -79,6 +79,7 @@
 - [How Docker Images Are Built: Layers, Cache and the Container on Top](docker-image-layers/index.md)
 - [How docker pull Works: Technical Details](docker-pull-technical-details-guide/index.md)
 - [Docker Compose Cheatsheet](docker-compose/index.md)
+- [Why Docker Compose Needs build.pull and pull_policy Set to build](docker-compose-build-pull-policy/index.md)
 
 ## Ansible
 

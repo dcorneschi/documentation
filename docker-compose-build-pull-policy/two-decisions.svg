@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 840 450" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Two decisions: build or not, and which base image</title>
+  <desc id="d">For a service with both image and build, docker compose up makes two decisions. First, pull_policy: with the default, missing, Compose uses the local image if one exists, so code changes are ignored; if there is none it pulls the image name from the registry and runs that image without looking at the Dockerfile; only if the pull fails does it build. With pull_policy build it always builds, and docker compose pull skips the service. Second, build.pull: when it builds, false uses the copy of the FROM image already on the machine (in the test sha256:8caf, base v1); true asks the registry for the tag's current digest (sha256:52ae, base v2) and needs the registry to be reachable. With both settings the test printed app v2 on base v2.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#495057"/>
+    </marker>
+    <style>
+      .h   { font-size: 15px; font-weight: 700; fill: #212529; }
+      .sub { font-size: 12px; fill: #495057; }
+      .tb  { font-size: 13px; font-weight: 700; fill: #212529; }
+      .lb  { font-size: 11px; font-weight: 700; fill: #495057; letter-spacing: .04em; }
+      .m   { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; fill: #212529; white-space: pre; }
+      .ms  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 10px; fill: #495057; white-space: pre; }
+      .mx  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #b02a37; white-space: pre; }
+      .mg  { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: 11px; font-weight: 700; fill: #2b8a3e; white-space: pre; }
+      .d   { font-size: 11px; fill: #495057; }
+      .lne { stroke: #495057; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+      .r   { fill: #e7f1ff; stroke: #6ea8fe; }
+      .w   { fill: #ffe5cc; stroke: #fd9843; }
+      .g   { fill: #e8f5ee; stroke: #75b798; }
+      .x   { fill: #f8d7da; stroke: #e35d6a; }
+      .n   { fill: #f8f9fa; stroke: #dee2e6; }
+      .lane{ fill: none; stroke: #dee2e6; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+  <rect width="840" height="450" fill="#ffffff"/>
+  <text class="h" x="20" y="28">Two decisions: build or not, and which base image</text>
+  <text class="sub" x="20" y="48">A service with both image: and build:, Docker Compose v5.8.0 (results from the test)</text>
+
+  <!-- left: pull_policy -->
+  <rect class="lane" x="12" y="62" width="452" height="320" rx="8"/>
+  <text class="lb" x="24" y="80">1 · PULL_POLICY: DOES `UP` BUILD?</text>
+
+  <rect class="n" x="24" y="90" width="140" height="40" rx="6"/>
+  <text class="tb" x="36" y="108">missing (default)</text>
+  <text class="d" x="36" y="123">local image?</text>
+  <path class="lne" d="M166,110 L196,110"/>
+  <text class="ms" x="168" y="102">yes</text>
+  <rect class="x" x="200" y="90" width="252" height="40" rx="6"/>
+  <text class="tb" x="212" y="108">use it, no rebuild</text>
+  <text class="mx" x="212" y="123">app v1 on base v2 (code ignored)</text>
+
+  <path class="lne" d="M94,132 L94,152"/>
+  <text class="ms" x="100" y="146">no: pull image: name</text>
+  <rect class="n" x="24" y="156" width="140" height="40" rx="6"/>
+  <text class="tb" x="36" y="174">in the registry?</text>
+  <text class="d" x="36" y="189">same name, any image</text>
+  <path class="lne" d="M166,176 L196,176"/>
+  <text class="ms" x="168" y="168">yes</text>
+  <rect class="x" x="200" y="156" width="252" height="40" rx="6"/>
+  <text class="tb" x="212" y="174">run the pulled image</text>
+  <text class="mx" x="212" y="189">app from the registry (old push)</text>
+
+  <path class="lne" d="M94,198 L94,218"/>
+  <text class="ms" x="100" y="212">no: pull fails</text>
+  <rect class="w" x="24" y="222" width="428" height="40" rx="6"/>
+  <text class="tb" x="36" y="240">build from the Dockerfile</text>
+  <text class="d" x="36" y="255">the only case where the default builds: why it looks fine at first</text>
+
+  <rect class="g" x="24" y="282" width="428" height="86" rx="6"/>
+  <text class="m" x="36" y="302">pull_policy: build</text>
+  <text class="d" x="36" y="322">builds on every docker compose up</text>
+  <text class="d" x="36" y="340">docker compose pull: Skipped</text>
+  <text class="mx" x="36" y="358">but up --pull always still pulls and runs the registry image</text>
+
+  <!-- right: build.pull -->
+  <rect class="lane" x="476" y="62" width="352" height="320" rx="8"/>
+  <text class="lb" x="488" y="80">2 · BUILD.PULL: WHICH FROM IMAGE?</text>
+  <rect class="n" x="488" y="90" width="328" height="56" rx="6"/>
+  <text class="m" x="500" y="110">FROM localhost:5000/base:1</text>
+  <text class="d" x="500" y="128">local copy: base v1 · registry: base v2</text>
+  <text class="d" x="500" y="142">(same tag, pushed again)</text>
+
+  <path class="lne" d="M560,148 L560,176"/>
+  <path class="lne" d="M744,148 L744,176"/>
+  <rect class="x" x="488" y="180" width="158" height="110" rx="6"/>
+  <text class="m" x="500" y="200">pull: false</text>
+  <text class="d" x="500" y="218">(default)</text>
+  <text class="d" x="500" y="236">uses the local copy</text>
+  <text class="ms" x="500" y="254">sha256:8caf0f26…</text>
+  <text class="mx" x="500" y="276">base v1</text>
+  <rect class="g" x="658" y="180" width="158" height="110" rx="6"/>
+  <text class="m" x="670" y="200">pull: true</text>
+  <text class="d" x="670" y="218">asks the registry</text>
+  <text class="d" x="670" y="236">for the current digest</text>
+  <text class="ms" x="670" y="254">sha256:52ae3cbc…</text>
+  <text class="mg" x="670" y="276">base v2</text>
+
+  <rect class="n" x="488" y="302" width="328" height="66" rx="6"/>
+  <text class="d" x="500" y="322">layers stay CACHED while the digest is the same</text>
+  <text class="d" x="500" y="340">the local tag is not updated (still base v1)</text>
+  <text class="mx" x="500" y="358">registry down: the build fails</text>
+
+  <!-- result -->
+  <rect class="g" x="12" y="396" width="816" height="42" rx="8"/>
+  <text class="tb" x="24" y="414">Both settings:</text>
+  <text class="m" x="130" y="414">pull_policy: build  +  build.pull: true</text>
+  <text class="mg" x="24" y="431">docker compose up → Building → Built → app v2 on base v2</text>
+</svg>
